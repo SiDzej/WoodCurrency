@@ -1,0 +1,17 @@
+################################################################
+#
+# WoodCurrency plugin config file
+#
+################################################################
+
+debug: false
+custom-sign-text: '[WoodCurrency]'
+op-permissions: false # ops have all permissions if true
+
+mysql:
+  host: 'localhost'
+  port: '3306'
+  database: 'minecraft'
+  user: 'WoodCurrency'
+  password: 'wr41th5' # use your password!
+  

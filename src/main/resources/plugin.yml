@@ -1,0 +1,24 @@
+name: WoodCurrency
+main: eu.sidzej.wc.WoodCurrency
+author: _CJ_ aka SiDzej
+version: 0.9beta
+depend: [Vault]
+commands:
+  wc:
+    description: Main command for this plugin... it provide you help if you type it.
+    aliases: [woodcurrency,wood]
+    usage: /<command> help
+permissions:
+  woodcurrency.*:
+    description: Gives access to all WoodCurrency commands
+    default: false
+    children:
+    
+  woodcurrency.buy:
+    description: Allow buying things at shop
+    default: true
+  woodcurrency.sell:
+    description: Allow selling things at shop
+    default: true
+  
+  
