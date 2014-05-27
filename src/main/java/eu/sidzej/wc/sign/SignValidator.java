@@ -13,7 +13,7 @@ public class SignValidator {
 
     public static final Pattern[] SHOP_SIGN_PATTERN = {
             Pattern.compile("^?[\\w -.&\\d]*$"),
-            Pattern.compile("^\\s*(Buy|Sell|b|s)\\s*(:\\s*(Buy|Sell|b|s)\\s*)?$"),
+            Pattern.compile("(?i)^\\s*(Buy|Sell|b|s)\\s*(:\\s*(Buy|Sell|b|s)\\s*)?$"),
             Pattern.compile("(?i)^\\s*[\\d.]+\\s*(:\\s*[\\d.]+\\s*)?$"),
             Pattern.compile("(?i)^[\\d\\w? #:-]+ wood$") //Pattern.compile("^[\\w? #:-]+$")
     };

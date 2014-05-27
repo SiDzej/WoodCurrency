@@ -59,7 +59,7 @@ public class DBUtils {
 					+ l.getBlockX() + "\",\"" + l.getBlockY() + "\",\"" + l.getBlockZ() + "\",\"" 
 					+ l.getWorld().getName() + "\",\"" + d + "\")");
 		} catch (SQLException ex) {
-			Log.error("Unable to new shop to DB.");
+			Log.error("Unable to put new shop into DB.");
 			return false;
 		} finally {
 			try {

@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 
 import eu.sidzej.wc.db.DBUtils;
+import eu.sidzej.wc.utils.Log;
 
 public class ProtectionManager {
 	private static final List<BlockFace> faces = Arrays.asList(BlockFace.EAST, BlockFace.SOUTH,
@@ -27,6 +28,8 @@ public class ProtectionManager {
 	}
 
 	public static void addNew(Location l, BlockFace f) {
+		if(isProtected(l))
+			return;
 		DBUtils.registerShop(l, faces.indexOf(f));
 		instance.protectionList.put(l, e_protectionType.SIGN);
 		instance.protectionList.put(l.getBlock().getRelative(f).getLocation(),
@@ -38,7 +41,7 @@ public class ProtectionManager {
 	}
 
 	public static void addFromDB(Location l, int direction) {
-		instance.protectionList.put(l, e_protectionType.SIGN);
+		instance.protectionList.put(l.clone(), e_protectionType.SIGN);
 		int x, z;
 		x = (faces.indexOf(BlockFace.EAST) == direction) ? 1
 				: (faces.indexOf(BlockFace.WEST) == direction) ? -1 : 0;
