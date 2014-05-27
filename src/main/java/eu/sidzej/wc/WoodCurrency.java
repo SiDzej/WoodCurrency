@@ -6,33 +6,66 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import eu.sidzej.wc.db.DBUtils;
+import eu.sidzej.wc.db.Database;
 import eu.sidzej.wc.listeners.*;
 import eu.sidzej.wc.listeners.sign.*;
+import eu.sidzej.wc.utils.Config;
+import eu.sidzej.wc.utils.EconomyUtils;
+import eu.sidzej.wc.utils.Log;
 
-public class WoodCurrency extends JavaPlugin{
+public class WoodCurrency extends JavaPlugin {
 	private static WoodCurrency plugin;
-	
+
 	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
-	
-	//private File langFile; //TODO
+	public Database db;
+	public EconomyUtils economy;
+
+	// private File langFile; //TODO
 	public static String name;
+	public static String version;
+	public Config config;
 
 	public void onEnable() {
 		plugin = this;
-		
-		Logger.getLogger("Minecraft").log(Level.SEVERE, String.format("%s %s", "blaba", "jedeeem"));
-		// PluginManager pm = getServer().getPluginManager();
 
 		name = this.getDescription().getName();
+		version = this.getDescription().getVersion();
 		
+		config = new Config(this);
+		Log.debug("Debug enabled!"); // log only when enabled in config :)
+
+
+		// Required - Vault,
+		checkDependencies(getServer().getPluginManager());
+		try {
+			db = new Database(this);
+			if (!db.valid) {
+				this.disable("Database error");
+				return;
+			}
+		} catch (ClassNotFoundException e) {
+			Log.error("Can't join database. com.mysql.jdbc.Driver not found.");
+			this.disable();
+		}
+
+		
+		if(!DBUtils.loadShops())
+			this.disable("Shop loading error");
 		
 		registerListeners();
+		/*
+		commandHandler = new CommandHandler(this);
+		getCommand("wc").setExecutor(commandHandler);
+		
+		economy = new Eco(this);*/
 	}
 
-	public void onDisable() { 
-		
+	public void onDisable() {
+
 	}
 
 	public void disable() {
@@ -40,17 +73,24 @@ public class WoodCurrency extends JavaPlugin{
 	}
 
 	public void disable(String msg) {
-		
+
 		Bukkit.getPluginManager().disablePlugin(this);
 	}
 	
-	
-	private void registerListeners(){
+	private void checkDependencies(PluginManager pm) {
+		if (!pm.isPluginEnabled("Vault")) {
+			Log.error("Vault is required for this plugin.");
+			this.disable("Vault is required!");
+		}
+
+	}
+
+	private void registerListeners() {
 		// main
 		registerListener(new PlayerListener());
 		registerListener(new SignChangeListener());
 		registerListener(new BlockBreakListener());
-		
+
 		// shop creation related
 		registerListener(new ShopCreatedMessage());
 		registerListener(new ShopCreatedRegister());
@@ -60,13 +100,12 @@ public class WoodCurrency extends JavaPlugin{
 		registerListener(new SignPriceLineListener());
 		registerListener(new SignTypeLineListener());
 	}
-	
-	
-	public void registerListener(Listener l){
-		getServer().getPluginManager().registerEvents(l,this);
+
+	public void registerListener(Listener l) {
+		getServer().getPluginManager().registerEvents(l, this);
 	}
-	
+
 	public static void callEvent(Event event) {
-        Bukkit.getPluginManager().callEvent(event);
-    }
+		Bukkit.getPluginManager().callEvent(event);
+	}
 }
