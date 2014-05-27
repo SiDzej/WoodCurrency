@@ -30,7 +30,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 
 -- -----------------------------------------------------
--- auction point table
+-- WC Shops signs
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wc_signs` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -38,8 +38,9 @@ CREATE TABLE IF NOT EXISTS `wc_signs` (
   `x` INT NOT NULL,
   `y` INT NOT NULL,
   `z` INT NOT NULL,
-  `type` SMALLINT DEFAULT 0,
   `direction` SMALLINT DEFAULT 0,
+  `sells` INT DEFAULT 0,
+  `buys` INT DEFAULT 0,
   PRIMARY KEY (`id`)
   ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1

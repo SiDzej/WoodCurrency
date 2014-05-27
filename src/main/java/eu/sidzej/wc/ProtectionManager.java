@@ -8,6 +8,8 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 
+import eu.sidzej.wc.db.DBUtils;
+
 public class ProtectionManager {
 	private static final List<BlockFace> faces = Arrays.asList(BlockFace.EAST, BlockFace.SOUTH,
 			BlockFace.WEST, BlockFace.NORTH); // BlockFace.DOWN not needed
@@ -25,7 +27,7 @@ public class ProtectionManager {
 	}
 
 	public static void addNew(Location l, BlockFace f) {
-		// DBUtils.registerShop(l, faces.indexOf(f));
+		DBUtils.registerShop(l, faces.indexOf(f));
 		instance.protectionList.put(l, e_protectionType.SIGN);
 		instance.protectionList.put(l.getBlock().getRelative(f).getLocation(),
 				e_protectionType.BLOCK);
@@ -77,7 +79,7 @@ public class ProtectionManager {
 	}
 
 	private static void deleteSign(Location l) {
-		// DBUtils.removeShop(l);
+		DBUtils.removeShop(l);
 		instance.protectionList.remove(l);
 		instance.wcList.remove(l);
 	}

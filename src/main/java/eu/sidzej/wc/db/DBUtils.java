@@ -49,15 +49,15 @@ public class DBUtils {
 	 * @param d - sing attached direction
 	 * @return true if successfully saved to DB
 	 */
-	public static boolean registerShop(Location l, int d, int type) {
+	public static boolean registerShop(Location l, int d) {
 		TimedConnection c = null;
 		Statement s = null;
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("INSERT INTO wc_signs (x,y,z,world,direction,type) VALUES (\""
+			s.execute("INSERT INTO wc_signs (x,y,z,world,direction) VALUES (\""
 					+ l.getBlockX() + "\",\"" + l.getBlockY() + "\",\"" + l.getBlockZ() + "\",\"" 
-					+ l.getWorld().getName() + "\",\"" + d + "\",\"" + type + "\")");
+					+ l.getWorld().getName() + "\",\"" + d + "\")");
 		} catch (SQLException ex) {
 			Log.error("Unable to new shop to DB.");
 			return false;

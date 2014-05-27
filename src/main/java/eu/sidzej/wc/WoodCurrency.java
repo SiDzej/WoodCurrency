@@ -1,8 +1,5 @@
 package eu.sidzej.wc;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -41,6 +38,7 @@ public class WoodCurrency extends JavaPlugin {
 
 		// Required - Vault,
 		checkDependencies(getServer().getPluginManager());
+		//DB connections
 		try {
 			db = new Database(this);
 			if (!db.valid) {
@@ -73,7 +71,7 @@ public class WoodCurrency extends JavaPlugin {
 	}
 
 	public void disable(String msg) {
-
+		Log.error(msg);
 		Bukkit.getPluginManager().disablePlugin(this);
 	}
 	
