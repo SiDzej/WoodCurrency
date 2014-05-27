@@ -14,6 +14,8 @@ import eu.sidzej.wc.listeners.sign.*;
 public class WoodCurrency extends JavaPlugin{
 	private static WoodCurrency plugin;
 	
+	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
+	
 	//private File langFile; //TODO
 	public static String name;
 
@@ -25,17 +27,8 @@ public class WoodCurrency extends JavaPlugin{
 
 		name = this.getDescription().getName();
 		
-		registerListener(new PlayerListener());
-		registerListener(new SignChangeListener());
 		
-		
-		registerListener(new ShopCreatedMessage());
-		registerListener(new ShopCreatedRegister());
-		registerListener(new SignCreationMonitor());
-		registerListener(new SignItemLineListener());
-		registerListener(new SignNameLineListener());
-		registerListener(new SignPriceLineListener());
-		registerListener(new SignTypeLineListener());
+		registerListeners();
 	}
 
 	public void onDisable() { 
@@ -49,6 +42,23 @@ public class WoodCurrency extends JavaPlugin{
 	public void disable(String msg) {
 		
 		Bukkit.getPluginManager().disablePlugin(this);
+	}
+	
+	
+	private void registerListeners(){
+		// main
+		registerListener(new PlayerListener());
+		registerListener(new SignChangeListener());
+		registerListener(new BlockBreakListener());
+		
+		// shop creation related
+		registerListener(new ShopCreatedMessage());
+		registerListener(new ShopCreatedRegister());
+		registerListener(new SignCreationMonitor());
+		registerListener(new SignItemLineListener());
+		registerListener(new SignNameLineListener());
+		registerListener(new SignPriceLineListener());
+		registerListener(new SignTypeLineListener());
 	}
 	
 	

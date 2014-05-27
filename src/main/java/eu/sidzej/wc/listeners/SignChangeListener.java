@@ -7,11 +7,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.material.Attachable;
+import org.bukkit.material.Sign;
 
+import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.events.ShopCreatedEvent;
 import eu.sidzej.wc.events.SignCreationEvent;
+import eu.sidzej.wc.sign.SignValidator;
 
 public class SignChangeListener implements Listener{
 	
@@ -19,13 +22,12 @@ public class SignChangeListener implements Listener{
 	public void onSignTextChange(SignChangeEvent event) { 
 		Player p = event.getPlayer();
 		Block b = event.getBlock();
+		Block relative = b.getRelative(((Attachable) b.getState().getData()).getAttachedFace());
 		
-		if(!WCSign.isValidPreparedSign(event.getLines())){
-			p.sendMessage("zruseno chyba - not valid sign");
+		if(!SignValidator.isValidPreparedSign(event.getLines())){
+			ProtectionManager.remove(b.getLocation(), relative.getLocation());
 			return;
 		}
-		
-		Block relative = b.getRelative(((Attachable) b.getState().getData()).getAttachedFace());
 		
 		if(!b.getType().equals(Material.WALL_SIGN) 
 				|| !relative.getType().isBlock() || relative.getType().hasGravity()){
@@ -39,6 +41,7 @@ public class SignChangeListener implements Listener{
 
         if (create.isCancelled()) {
         	b.breakNaturally();
+        	ProtectionManager.remove(b.getLocation(), relative.getLocation());
             return;
         }
 
@@ -48,9 +51,9 @@ public class SignChangeListener implements Listener{
 
         ShopCreatedEvent finished = new ShopCreatedEvent(create.getPlayer(),b, create.getSignLines());
         WoodCurrency.callEvent(finished);
-		
-		// registrace 
-		// zruseni cedule
+        ProtectionManager.addNew(b.getLocation(), ((Sign) b.getState().getData()).getAttachedFace());
+        ProtectionManager.addSign(b.getLocation(), 
+        		new WCSign(create.getItem(),create.getSellPrice(), create.getBuyPrice(),create.getType()));
 	}
 
 }

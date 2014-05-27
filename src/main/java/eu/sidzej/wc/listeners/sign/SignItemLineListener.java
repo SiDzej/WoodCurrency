@@ -4,20 +4,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.events.SignCreationEvent;
-import eu.sidzej.wc.events.SignCreationEvent.E_States;
+import eu.sidzej.wc.events.SignCreationEvent.e_states;
+import eu.sidzej.wc.sign.SignValidator;
 import eu.sidzej.wc.utils.Config;
 
 public class SignItemLineListener implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void SignTypeLine(SignCreationEvent e) {
-		String line = e.getSignLine(WCSign.ITEM_LINE).toLowerCase();
+		String line = e.getSignLine(SignValidator.ITEM_LINE).toLowerCase();
 		String[] parts = line.split(" ");
 
 		if (parts.length > 3) {
-			e.setState(E_States.BAD_ITEM_LINE);
+			e.setState(e_states.BAD_ITEM_LINE);
 			return;
 		}
 
@@ -34,7 +34,7 @@ public class SignItemLineListener implements Listener {
 		}
 
 		if (!wood.equals("wood")){
-			e.setState(E_States.BAD_ITEM_LINE);
+			e.setState(e_states.BAD_ITEM_LINE);
 			return;
 		}
 			
@@ -52,10 +52,10 @@ public class SignItemLineListener implements Listener {
 		else if (type.equals("jungle"))
 			out = "Jungle";
 		else
-			e.setState(E_States.BAD_ITEM_LINE);
+			e.setState(e_states.BAD_ITEM_LINE);
 
 		out = Config.STACK_SIZE + " " + out + " " + "Wood";
-		e.setLine(WCSign.ITEM_LINE, out);
+		e.setLine(SignValidator.ITEM_LINE, out);
 	}
 
 }

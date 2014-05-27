@@ -31,6 +31,9 @@ public class SignCreationMonitor implements Listener {
 			case BAD_TYPE_TO_PRICE_LINES:
 				message = "bad number type or prices";
 				break;
+			case NO_PERMISSIONS:
+				message = "no permission";
+				break;
 			default:
 				message = "general wtf";
 				break;
