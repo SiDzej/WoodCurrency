@@ -2,16 +2,15 @@ package eu.sidzej.wc.listeners.transaction;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.Action;
+import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
-import eu.sidzej.wc.inventory.WCInventory;
 import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
 
-public class TransactionPrepareEconomy {
+public class TransactionPrepareEconomy implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void EconomyChecker(TransactionPrepareEvent e){

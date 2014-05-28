@@ -17,13 +17,15 @@ import org.bukkit.entity.Player;
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.ProtectionManager;
+import eu.sidzej.wc.WCSign.e_type;
+import static eu.sidzej.wc.WCSign.e_type.SELL;
 import eu.sidzej.wc.utils.Log;
 
 public class DBUtils {
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static boolean registerTransaction(int player, int block, int count, int type) {
+	public static boolean registerTransaction(Player player, int block, int count, e_type e_type) {
 		TimedConnection c = null;
 		Statement s = null;
 		try {
@@ -32,8 +34,8 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			s.execute("INSERT INTO wc_transactions (player,block,count,date,type) VALUES (\""
-					+ player + "\",\"" + block + "\",\"" + count + "\",\"" + time + "\",\"" + type
-					+ "\")");
+					+ PlayerManager.getPlayerData(player).getID() + "\",\"" + block + "\",\""
+					+ count + "\",\"" + time + "\",\"" + e_type.equals(SELL) + "\")");
 		} catch (SQLException ex) {
 			Log.error("Unable to log transaction to DB.");
 			return false;
@@ -112,11 +114,11 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			ResultSet set = s.executeQuery("SELECT * FROM wc_players WHERE uuid = \""
-					+ uuid.toString()+"\"");
-			if(set.next())			
+					+ uuid.toString() + "\"");
+			if (set.next())
 				data = PlayerManager.addPlayer(uuid, set.getInt("id"), set.getInt("day"),
-					set.getInt("total"), set.getByte("tier"), set.getTimestamp("timestamp"));
-			else{
+						set.getInt("total"), set.getByte("tier"), set.getTimestamp("timestamp"));
+			else {
 				registerPlayer(uuid);
 				data = getPlayerData(uuid);
 			}

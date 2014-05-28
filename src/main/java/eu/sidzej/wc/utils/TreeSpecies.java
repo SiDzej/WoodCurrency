@@ -4,7 +4,16 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public enum TreeSpecies {
-		OAK,BIRCH,SPRUCE,JUNGLE,DARK,ACACIA;
+		OAK(1),BIRCH(2),SPRUCE(3),JUNGLE(4),DARK(5),ACACIA(6);
+		
+		int i;
+		private TreeSpecies(int i){
+			this.i = i;
+		}
+		
+		public int get(){
+			return i;
+		}
 
 		public ItemStack toItemStack() {
 			return toItemStack(1);

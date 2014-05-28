@@ -47,6 +47,14 @@ public class SignValidator {
     public static ItemStack getItemStack(Sign s){
     	return BlockUtils.getItemStack(s.getLine(SignValidator.ITEM_LINE));
     }
+    
+    public static int getItemStackId(Sign s){
+    	return BlockUtils.getItemStackId(s.getLine(SignValidator.ITEM_LINE));
+    }
+    
+    public static String getItemStackName(Sign s){
+    	return BlockUtils.getItemStackName(s.getLine(SignValidator.ITEM_LINE));
+    }
 
     public static boolean isValidPreparedSign(String[] lines) {
         for (int i = 0; i < 4; i++) {

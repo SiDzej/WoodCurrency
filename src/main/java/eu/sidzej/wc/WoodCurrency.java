@@ -10,11 +10,13 @@ import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.db.Database;
 import eu.sidzej.wc.listeners.*;
 import eu.sidzej.wc.listeners.sign.*;
+import eu.sidzej.wc.listeners.transaction.*;
 import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
 import eu.sidzej.wc.utils.Log;
 
 public class WoodCurrency extends JavaPlugin {
+	@SuppressWarnings("unused")
 	private static WoodCurrency plugin;
 
 	public static PlayerManager playerManager = PlayerManager.getInstance();
@@ -101,6 +103,19 @@ public class WoodCurrency extends JavaPlugin {
 		registerListener(new SignNameLineListener());
 		registerListener(new SignPriceLineListener());
 		registerListener(new SignTypeLineListener());
+		
+		// shop transaction related
+		registerListener(new TransactionPrepareAction());
+		registerListener(new TransactionPrepareEconomy());
+		registerListener(new TransactionPrepareInventory());
+		registerListener(new TransactionPrepareMonitor());
+		registerListener(new TransactionPreparePerms());
+		
+		registerListener(new TransactionEconomy());
+		registerListener(new TransactionInventory());
+		registerListener(new TransactionMessage());
+		registerListener(new TransactionMonitor());
+		
 	}
 
 	public void registerListener(Listener l) {

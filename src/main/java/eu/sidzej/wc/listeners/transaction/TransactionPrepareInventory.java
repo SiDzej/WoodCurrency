@@ -2,13 +2,14 @@ package eu.sidzej.wc.listeners.transaction;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 import eu.sidzej.wc.inventory.WCInventory;
 
-public class TransactionPrepareInventory {
+public class TransactionPrepareInventory implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void InventoryChecker(TransactionPrepareEvent e){

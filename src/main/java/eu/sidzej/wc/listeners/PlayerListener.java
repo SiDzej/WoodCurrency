@@ -12,12 +12,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.avaje.ebean.Transaction;
-
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign;
-import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 
@@ -67,30 +64,9 @@ public class PlayerListener implements Listener {
 		if(preTrans.isCancelled())
 			return;
 		
-		TransactionEvent trans = new TransactionEvent();
+		new TransactionEvent(p, preTrans.getType(), sign);
 			
-
-		// setup transaction
-		Transaction trans = new Transaction(event.getPlayer(), sign, event.getAction());
-		if (!trans.successful())
-			return;
-
-		if (trans.getAmount() == 0) {
-			if (trans.getType() == buysellenum.BUY)
-				p.sendMessage("Not enough money or no space in inventory.");
-			else
-				p.sendMessage("You have nothing to sell.");
-		} else {
-			DBUtils.registerTransaction(1, sign.getItemId(), trans.getAmount(),
-					(trans.getType() == buysellenum.BUY) ? 0 : 1);
-			if (trans.getType() == buysellenum.BUY)
-				p.sendMessage("You just bought " + trans.getAmount() + " pieces of "
-						+ sign.getItemName() + " Wood for " + Eco.format(trans.getPrice()));
-			else
-				p.sendMessage("You just sold " + trans.getAmount() + " pieces of "
-						+ sign.getItemName() + " Wood for " + Eco.format(trans.getPrice()));
-		}
-
+		
 		// canceling only place event...
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK
 				|| event.getAction() == Action.LEFT_CLICK_AIR)

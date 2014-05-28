@@ -54,7 +54,7 @@ public class TransactionEvent extends Event {
 	}
 
 	public e_type getType() {
-		return s.getType();
+		return type;
 	}
 
 	public void setFinalPrice(double price) {
@@ -68,6 +68,14 @@ public class TransactionEvent extends Event {
 
 	public double getPrice() {
 		return price / Config.STACK_SIZE;
+	}
+
+	public int getItemId() {
+		return s.getItemId();
+	}
+
+	public String getItemName() {
+		return s.getItemName();
 	}
 	
 	

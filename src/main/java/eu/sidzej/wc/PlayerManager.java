@@ -40,7 +40,7 @@ public class PlayerManager {
 	}
 
 	public static class PlayerData {
-		private int id, day, last, total;
+		private int id, day, total;
 		private byte tier;
 		private Timestamp timestamp;
 
@@ -59,7 +59,10 @@ public class PlayerManager {
 		public void addCount(int amount) {
 			day += amount;
 			total += amount;
-			
+		}
+
+		public int getID() {
+			return id;
 		}
 	}
 }

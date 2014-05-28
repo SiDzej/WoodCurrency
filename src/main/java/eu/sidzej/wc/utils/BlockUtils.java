@@ -30,6 +30,10 @@ public class BlockUtils {
 		return getTree(s).toItemStack();
 	}
 
+	public static int getItemStackId(String s){
+		return getTree(s).get();
+	}
+	
 	private static TreeSpecies getTree(String s){
 		String[] parts = s.toLowerCase().split(" ");
 
