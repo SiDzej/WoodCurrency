@@ -16,7 +16,7 @@ public class TransactionEconomy implements Listener {
 		if(!e.getType().equals(e_type.BUY))
 			return;	
 		
-		double price = e.getPrice()/Config.STACK_SIZE * e.getFinalAmount();
+		double price = e.getPrice() * e.getFinalAmount();
 		EconomyUtils.withdraw(e.getPlayer(),price);
 		
 		e.setFinalPrice(price);
@@ -26,7 +26,7 @@ public class TransactionEconomy implements Listener {
 	public void SellListener(TransactionEvent e){
 		if(!e.getType().equals(e_type.SELL))
 			return;
-		double price = e.getPrice()/Config.STACK_SIZE * e.getFinalAmount();
+		double price = e.getPrice() * e.getFinalAmount();
 		EconomyUtils.deposit(e.getPlayer(),price);
 		
 		e.setFinalPrice(price);

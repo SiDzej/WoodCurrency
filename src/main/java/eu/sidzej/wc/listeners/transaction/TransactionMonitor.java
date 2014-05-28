@@ -18,6 +18,6 @@ public class TransactionMonitor implements Listener{
 		e.getPlayer().updateInventory(); // TODO bukkit depricated
 		data.addCount(e.getFinalAmount());
 		
-		DBUtils.registerTransaction(e.getPlayer(), e.getItemId(), e.getFinalAmount(), e.getType());
+		DBUtils.registerTransaction(e.getPlayer(), e.getItemId(), e.getFinalAmount(), e.getType(),e.getFinalPrice());
 	}
 }

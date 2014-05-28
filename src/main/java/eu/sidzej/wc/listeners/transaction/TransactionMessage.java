@@ -18,7 +18,7 @@ public class TransactionMessage implements Listener {
 							+ " for " + EconomyUtils.format(e.getFinalPrice()) + ".");
 		if (e.getType().equals(e_type.SELL))
 			e.getPlayer().sendMessage(
-					"You just bought " + e.getFinalAmount() + " pieces of " + e.getItemName()
+					"You just sold " + e.getFinalAmount() + " pieces of " + e.getItemName()
 							+ " for " + EconomyUtils.format(e.getFinalPrice()) + ".");
 	}
 

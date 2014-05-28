@@ -34,6 +34,7 @@ public class WCInventory {
 	
 	public boolean hasItemStack(ItemStack item){
 		for (ItemStack is : i.getContents()) {
+			if(is == null) continue;
 			if (is.isSimilar(item))
 				return true;
 		}

@@ -24,7 +24,7 @@ public class TransactionPrepareAction implements Listener{
 			return;
 		}
 		
-		if(e.getSign().getType().equals(type))
+		if(e.getSign().getType().equals(type) || e.getSign().getType().equals(e_type.BUYSELL))
 			e.setType(type);
 		else
 			e.setState(e_states.OTHER_ACTION);

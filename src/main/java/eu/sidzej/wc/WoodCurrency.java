@@ -64,8 +64,8 @@ public class WoodCurrency extends JavaPlugin {
 		/*
 		commandHandler = new CommandHandler(this);
 		getCommand("wc").setExecutor(commandHandler);
-		
-		economy = new Eco(this);*/
+		*/
+		economy = new EconomyUtils(this);
 	}
 
 	public void onDisable() {

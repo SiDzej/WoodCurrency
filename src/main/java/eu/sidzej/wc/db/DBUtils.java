@@ -25,18 +25,20 @@ public class DBUtils {
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static boolean registerTransaction(Player player, int block, int count, e_type e_type) {
+	public static boolean registerTransaction(Player player, int block, int count, e_type e_type, double price) {
 		TimedConnection c = null;
 		Statement s = null;
+		String time = sdf.format(new Date());
 		try {
-			String time = sdf.format(new Date());
+			
 
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("INSERT INTO wc_transactions (player,block,count,date,type) VALUES (\""
+			s.execute("INSERT INTO wc_transactions (player,block,count,date,type,price) VALUES (\""
 					+ PlayerManager.getPlayerData(player).getID() + "\",\"" + block + "\",\""
-					+ count + "\",\"" + time + "\",\"" + e_type.equals(SELL) + "\")");
+					+ count + "\",\"" + time + "\",\"" + ((e_type.equals(SELL))?1:0) + "\",\"" + price + "\")");
 		} catch (SQLException ex) {
+			Log.error(ex.getMessage());
 			Log.error("Unable to log transaction to DB.");
 			return false;
 		} finally {

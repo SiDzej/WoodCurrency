@@ -15,8 +15,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign;
+import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
+import eu.sidzej.wc.utils.Log;
 
 public class PlayerListener implements Listener {
 
@@ -36,9 +38,6 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerInteractEvent event) {
-		if (ProtectionManager.isProtected(event.getClickedBlock().getLocation()))
-			event.getPlayer().sendMessage("Protected by WC!");
-
 		Block b = event.getClickedBlock();
 		Player p = event.getPlayer();
 		Location l = b.getLocation();
@@ -60,12 +59,15 @@ public class PlayerListener implements Listener {
 		WCSign sign = ProtectionManager.getSign(l);
 			
 		TransactionPrepareEvent preTrans = new TransactionPrepareEvent(p,sign,event.getAction());
+		WoodCurrency.callEvent(preTrans);
 		
 		if(preTrans.isCancelled())
 			return;
 		
-		new TransactionEvent(p, preTrans.getType(), sign);
+		TransactionEvent transaction = new TransactionEvent(p, preTrans.getType(), sign);
+		WoodCurrency.callEvent(transaction);
 			
+		Log.info("done");
 		
 		// canceling only place event...
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK

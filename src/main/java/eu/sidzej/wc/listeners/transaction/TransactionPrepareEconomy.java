@@ -9,6 +9,7 @@ import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
+import eu.sidzej.wc.utils.Log;
 
 public class TransactionPrepareEconomy implements Listener {
 	
@@ -17,7 +18,7 @@ public class TransactionPrepareEconomy implements Listener {
 		if(e.isCancelled())
 			return;
 		if(e.getType().equals(e_type.BUY))
-			if(EconomyUtils.getBalance(e.getPlayer()) > e.getSign().getBuyPrice()/Config.STACK_SIZE);
+			if(EconomyUtils.getBalance(e.getPlayer()) < e.getSign().getBuyPrice()/Config.STACK_SIZE)
 				e.setState(e_states.NOT_ENOUGH_MONEY);
 	}
 
