@@ -17,9 +17,11 @@ public class TransactionPrepareMonitor implements Listener {
 
 		switch (e.getState()) {
 			case BAD_ACTION:
-				break;
 			case OTHER_ACTION:
 			case TOO_FAST_CLICK:
+				break;
+			case DAY_LIMIT:
+				message = "day limit";
 				break;
 			case NO_PERMISSIONS:
 				message = "no permission";
@@ -34,7 +36,7 @@ public class TransactionPrepareMonitor implements Listener {
 				message = "no money";
 				break;
 			default:
-				message = "general wtf";
+				message = "General problem. Contact _CJ_. :)";
 				break;
 		}
 

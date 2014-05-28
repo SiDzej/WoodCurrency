@@ -11,11 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import eu.sidzej.wc.PlayerManager;
+import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 
@@ -34,7 +37,16 @@ public class PlayerListener implements Listener {
 		 * p.getInventory().addItem(TreeSpecies.SPRUCE.toItemStack(5));
 		 */
 	}
+	
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		Player p = event.getPlayer();
+		PlayerData data = PlayerManager.getPlayerData(p.getUniqueId());
+		
+		DBUtils.UpdatePlayer(p.getUniqueId(),data);
+	}
 
+	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerInteractEvent event) {
 		Block b = event.getClickedBlock();
@@ -63,7 +75,7 @@ public class PlayerListener implements Listener {
 		if(preTrans.isCancelled())
 			return;
 		
-		TransactionEvent transaction = new TransactionEvent(p, preTrans.getType(), sign);
+		TransactionEvent transaction = new TransactionEvent(p, preTrans.getType(), sign,l);
 		WoodCurrency.callEvent(transaction);
 		
 		// canceling only place event...

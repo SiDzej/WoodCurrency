@@ -40,7 +40,8 @@ public class TransactionPrepareEvent extends Event {
 		NO_ITEM_TO_SELL,
 		NO_SPACE_IN_INVENTORY,
 		NOT_ENOUGH_MONEY,
-		TOO_FAST_CLICK,
+		TOO_FAST_CLICK, 
+		DAY_LIMIT,
 	}
 	
 	public void setState(e_states s){

@@ -1,6 +1,7 @@
 package eu.sidzej.wc;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.utils.Config;
+import eu.sidzej.wc.utils.TimeUtils;
 
 public class PlayerManager {
 	private static final PlayerManager instance = new PlayerManager();
@@ -27,7 +29,7 @@ public class PlayerManager {
 		else
 			return DBUtils.getPlayerData(uuid);
 	}
-	
+
 	public static PlayerData getPlayerData(Player player) {
 		return getPlayerData(player.getUniqueId());
 	}
@@ -42,18 +44,18 @@ public class PlayerManager {
 	public static class PlayerData {
 		private int id, day, total;
 		private byte tier;
-		private Timestamp timestamp;
+		private Calendar timestamp;
 
 		public PlayerData(int id, int day, int total, byte tier, Timestamp timestamp) {
 			this.id = id;
 			this.day = day;
 			this.total = total;
 			this.tier = tier;
-			this.timestamp = timestamp;
+			this.timestamp = TimeUtils.getCalendar(timestamp);
 		}
 
 		public int getItemLeft() {
-			return (int)(Config.MAX_SELL/Math.pow(2,tier-1) - day);
+			return (int) (Config.MAX_SELL / Math.pow(2, tier - 1) - day);
 		}
 
 		public void addCount(int amount) {
@@ -63,6 +65,40 @@ public class PlayerManager {
 
 		public int getID() {
 			return id;
+		}
+
+		public int getDay() {
+			return day;
+		}
+
+		public int getTotal() {
+			return total;
+		}
+
+		public Calendar getDate() {
+			return timestamp;
+		}
+
+		public int getTier() {
+			return tier;
+		}
+
+		public void resetDay() {
+			day = 0;
+		}
+
+		public void incrementTier() {
+			if (tier < 6)
+				tier++;
+		}
+
+		public void decrementTier() {
+			if (tier > 1)
+				tier--;
+		}
+
+		public Timestamp getTimestamp() {
+			return TimeUtils.getTimestamp(timestamp);
 		}
 	}
 }

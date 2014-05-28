@@ -16,16 +16,18 @@ public class TransactionEvent extends Event {
 	private double price;
 	private WCSign s;
 	private e_type type;
+	private Location loc;
 	
 	private double finalprice = 0.0;
 	private int finalamount = 0;
 	
 
-	public TransactionEvent(Player p, e_type type, WCSign s){
+	public TransactionEvent(Player p, e_type type, WCSign s, Location l){
 		this.p = p;
 		this.s = s;
 		this.type = type;
 		this.price = (type.equals(e_type.BUY))?s.getBuyPrice():s.getSellPrice();
+		this.loc = l;
 		
 	}
 	
@@ -80,7 +82,7 @@ public class TransactionEvent extends Event {
 	}
 
 	public Location getLocation() {
-		return null ;
+		return loc;
 	}
 	
 	

@@ -14,7 +14,7 @@ import eu.sidzej.wc.utils.EconomyUtils;
 
 public class TransactionInventory implements Listener {
 	
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOW)
 	public void GetAmountSellListener(TransactionEvent e){
 		if(!e.getType().equals(e_type.SELL))
 			return;
@@ -30,7 +30,7 @@ public class TransactionInventory implements Listener {
 		e.setFinalAmount(amount);
 	}
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOW)
 	public void GetAmountBuyListener(TransactionEvent e){
 		if(!e.getType().equals(e_type.BUY))
 			return;

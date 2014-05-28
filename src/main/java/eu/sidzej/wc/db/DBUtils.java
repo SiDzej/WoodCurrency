@@ -20,6 +20,7 @@ import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign.e_type;
 import static eu.sidzej.wc.WCSign.e_type.SELL;
 import eu.sidzej.wc.utils.Log;
+import eu.sidzej.wc.utils.TimeUtils;
 
 public class DBUtils {
 
@@ -96,7 +97,8 @@ public class DBUtils {
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("INSERT INTO wc_players (uuid) VALUES (\"" + uuid + "\")");
+			s.execute("INSERT INTO wc_players (uuid,timestamp) VALUES (\"" + uuid + "\",\""
+					+ TimeUtils.getTime() + "\")");
 		} catch (SQLException ex) {
 			Log.error("Unable to put new player into DB.");
 			return false;
@@ -245,5 +247,28 @@ public class DBUtils {
 			}
 		}
 		return true;
+	}
+
+	public static void UpdatePlayer(UUID uuid, PlayerData data) {
+		TimedConnection c = null;
+		Statement s = null;
+		try {
+			c = Database.getConnection();
+			s = c.createStatement();
+			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
+					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', total = '"
+					+ data.getTotal() + "' WHERE `uuid` = '" + uuid.toString() + "'");
+		} catch (SQLException ex) {
+			Log.error(ex.getMessage());
+			Log.error("Unable to update player.");
+		} finally {
+			try {
+				if (s != null)
+					s.close();
+				c.release();
+			} catch (SQLException e) {
+				Log.error("Unable to close connection.");
+			}
+		}
 	}
 }

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `wc_players` (
   `uuid` char(36) NOT NULL UNIQUE,
   `day` INT NOT NULL DEFAULT 0,
   `total` INT NOT NULL DEFAULT 0,
-  `tier` INT NOT NULL DEFAULT 1,
+  `tier` INT NOT NULL DEFAULT 0,
   `timestamp` DATETIME NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) 
   )
