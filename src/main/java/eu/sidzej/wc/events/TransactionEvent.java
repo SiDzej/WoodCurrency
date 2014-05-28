@@ -80,7 +80,7 @@ public class TransactionEvent extends Event {
 	}
 
 	public Location getLocation() {
-		return null;
+		return null ;
 	}
 	
 	
