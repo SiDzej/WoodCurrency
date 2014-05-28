@@ -16,9 +16,7 @@ public class PlayerListener implements Listener{
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
-		p.sendMessage("Baf "+p.getName()+" - " + p.getUniqueId().toString() );
-		
-		p.sendMessage("sakra prace "+PlayerManager.getPlayerData(p.getUniqueId()).toString());
+		PlayerManager.getPlayerData(p.getUniqueId());
 		/*
 		p.getInventory().addItem(TreeSpecies.OAK.toItemStack());
 		p.getInventory().addItem(TreeSpecies.BIRCH.toItemStack(5));

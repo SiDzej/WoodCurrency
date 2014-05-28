@@ -19,7 +19,6 @@ import org.bukkit.material.Sign;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.ProtectionManager.e_protectionType;
 import eu.sidzej.wc.utils.Log;
-import eu.sidzej.wc.utils.Permissions;
 
 public class BlockBreakListener implements Listener {
 
@@ -38,7 +37,7 @@ public class BlockBreakListener implements Listener {
 		if (!ProtectionManager.isProtected(l))
 			return;
 
-		if (!Permissions.removeSign(p)) {
+		if (!p.hasPermission("woodcurrency.destroyshop")) {
 			e.setCancelled(true);
 			p.sendMessage("no permission");	// TODO lang
 			return;

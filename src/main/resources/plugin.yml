@@ -14,6 +14,12 @@ permissions:
     default: false
     children:
     
+  woodcurrency.createshop:
+    description: Allow player to place shop sign
+    default: false
+  woodcurrency.destroyshop:
+    description: Allow player to destroy shop sign
+    default: false
   woodcurrency.buy:
     description: Allow buying things at shop
     default: true

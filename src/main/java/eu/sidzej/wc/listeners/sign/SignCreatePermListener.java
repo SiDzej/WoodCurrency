@@ -6,14 +6,13 @@ import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.events.SignCreationEvent;
 import eu.sidzej.wc.events.SignCreationEvent.e_states;
-import eu.sidzej.wc.utils.Permissions;
 
 public class SignCreatePermListener implements Listener {
 
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void hasPermission(SignCreationEvent e){
-		if(!Permissions.placeSign(e.getPlayer()))
+		if(!e.getPlayer().hasPermission("woodcurrency.createshop"))
 			e.setState(e_states.NO_PERMISSIONS);
 	}
 }
