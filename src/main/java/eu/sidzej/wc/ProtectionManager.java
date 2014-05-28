@@ -57,12 +57,13 @@ public class ProtectionManager {
 		return instance.protectionList.get(l);
 	}
 
-	public static boolean hasWCSign(Location l) {
-		return instance.wcList.containsKey(l);
-	}
-
 	public static WCSign getSign(Location l) {
-		return instance.wcList.get(l);
+		WCSign sign = instance.wcList.get(l);
+		if(sign == null){
+			sign = new WCSign(l);
+			addSign(l, sign);
+		}
+		return sign;
 	}
 
 	public static void remove(Location block) {

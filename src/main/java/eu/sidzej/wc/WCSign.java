@@ -1,6 +1,12 @@
 package eu.sidzej.wc;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.inventory.ItemStack;
+
+import eu.sidzej.wc.sign.SignValidator;
 
 public class WCSign {
 	private e_type type = e_type.NONE;
@@ -15,8 +21,13 @@ public class WCSign {
 		this.type = type;		
 	}
 	
-	public WCSign() {
-		// TODO Auto-generated constructor stub
+	public WCSign(Location l) {
+		Block b = Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(l);
+		Sign s = (Sign)b.getState();
+		item = SignValidator.getItemStack(s);
+		type = SignValidator.getShopType(s);
+		sellprice = SignValidator.getPrice(s, e_type.SELL);
+		buyprice = SignValidator.getPrice(s, e_type.BUY);		
 	}
 
 	public double getSellPrice(){

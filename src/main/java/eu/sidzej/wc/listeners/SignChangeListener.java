@@ -46,7 +46,7 @@ public class SignChangeListener implements Listener{
         }
 
         for (byte i = 0; i < event.getLines().length; ++i) {
-            event.setLine(i, create.getSignLine(i));
+            event.setLine(i, create.getLine(i));
         }
 
         ShopCreatedEvent finished = new ShopCreatedEvent(create.getPlayer(),b, create.getSignLines());

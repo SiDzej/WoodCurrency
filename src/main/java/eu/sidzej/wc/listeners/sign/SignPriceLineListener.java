@@ -12,7 +12,7 @@ public class SignPriceLineListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void SignPriceLine(SignCreationEvent e){
-		String line = e.getSignLine(SignValidator.PRICE_LINE);
+		String line = e.getLine(SignValidator.PRICE_LINE);
 		String[] parts = line.toLowerCase().replaceAll(" ", "").split(":");
 		
 		String out = "";

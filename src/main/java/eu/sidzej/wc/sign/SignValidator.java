@@ -2,8 +2,11 @@ package eu.sidzej.wc.sign;
 
 import java.util.regex.Pattern;
 
-import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.inventory.ItemStack;
+
+import eu.sidzej.wc.WCSign.e_type;
+import eu.sidzej.wc.utils.BlockUtils;
 
 public class SignValidator {
     public static final byte NAME_LINE = 0;
@@ -18,24 +21,32 @@ public class SignValidator {
             Pattern.compile("(?i)^[\\d\\w? #:-]+ wood$") //Pattern.compile("^[\\w? #:-]+$")
     };
 
-    public static boolean isValid(Sign sign) {
-        return isValid(sign.getLines());
+    public static e_type getShopType(Sign s){
+    	if(!isValidPreparedSign(s.getLines()))
+    		return e_type.NONE;
+    	String line = s.getLine(TYPE_LINE);
+    	if((line.split(":")).length >1)
+    		return e_type.BUYSELL;
+    	else if(line.equalsIgnoreCase("Buy"))
+    		return e_type.BUY;
+    	else
+    		return e_type.SELL;
     }
-
-    public static boolean isValid(String[] line) {
-        return isValidPreparedSign(line) && (line[TYPE_LINE].toUpperCase().contains("B") || line[TYPE_LINE].toUpperCase().contains("S")) && !line[NAME_LINE].isEmpty();
+    
+    public static double getPrice(Sign s, e_type type){
+    	if(!type.equals(e_type.NONE)){
+    		if(type.equals(e_type.BUY))
+    			return Double.parseDouble(s.getLine(PRICE_LINE).split(" : ")[0]);
+    		else
+    			return Double.parseDouble(s.getLine(PRICE_LINE).split(" : ")[1]);
+    	}
+    	else
+    		return Double.parseDouble(s.getLine(PRICE_LINE));
     }
-
-    public static boolean isValid(Block sign) {
-        return (sign.getState() instanceof Sign) && isValid((Sign) sign.getState());
+    
+    public static ItemStack getItemStack(Sign s){
+    	return BlockUtils.getItemStack(s.getLine(SignValidator.ITEM_LINE));
     }
-
-    /*public static boolean canAccess(Player player, Sign sign) {
-        if (player == null) return false;
-        if (sign == null) return true;
-
-        return NameManager.canUseName(player, sign.getLine(NAME_LINE));
-    }*/
 
     public static boolean isValidPreparedSign(String[] lines) {
         for (int i = 0; i < 4; i++) {

@@ -10,12 +10,12 @@ public enum TreeSpecies {
 			return toItemStack(1);
 		}
 
-		public ItemStack toItemStack(int i) {
+		public ItemStack toItemStack(int amount) {
 			ItemStack stack = null;
 			if(this.equals(ACACIA) || this.equals(DARK))
-				stack = new ItemStack(Material.LOG_2,i);
+				stack = new ItemStack(Material.LOG_2,amount);
 			else
-				stack = new ItemStack(Material.LOG,i);
+				stack = new ItemStack(Material.LOG,amount);
 			
 			switch(this){
 				case JUNGLE:

@@ -27,7 +27,7 @@ public class SignCreationEvent extends Event{
 		return state != e_states.OK;
 	}
 
-	public String getSignLine(byte i) {
+	public String getLine(byte i) {
 		return lines[i];
 	}
 

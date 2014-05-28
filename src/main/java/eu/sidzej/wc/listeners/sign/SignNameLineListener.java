@@ -13,7 +13,7 @@ public class SignNameLineListener implements Listener{
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void SignNameLine(SignCreationEvent e){
-		String line = e.getSignLine(SignValidator.NAME_LINE);
+		String line = e.getLine(SignValidator.NAME_LINE);
 		String colorcodeline = line.replaceAll("§", "&");
 		
 		if(line.equals(Config.SIGN_FIRST_LINE_INPUT) || line.equals(Config.SIGN_FIRST_LINE) ||

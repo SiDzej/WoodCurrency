@@ -17,8 +17,8 @@ public class SignTypeLineListener implements Listener {
 	// Normal priority in case of change price line format
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void SignTypeLine(SignCreationEvent e) {
-		String line = e.getSignLine(SignValidator.TYPE_LINE);
-		price = e.getSignLine(SignValidator.PRICE_LINE);
+		String line = e.getLine(SignValidator.TYPE_LINE);
+		price = e.getLine(SignValidator.PRICE_LINE);
 		line = line.replaceAll(" ", "").toLowerCase();
 		String[] parts = line.split(":");
 
@@ -57,7 +57,7 @@ public class SignTypeLineListener implements Listener {
 		if (e.getType().equals(e_type.BUYSELL)) {
 			if (flip_prices)
 				e.setLine(SignValidator.PRICE_LINE,
-						flip_prices(e.getSignLine(SignValidator.PRICE_LINE)));
+						flip_prices(e.getLine(SignValidator.PRICE_LINE)));
 			e.setBuyPrice(doublePrice(0));
 			e.setSellPrice(doublePrice(1));
 		}
