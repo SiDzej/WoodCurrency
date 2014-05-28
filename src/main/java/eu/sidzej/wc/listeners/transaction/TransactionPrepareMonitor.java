@@ -17,10 +17,9 @@ public class TransactionPrepareMonitor implements Listener {
 
 		switch (e.getState()) {
 			case BAD_ACTION:
-				message = "BAD";
 				break;
 			case OTHER_ACTION:
-				message = "other";
+			case TOO_FAST_CLICK:
 				break;
 			case NO_PERMISSIONS:
 				message = "no permission";

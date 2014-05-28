@@ -9,7 +9,6 @@ import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
-import eu.sidzej.wc.utils.Log;
 
 public class TransactionPrepareEconomy implements Listener {
 	

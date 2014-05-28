@@ -66,8 +66,6 @@ public class PlayerListener implements Listener {
 		
 		TransactionEvent transaction = new TransactionEvent(p, preTrans.getType(), sign);
 		WoodCurrency.callEvent(transaction);
-			
-		Log.info("done");
 		
 		// canceling only place event...
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK
