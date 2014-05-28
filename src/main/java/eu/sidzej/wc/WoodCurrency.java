@@ -17,7 +17,9 @@ import eu.sidzej.wc.utils.Log;
 public class WoodCurrency extends JavaPlugin {
 	private static WoodCurrency plugin;
 
+	public static PlayerManager playerManager = PlayerManager.getInstance();
 	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
+	
 	public Database db;
 	public EconomyUtils economy;
 
@@ -53,6 +55,8 @@ public class WoodCurrency extends JavaPlugin {
 		
 		if(!DBUtils.loadShops())
 			this.disable("Shop loading error");
+		if(!DBUtils.loadOnlinePlayers())
+			this.disable("Players loading error");
 		
 		registerListeners();
 		/*

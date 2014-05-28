@@ -74,7 +74,7 @@ public class ConnectionManager implements Closeable {
 		Log.debug("No free connection at this moment. Lets get new one.");
 		try {
 			conn = new TimedConnection(DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":"
-					+ this.port + "/" + this.database, this.user, this.password));
+					+ this.port + "/" + this.database + "?zeroDateTimeBehavior=convertToNull", this.user, this.password));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

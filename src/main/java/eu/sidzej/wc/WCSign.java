@@ -15,6 +15,10 @@ public class WCSign {
 		this.type = type;		
 	}
 	
+	public WCSign() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public double getSellPrice(){
 		return sellprice;
 	}

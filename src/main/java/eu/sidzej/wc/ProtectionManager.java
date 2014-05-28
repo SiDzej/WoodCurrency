@@ -9,14 +9,13 @@ import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 
 import eu.sidzej.wc.db.DBUtils;
-import eu.sidzej.wc.utils.Log;
 
 public class ProtectionManager {
 	private static final List<BlockFace> faces = Arrays.asList(BlockFace.EAST, BlockFace.SOUTH,
 			BlockFace.WEST, BlockFace.NORTH); // BlockFace.DOWN not needed
 	private static final ProtectionManager instance = new ProtectionManager();
-	public HashMap<Location, e_protectionType> protectionList;
-	public HashMap<Location, WCSign> wcList;
+	private HashMap<Location, e_protectionType> protectionList;
+	private HashMap<Location, WCSign> wcList;
 
 	private ProtectionManager() {
 		protectionList = new HashMap<Location, e_protectionType>();

@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.utils.TreeSpecies;
 
@@ -15,8 +16,9 @@ public class PlayerListener implements Listener{
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
-		p.sendMessage("Baf "+p.getName()+" - " + p.getUniqueId() );
+		p.sendMessage("Baf "+p.getName()+" - " + p.getUniqueId().toString() );
 		
+		p.sendMessage("sakra prace "+PlayerManager.getPlayerData(p.getUniqueId()).toString());
 		/*
 		p.getInventory().addItem(TreeSpecies.OAK.toItemStack());
 		p.getInventory().addItem(TreeSpecies.BIRCH.toItemStack(5));

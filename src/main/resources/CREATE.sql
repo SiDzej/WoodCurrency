@@ -3,12 +3,11 @@
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wc_players` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nick` VARCHAR(32) NOT NULL UNIQUE,
-  `sum` INT NOT NULL DEFAULT 0,
-  `streak` SMALLINT NOT NULL DEFAULT 0,
-  `limit` INT NOT NULL DEFAULT 1024,
-  `actual` INT NOT NULL DEFAULT 0,
-  `last` DATETIME NOT NULL DEFAULT 0,
+  `uuid` char(36) NOT NULL UNIQUE,
+  `day` INT NOT NULL DEFAULT 0,
+  `total` INT NOT NULL DEFAULT 0,
+  `tier` INT NOT NULL DEFAULT 1,
+  `timestamp` DATETIME NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) 
   )
 ENGINE = InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
