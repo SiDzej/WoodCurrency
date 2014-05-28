@@ -69,7 +69,10 @@ public class WoodCurrency extends JavaPlugin {
 	}
 
 	public void onDisable() {
-
+		if(db != null)
+			db.close();
+		this.saveConfig();
+		Log.info("WoodCurrency disabled.");
 	}
 
 	public void disable() {

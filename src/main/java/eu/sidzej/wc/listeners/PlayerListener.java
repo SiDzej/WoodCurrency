@@ -18,7 +18,6 @@ import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
-import eu.sidzej.wc.utils.Log;
 
 public class PlayerListener implements Listener {
 

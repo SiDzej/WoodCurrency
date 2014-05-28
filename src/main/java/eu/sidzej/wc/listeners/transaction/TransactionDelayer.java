@@ -11,6 +11,13 @@ import org.bukkit.event.Listener;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 
+
+/**
+ * 
+ * original author Acrobot
+ * thanks! :)
+ *
+ */
 public class TransactionDelayer implements Listener {
 	private final Map<Player, Long> TIME_OF_LATEST_CLICK = new WeakHashMap<Player, Long>();
 

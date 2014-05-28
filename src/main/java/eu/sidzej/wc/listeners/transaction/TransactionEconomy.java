@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.events.TransactionEvent;
-import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
 
 public class TransactionEconomy implements Listener {

@@ -1,5 +1,6 @@
 package eu.sidzej.wc.events;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -76,6 +77,10 @@ public class TransactionEvent extends Event {
 
 	public String getItemName() {
 		return s.getItemName();
+	}
+
+	public Location getLocation() {
+		return null;
 	}
 	
 	

@@ -25,18 +25,22 @@ public class DBUtils {
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static boolean registerTransaction(Player player, int block, int count, e_type e_type, double price) {
+	public static boolean registerTransaction(Player player, int block, int count, e_type e_type,
+			double price, Location l) {
 		TimedConnection c = null;
 		Statement s = null;
 		String time = sdf.format(new Date());
 		try {
-			
-
 			c = Database.getConnection();
 			s = c.createStatement();
 			s.execute("INSERT INTO wc_transactions (player,block,count,date,type,price) VALUES (\""
 					+ PlayerManager.getPlayerData(player).getID() + "\",\"" + block + "\",\""
-					+ count + "\",\"" + time + "\",\"" + ((e_type.equals(SELL))?1:0) + "\",\"" + price + "\")");
+					+ count + "\",\"" + time + "\",\"" + ((e_type.equals(SELL)) ? 1 : 0) + "\",\""
+					+ price + "\")");
+			s.execute("UPDATE wc_signs SET "
+					+ ((e_type.equals(SELL)) ? "sells = sells + 1" : "buys = buys + 1")
+					+ " WHERE x=\"" + l.getBlockX() + "\" AND y=\"" + l.getBlockY() + "\" AND z=\""
+					+ l.getBlockZ() + "\"");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to log transaction to DB.");

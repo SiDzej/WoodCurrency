@@ -11,7 +11,6 @@ import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.inventory.WCInventory;
 import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
-import eu.sidzej.wc.utils.Log;
 
 public class TransactionInventory implements Listener {
 	
