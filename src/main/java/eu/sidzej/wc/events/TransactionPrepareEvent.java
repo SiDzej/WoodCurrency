@@ -13,6 +13,7 @@ public class TransactionPrepareEvent extends Event {
 	private Player p;
 	private WCSign s;
 	private Action a;
+	
 	private e_states state = e_states.OK; 
 	private e_type type = e_type.NONE;
 
@@ -36,6 +37,9 @@ public class TransactionPrepareEvent extends Event {
 		BAD_ACTION,
 		NO_PERMISSIONS, 
 		OTHER_ACTION,
+		NO_ITEM_TO_SELL,
+		NO_SPACE_IN_INVENTORY,
+		NOT_ENOUGH_MONEY,
 	}
 	
 	public void setState(e_states s){

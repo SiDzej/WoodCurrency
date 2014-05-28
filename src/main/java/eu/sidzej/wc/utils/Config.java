@@ -10,7 +10,8 @@ public class Config {
 
 	public static final String SIGN_FIRST_LINE_INPUT = "wc";
 	public static final String SIGN_FIRST_LINE = ChatColor.COLOR_CHAR+"4WoodCurrency";
-	public static final Integer STACK_SIZE = 64;
+	public static final int STACK_SIZE = 64;
+	public static final int MAX_SELL = 1024;
 	public static String host, port, database, pass, user; // db
 	public static boolean debugEnabled, opPerm;
 	public static String SIGN_TEXT;

@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 
-public class TransactionPrepareMonitor implements Listener{
+public class TransactionPrepareMonitor implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void MessageMonitor(TransactionPrepareEvent e) {
@@ -23,12 +23,21 @@ public class TransactionPrepareMonitor implements Listener{
 			case NO_PERMISSIONS:
 				message = "no permission";
 				break;
+			case NO_ITEM_TO_SELL:
+				message = "no item";
+				break;
+			case NO_SPACE_IN_INVENTORY:
+				message = "no space";
+				break;
+			case NOT_ENOUGH_MONEY:
+				message = "no money";
+				break;
 			default:
 				message = "general wtf";
 				break;
 		}
-		
-		if(!message.isEmpty())
+
+		if (!message.isEmpty())
 			e.getPlayer().sendMessage(message);
 	}
 }

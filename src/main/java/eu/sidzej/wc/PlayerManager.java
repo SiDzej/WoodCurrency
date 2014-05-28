@@ -4,7 +4,10 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+
 import eu.sidzej.wc.db.DBUtils;
+import eu.sidzej.wc.utils.Config;
 
 public class PlayerManager {
 	private static final PlayerManager instance = new PlayerManager();
@@ -23,6 +26,10 @@ public class PlayerManager {
 			return instance.players.get(uuid);
 		else
 			return DBUtils.getPlayerData(uuid);
+	}
+	
+	public static PlayerData getPlayerData(Player player) {
+		return getPlayerData(player.getUniqueId());
 	}
 
 	public static PlayerData addPlayer(UUID uuid, int id, int day, int total, byte tier,
@@ -45,5 +52,14 @@ public class PlayerManager {
 			this.timestamp = timestamp;
 		}
 
+		public int getItemLeft() {
+			return (int)(Config.MAX_SELL/Math.pow(2,tier-1) - day);
+		}
+
+		public void addCount(int amount) {
+			day += amount;
+			total += amount;
+			
+		}
 	}
 }

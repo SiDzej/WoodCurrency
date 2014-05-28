@@ -33,12 +33,12 @@ public final class EconomyUtils {
 	}
 	
 	public static double getBalance(Player p) {
-		return eco.getBalance(p.getName());
+		return eco.getBalance(p);
 	}
 
 	public static synchronized boolean withdraw(Player p, double amount) {
-		if (eco.getBalance(p.getName()) >= amount) {
-			tmp = eco.withdrawPlayer(p.getName(), amount);
+		if (eco.getBalance(p) >= amount) {
+			tmp = eco.withdrawPlayer(p, amount);
 			if (tmp.transactionSuccess())
 				return true;
 			else {
@@ -54,7 +54,7 @@ public final class EconomyUtils {
 	}
 
 	public static boolean deposit(Player p, double amount) {
-		tmp = eco.depositPlayer(p.getName(), amount);
+		tmp = eco.depositPlayer(p, amount);
 		if (!tmp.transactionSuccess()) {
 			p.sendMessage("Something goes wrong. Transaction failed!");
 			if (tmp.type == ResponseType.FAILURE)
