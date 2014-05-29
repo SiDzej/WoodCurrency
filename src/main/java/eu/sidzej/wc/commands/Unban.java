@@ -1,11 +1,18 @@
 package eu.sidzej.wc.commands;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
+import eu.sidzej.wc.CommandHandler;
+import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.config.Lang;
+import eu.sidzej.wc.db.DBUtils;
 
 public class Unban implements CommandInterface {
+	@SuppressWarnings("unused")
 	private final WoodCurrency plugin;
     private final String usage 	= "<nick>";
     private final String desc 	= Lang.CMD_UNBAN;
@@ -17,7 +24,30 @@ public class Unban implements CommandInterface {
 	
 	@Override
     public void dispatch(CommandSender sender, String[] args) {
-        
+		if (sender.hasPermission("woodcurrency.unban")) {
+			if (args.length > 1) {
+				PlayerData data = PlayerManager.getPlayerData(args[1]);
+				if (data != null) {
+					data.setBlocked(false);
+					DBUtils.UpdatePlayer(data);
+					sender.sendMessage(name + "" + Lang.A_UNBANNED);
+					return;
+				} else {
+					@SuppressWarnings("deprecation")
+					OfflinePlayer p = Bukkit.getOfflinePlayer(name);//TODO do'h wtf
+					if (p != null) {
+						if (DBUtils.UpdatePlayerBan(p.getUniqueId(), false))
+							sender.sendMessage(name + "" + Lang.A_UNBANNED);
+						return;
+					}
+
+				}
+				sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + name);
+			}
+			else
+				CommandHandler.getHelp(sender, args);
+
+		}
     }
 	
 	@Override

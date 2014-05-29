@@ -11,7 +11,9 @@ import eu.sidzej.wc.utils.Log;
 public class Lang {
 
 	public static String CMD_BAN, CMD_BAD_USAGE, CMD_UNBAN, CMD_INFO, CMD_TOP, CMD_RESET_TIER,
-			CMD_RESET_DAY, CMD_HELP, CMD_UNKNOWN;
+			CMD_RESET_DAY, CMD_HELP, CMD_UNKNOWN,CMD_DISABLE;
+	
+	public static String A_BANNED,A_UNBANNED,A_PLAYER_NOT_FOUND;
 
 	public static String NO_PERMISSION, GENERAL_PROBLEM, NO_SPACE_IN_INVENTORY, NOT_ENOUGH_MONEY,
 			NO_REQUIRED_ITEM, DAY_LIMIT_REACHED, BOUGHT, SOLD, SHOP_CREATED,
@@ -57,8 +59,27 @@ public class Lang {
 		SHOP_DESTROYED = getString("SHOP_DESTROYED");
 
 		GENERAL_PROBLEM = getString("GENERAL_PROBLEM");
-		// MAX_SELL_PER_DAY = config.getInt("limits.MAX_SELL_PER_DAY");
-
+		
+		//help		
+		CMD_BAN = getString("CMD_BAN");
+		CMD_UNBAN = getString("CMD_UNBAN");
+		CMD_INFO = getString("CMD_INFO");
+		CMD_TOP = getString("CMD_TOP");
+		CMD_RESET_TIER = getString("CMD_RESET_TIER");
+		CMD_RESET_DAY = getString("CMD_RESET_DAY");
+		CMD_HELP = getString("CMD_HELP");
+		CMD_DISABLE = getString("CMD_DISABLE");
+		
+		CMD_BAD_USAGE = getString("CMD_BAD_USAGE");
+		CMD_UNKNOWN = getString("CMD_UNKNOWN");
+		
+		// actions 
+		A_BANNED = getString("A_BANNED");
+		A_UNBANNED = getString("A_UNBANNED");
+		A_PLAYER_NOT_FOUND = getString("A_PLAYER_NOT_FOUND");
+		A_UNBANNED = getString("A_UNBANNED");
+		A_UNBANNED = getString("A_UNBANNED");
+		A_UNBANNED = getString("A_UNBANNED");
 	}
 
 	private String getString(String s) {

@@ -124,12 +124,9 @@ public class DBUtils {
 			ResultSet set = s.executeQuery("SELECT * FROM wc_players WHERE uuid = \""
 					+ uuid.toString() + "\"");
 			if (set.next())
-				data = PlayerManager.addPlayer(uuid, set.getInt("id"), set.getInt("day"),
-						set.getInt("total"), set.getByte("tier"), set.getTimestamp("timestamp"));
-			else {
-				registerPlayer(uuid);
-				data = getPlayerData(uuid);
-			}
+				data = new PlayerData(uuid, set.getInt("id"), set.getInt("day"),
+						set.getInt("total"), set.getByte("tier"), set.getTimestamp("timestamp"),
+						set.getBoolean("blocked"));
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
 			Log.error("Unable to get player data.");
@@ -162,10 +159,9 @@ public class DBUtils {
 			while (set.next()) {
 				UUID uuid = UUID.fromString(set.getString("uuid"));
 				if (players.contains(uuid))
-					PlayerManager
-							.addPlayer(uuid, set.getInt("id"), set.getInt("day"),
-									set.getInt("total"), set.getByte("tier"),
-									set.getTimestamp("timestamp"));
+					PlayerManager.addPlayer(uuid, set.getInt("id"), set.getInt("day"),
+							set.getInt("total"), set.getByte("tier"),
+							set.getTimestamp("timestamp"), set.getBoolean("blocked"));
 			}
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
@@ -249,7 +245,7 @@ public class DBUtils {
 		return true;
 	}
 
-	public static void UpdatePlayer(UUID uuid, PlayerData data) {
+	public static void UpdatePlayer(PlayerData data) {
 		TimedConnection c = null;
 		Statement s = null;
 		try {
@@ -257,7 +253,8 @@ public class DBUtils {
 			s = c.createStatement();
 			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
 					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', total = '"
-					+ data.getTotal() + "' WHERE `uuid` = '" + uuid.toString() + "'");
+					+ data.getTotal() + "', blocked = '" + data.getBlocked() + "' WHERE `id` = '"
+					+ data.getID() + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to update player.");
@@ -270,5 +267,29 @@ public class DBUtils {
 				Log.error("Unable to close connection.");
 			}
 		}
+	}
+
+	public static boolean UpdatePlayerBan(UUID uuid, boolean b) {
+		TimedConnection c = null;
+		Statement s = null;
+		if (getPlayerData(uuid) == null)
+			return false;
+		try {
+			c = Database.getConnection();
+			s = c.createStatement();
+			s.execute("UPDATE wc_players SET blocked = '" + b + "' WHERE `uuid` = '" + uuid + "'");
+		} catch (SQLException ex) {
+			Log.error(ex.getMessage());
+			Log.error("Unable to update player.");
+		} finally {
+			try {
+				if (s != null)
+					s.close();
+				c.release();
+			} catch (SQLException e) {
+				Log.error("Unable to close connection.");
+			}
+		}
+		return true;
 	}
 }

@@ -33,7 +33,7 @@ public class TransactionPrepareLimits implements Listener {
 		if (e.getState().equals(e_states.DAY_LIMIT))
 			e.setState(e_states.OK);
 
-		DBUtils.UpdatePlayer(e.getPlayer().getUniqueId(), data);
+		DBUtils.UpdatePlayer(data);
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)

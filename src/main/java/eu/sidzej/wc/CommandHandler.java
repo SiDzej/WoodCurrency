@@ -38,7 +38,8 @@ public class CommandHandler implements CommandExecutor{
         commands.put("info", new Info(plugin));
         commands.put("resetday", new ResetDayLimit(plugin));
         commands.put("resettier", new ResetTier(plugin));
-        commands.put("top", new Top(plugin));        
+        commands.put("top", new Top(plugin)); 
+        commands.put("disable", new Disable(plugin)); 
 
         for (String s : commands.keySet()) {
             sortedCommands.add(s);
@@ -82,5 +83,9 @@ public class CommandHandler implements CommandExecutor{
 	
 	public static List<String> getSortedCmdList(){
 		return instance.sortedCommands;
+	}
+	
+	public static void getHelp(CommandSender s,String[] args){
+		instance.commands.get("help").dispatch(s, args);
 	}
 }
