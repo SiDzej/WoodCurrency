@@ -253,7 +253,7 @@ public class DBUtils {
 			s = c.createStatement();
 			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
 					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', total = '"
-					+ data.getTotal() + "', blocked = '" + data.getBlocked() + "' WHERE `id` = '"
+					+ data.getTotal() + "', blocked = '" + ((data.getBlocked())?1:0) + "' WHERE `id` = '"
 					+ data.getID() + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
@@ -277,7 +277,7 @@ public class DBUtils {
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("UPDATE wc_players SET blocked = '" + b + "' WHERE `uuid` = '" + uuid + "'");
+			s.execute("UPDATE wc_players SET blocked = '" + ((b)?1:0) + "' WHERE `uuid` = '" + uuid + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to update player.");

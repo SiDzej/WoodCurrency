@@ -16,76 +16,70 @@ import eu.sidzej.wc.commands.*;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.utils.Log;
 
-public class CommandHandler implements CommandExecutor{
-	
+public class CommandHandler implements CommandExecutor {
+
 	private static CommandHandler instance;
 	private HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
-    private ArrayList<String> sortedCommands = new ArrayList<String>();
-    @SuppressWarnings("unused")
+	private ArrayList<String> sortedCommands = new ArrayList<String>();
+	@SuppressWarnings("unused")
 	private final WoodCurrency plugin;
 
-    /**
-     *
-     * @param plugin
-     */
-    public CommandHandler(WoodCurrency plugin) {
+	/**
+	 * 
+	 * @param plugin
+	 */
+	public CommandHandler(WoodCurrency plugin) {
 
-        this.plugin = plugin;
+		this.plugin = plugin;
 
-        commands.put("help", new Help(plugin));
-        commands.put("ban", new Ban(plugin));
-        commands.put("unban", new Unban(plugin));
-        commands.put("info", new Info(plugin));
-        commands.put("resetday", new ResetDayLimit(plugin));
-        commands.put("resettier", new ResetTier(plugin));
-        commands.put("top", new Top(plugin)); 
-        commands.put("disable", new Disable(plugin)); 
+		commands.put("help", new Help(plugin));
+		commands.put("ban", new Ban(plugin));
+		commands.put("unban", new Unban(plugin));
+		commands.put("info", new Info(plugin));
+		commands.put("resetday", new ResetDayLimit(plugin));
+		commands.put("resettier", new ResetTier(plugin));
+		commands.put("top", new Top(plugin));
+		commands.put("disable", new Disable(plugin));
 
-        for (String s : commands.keySet()) {
-            sortedCommands.add(s);
-        }
-        Collections.sort(sortedCommands, Collator.getInstance());
-        Log.debug("Commands enabled: " + Joiner.on(", ").join(sortedCommands));
-    }
-    
-    public static CommandHandler getInstance(WoodCurrency plugin){
-    	if(instance == null)
-    		instance = new CommandHandler(plugin);
-    	return instance;
-    }
+		for (String s : commands.keySet()) {
+			sortedCommands.add(s);
+		}
+		Collections.sort(sortedCommands, Collator.getInstance());
+		Log.debug("Commands enabled: " + Joiner.on(", ").join(sortedCommands));
+	}
+
+	public static CommandHandler getInstance(WoodCurrency plugin) {
+		if (instance == null)
+			instance = new CommandHandler(plugin);
+		return instance;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length >= 1) {
-            String subCmd = args[0].toLowerCase();
-            if (commands.containsKey(subCmd)) {
-            	if (subCmd.equalsIgnoreCase("pass"))
-            		subCmd = "password";
-                if (!sender.hasPermission("ma." + subCmd)) {
-                    sender.sendMessage(Lang.NO_PERMISSION);
-                    return true;
-                }
-                commands.get(subCmd).dispatch(sender, args);
-                return true;
-            }
-        }
-        commands.get("help").dispatch(sender, args);
-        return true;
+			String subCmd = args[0].toLowerCase();
+			if (commands.containsKey(subCmd)) {
+				if (!sender.hasPermission("woodcurrency." + subCmd)) {
+					sender.sendMessage(Lang.NO_PERMISSION);
+					return true;
+				}
+				commands.get(subCmd).dispatch(sender, args);
+				return true;
+			}
+		}
+		commands.get("help").dispatch(sender, args);
+		return true;
 	}
-	
-	public static boolean containsCmd(String s){
+
+	public static boolean containsCmd(String s) {
 		return instance.commands.containsKey(s);
 	}
-	
-	public static CommandInterface get(String s){
+
+	public static CommandInterface get(String s) {
 		return instance.commands.get(s);
 	}
-	
-	public static List<String> getSortedCmdList(){
+
+	public static List<String> getSortedCmdList() {
 		return instance.sortedCommands;
-	}
-	
-	public static void getHelp(CommandSender s,String[] args){
-		instance.commands.get("help").dispatch(s, args);
 	}
 }

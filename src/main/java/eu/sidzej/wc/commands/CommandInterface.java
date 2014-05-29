@@ -1,6 +1,5 @@
 package eu.sidzej.wc.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import eu.sidzej.wc.config.Lang;

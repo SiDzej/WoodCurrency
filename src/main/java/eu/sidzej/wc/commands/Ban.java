@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
-import eu.sidzej.wc.CommandHandler;
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.WoodCurrency;
@@ -30,21 +29,21 @@ public class Ban implements CommandInterface {
 				if (data != null) {
 					data.setBlocked(true);
 					DBUtils.UpdatePlayer(data);
-					sender.sendMessage(name + "" + Lang.A_BANNED);
+					sender.sendMessage(args[1] + " " + Lang.A_BANNED);
 					return;
 				} else {
 					@SuppressWarnings("deprecation")
-					OfflinePlayer p = Bukkit.getOfflinePlayer(name);// TODO do'h wtf
+					OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);// TODO do'h wtf
 					if (p != null) {
 						if (DBUtils.UpdatePlayerBan(p.getUniqueId(), true))
-							sender.sendMessage(name + "" + Lang.A_BANNED);
+							sender.sendMessage(args[1] + " " + Lang.A_BANNED);
 						return;
 					}
 
 				}
-				sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + name);
+				sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
 			} else
-				CommandHandler.getHelp(sender, args);
+				Help.getHelp(sender, args[0]);
 
 		}
 	}
