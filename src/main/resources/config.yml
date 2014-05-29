@@ -1,13 +1,18 @@
-################################################################
 #
-# WoodCurrency plugin config file
+# WoodCurrency plugin config file example
 #
-################################################################
+
+SIGN_FIRST_LINE: '&4WoodCurrency' # custom text on first line of sign - max 15 chars!
+SIGN_FIRST_LINE_INPUT: 'wc' # custom text on fist line when creating Shop
+
+STACK_SIZE_ON_SIGN: 64 # number of items that shop sells/buys on one click
+
+limits:
+  MAX_SELL_PER_DAY: 1024 # Tier 1 limit. 
 
 debug: false
-custom-sign-text: '[WoodCurrency]'
 op-permissions: false # ops have all permissions if true
-
+#
 mysql:
   host: 'localhost'
   port: '3306'

@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS `wc_players` (
   `day` INT NOT NULL DEFAULT 0,
   `total` INT NOT NULL DEFAULT 0,
   `tier` INT NOT NULL DEFAULT 0,
+  `blocked` TINYINT(1) NOT NULL DEFAULT 0,
   `timestamp` DATETIME NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) 
   )

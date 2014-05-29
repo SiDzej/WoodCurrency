@@ -17,7 +17,7 @@ import javax.xml.bind.DatatypeConverter;
 import com.google.common.io.CharStreams;
 
 import eu.sidzej.wc.WoodCurrency;
-import eu.sidzej.wc.utils.Config;
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.utils.Log;
 
 public class Database {

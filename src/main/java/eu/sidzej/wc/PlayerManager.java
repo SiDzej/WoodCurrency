@@ -7,8 +7,8 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.db.DBUtils;
-import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.TimeUtils;
 
 public class PlayerManager {
@@ -55,7 +55,7 @@ public class PlayerManager {
 		}
 
 		public int getItemLeft() {
-			return (int) (Config.MAX_SELL / Math.pow(2, tier - 1) - day);
+			return (int) (Config.MAX_SELL_PER_DAY / Math.pow(2, tier - 1) - day);
 		}
 
 		public void addCount(int amount) {

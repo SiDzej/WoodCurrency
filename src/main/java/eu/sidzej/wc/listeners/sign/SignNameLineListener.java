@@ -4,10 +4,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.events.SignCreationEvent;
 import eu.sidzej.wc.events.SignCreationEvent.e_states;
 import eu.sidzej.wc.sign.SignValidator;
-import eu.sidzej.wc.utils.Config;
 
 public class SignNameLineListener implements Listener{
 

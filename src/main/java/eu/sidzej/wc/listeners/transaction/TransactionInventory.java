@@ -7,9 +7,9 @@ import org.bukkit.event.Listener;
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.WCSign.e_type;
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.inventory.WCInventory;
-import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
 
 public class TransactionInventory implements Listener {
@@ -20,7 +20,7 @@ public class TransactionInventory implements Listener {
 			return;
 		WCInventory inv = new WCInventory(e.getPlayer());
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
-		int amount = Config.STACK_SIZE - inv.removeItems(e.getItemStack(), Config.STACK_SIZE);
+		int amount = Config.STACK_SIZE_ON_SIGN - inv.removeItems(e.getItemStack(), Config.STACK_SIZE_ON_SIGN);
 		
 		if(data.getItemLeft() < amount){
 			inv.addItems(e.getItemStack(), amount - data.getItemLeft());
@@ -36,7 +36,7 @@ public class TransactionInventory implements Listener {
 			return;
 		double money = EconomyUtils.getBalance(e.getPlayer());
 		WCInventory inv = new WCInventory(e.getPlayer());
-		int amount = Config.STACK_SIZE - inv.addItems(e.getItemStack(), Config.STACK_SIZE);
+		int amount = Config.STACK_SIZE_ON_SIGN - inv.addItems(e.getItemStack(), Config.STACK_SIZE_ON_SIGN);
 		if(amount*e.getPrice() > money){
 			inv.removeItems(e.getItemStack(), (int)(money/e.getPrice() * amount));
 			amount = (int)(money/e.getPrice() * amount);

@@ -6,12 +6,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import eu.sidzej.wc.config.Config;
+import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.db.Database;
 import eu.sidzej.wc.listeners.*;
 import eu.sidzej.wc.listeners.sign.*;
 import eu.sidzej.wc.listeners.transaction.*;
-import eu.sidzej.wc.utils.Config;
 import eu.sidzej.wc.utils.EconomyUtils;
 import eu.sidzej.wc.utils.Log;
 
@@ -29,6 +30,7 @@ public class WoodCurrency extends JavaPlugin {
 	public static String name;
 	public static String version;
 	public Config config;
+	public Lang lang;
 
 	public void onEnable() {
 		plugin = this;
@@ -37,6 +39,7 @@ public class WoodCurrency extends JavaPlugin {
 		version = this.getDescription().getVersion();
 		
 		config = new Config(this);
+		lang = new Lang(this);
 		Log.debug("Debug enabled!"); // log only when enabled in config :)
 
 
@@ -69,6 +72,8 @@ public class WoodCurrency extends JavaPlugin {
 	}
 
 	public void onDisable() {
+		//save players
+		//save points
 		if(db != null)
 			db.close();
 		this.saveConfig();

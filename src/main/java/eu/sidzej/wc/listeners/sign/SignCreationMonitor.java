@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.events.SignCreationEvent;
 
 public class SignCreationMonitor implements Listener {
@@ -32,7 +33,7 @@ public class SignCreationMonitor implements Listener {
 				message = "bad number type or prices";
 				break;
 			case NO_PERMISSIONS:
-				message = "no permission";
+				message = Lang.NO_PERMISSION;
 				break;
 			default:
 				message = "general wtf";

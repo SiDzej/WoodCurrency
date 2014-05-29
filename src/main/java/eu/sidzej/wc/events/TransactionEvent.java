@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 
 import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WCSign.e_type;
-import eu.sidzej.wc.utils.Config;
+import eu.sidzej.wc.config.Config;
 
 public class TransactionEvent extends Event {
 	private static final HandlerList handlers = new HandlerList();
@@ -70,7 +70,7 @@ public class TransactionEvent extends Event {
 	}
 
 	public double getPrice() {
-		return price / Config.STACK_SIZE;
+		return price / Config.STACK_SIZE_ON_SIGN;
 	}
 
 	public int getItemId() {

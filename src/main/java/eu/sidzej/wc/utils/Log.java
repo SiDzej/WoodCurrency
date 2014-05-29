@@ -3,6 +3,8 @@ package eu.sidzej.wc.utils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import eu.sidzej.wc.config.Config;
+
 public class Log {
 
 	static final Logger log = Logger.getLogger("Minecraft");
