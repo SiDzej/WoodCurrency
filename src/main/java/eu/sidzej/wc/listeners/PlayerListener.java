@@ -42,8 +42,9 @@ public class PlayerListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		Player p = event.getPlayer();
 		PlayerData data = PlayerManager.getPlayerData(p.getUniqueId());
-		
 		DBUtils.UpdatePlayer(p.getUniqueId(),data);
+		
+		PlayerManager.remove(p);
 	}
 
 	

@@ -101,4 +101,8 @@ public class PlayerManager {
 			return TimeUtils.getTimestamp(timestamp);
 		}
 	}
+
+	public static void remove(Player p) {
+		instance.players.remove(p);		
+	}
 }
