@@ -23,14 +23,13 @@ public class WoodCurrency extends JavaPlugin {
 	public static PlayerManager playerManager = PlayerManager.getInstance();
 	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
 	
-	public CommandHandler commandHandler;
+	public static CommandHandler commandHandler;
 	
 	public Database db;
 	public EconomyUtils economy;
 
-	// private File langFile; //TODO
 	public static String name;
-	public static String version;
+	public String version;
 	public Config config;
 	public Lang lang;
 
@@ -67,7 +66,7 @@ public class WoodCurrency extends JavaPlugin {
 		
 		registerListeners();
 		
-		commandHandler = new CommandHandler(this);
+		commandHandler = CommandHandler.getInstance(this);
 		getCommand("wc").setExecutor(commandHandler);
 		
 		economy = new EconomyUtils(this);

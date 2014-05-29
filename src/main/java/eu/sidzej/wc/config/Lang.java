@@ -10,7 +10,8 @@ import eu.sidzej.wc.utils.Log;
 
 public class Lang {
 
-	public static String CMD_BAN,CMD_BAD_USAGE,CMD_UNBAN,CMD_INFO,CMD_TOP,CMD_RESET_TIER,CMD_RESET_DAY,CMD_HELP;
+	public static String CMD_BAN, CMD_BAD_USAGE, CMD_UNBAN, CMD_INFO, CMD_TOP, CMD_RESET_TIER,
+			CMD_RESET_DAY, CMD_HELP, CMD_UNKNOWN;
 
 	public static String NO_PERMISSION, GENERAL_PROBLEM, NO_SPACE_IN_INVENTORY, NOT_ENOUGH_MONEY,
 			NO_REQUIRED_ITEM, DAY_LIMIT_REACHED, BOUGHT, SOLD, SHOP_CREATED,
@@ -23,14 +24,14 @@ public class Lang {
 	public Lang(WoodCurrency plugin) {
 		File folder = new File(plugin.getDataFolder() + "/lang");
 		if (!folder.exists()) {
-            try {
-            	folder.mkdir();
-            } catch (Exception e) {
-                Log.error(e.getMessage());
-            }
-        }
-		String lang = (Config.lang.isEmpty() || Config.lang == null) ?"en.yml":Config.lang;
-		accessor = new ConfigAccessor(plugin, "lang/"+lang+".yml");
+			try {
+				folder.mkdir();
+			} catch (Exception e) {
+				Log.error(e.getMessage());
+			}
+		}
+		String lang = (Config.lang.isEmpty() || Config.lang == null) ? "en.yml" : Config.lang;
+		accessor = new ConfigAccessor(plugin, "lang/" + lang + ".yml");
 		locale = accessor.getConfig().getRoot();
 		locale.options().copyDefaults(true);
 		accessor.saveConfig();

@@ -4,6 +4,7 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,8 +18,9 @@ import eu.sidzej.wc.utils.Log;
 
 public class CommandHandler implements CommandExecutor{
 	
-	public HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
-    public ArrayList<String> sortedCommands = new ArrayList<String>();
+	private static CommandHandler instance;
+	private HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
+    private ArrayList<String> sortedCommands = new ArrayList<String>();
     @SuppressWarnings("unused")
 	private final WoodCurrency plugin;
 
@@ -44,6 +46,12 @@ public class CommandHandler implements CommandExecutor{
         Collections.sort(sortedCommands, Collator.getInstance());
         Log.debug("Commands enabled: " + Joiner.on(", ").join(sortedCommands));
     }
+    
+    public static CommandHandler getInstance(WoodCurrency plugin){
+    	if(instance == null)
+    		instance = new CommandHandler(plugin);
+    	return instance;
+    }
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -62,5 +70,17 @@ public class CommandHandler implements CommandExecutor{
         }
         commands.get("help").dispatch(sender, args);
         return true;
+	}
+	
+	public static boolean containsCmd(String s){
+		return instance.commands.containsKey(s);
+	}
+	
+	public static CommandInterface get(String s){
+		return instance.commands.get(s);
+	}
+	
+	public static List<String> getSortedCmdList(){
+		return instance.sortedCommands;
 	}
 }
