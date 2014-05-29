@@ -103,6 +103,6 @@ public class PlayerManager {
 	}
 
 	public static void remove(Player p) {
-		instance.players.remove(p);		
+		instance.players.remove(p.getUniqueId());		
 	}
 }
