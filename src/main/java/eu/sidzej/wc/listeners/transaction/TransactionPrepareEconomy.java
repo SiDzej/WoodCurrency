@@ -8,7 +8,7 @@ import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
-import eu.sidzej.wc.utils.EconomyUtils;
+import eu.sidzej.wc.utils.EconomyUtils;¨
 
 public class TransactionPrepareEconomy implements Listener {
 	
@@ -17,7 +17,7 @@ public class TransactionPrepareEconomy implements Listener {
 		if(e.isCancelled())
 			return;
 		if(e.getType().equals(e_type.BUY))
-			if(EconomyUtils.getBalance(e.getPlayer()) < e.getSign().getBuyPrice()/Config.STACK_SIZE_ON_SIGN)
+			if(EconomyUtils.getBalance(e.getPlayer()) < (e.getSign().getBuyPrice()/Config.STACK_SIZE_ON_SIGN))
 				e.setState(e_states.NOT_ENOUGH_MONEY);
 	}
 

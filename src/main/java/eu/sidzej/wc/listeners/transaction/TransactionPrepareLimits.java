@@ -8,13 +8,14 @@ import org.bukkit.event.Listener;
 
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
+import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 
 public class TransactionPrepareLimits implements Listener {
-	
-	@EventHandler(priority = EventPriority.NORMAL)
+
+	@EventHandler(priority = EventPriority.HIGH)
 	public static void UpdatePlayerData(TransactionPrepareEvent e) {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
 
@@ -28,18 +29,19 @@ public class TransactionPrepareLimits implements Listener {
 			data.decrementTier();
 		}
 		data.resetDay();
-		
-		if(e.getState().equals(e_states.DAY_LIMIT))
+
+		if (e.getState().equals(e_states.DAY_LIMIT))
 			e.setState(e_states.OK);
-		
+
 		DBUtils.UpdatePlayer(e.getPlayer().getUniqueId(), data);
 	}
-	
+
 	@EventHandler(priority = EventPriority.NORMAL)
-	public static void TransactionsLimits(TransactionPrepareEvent e){
+	public static void TransactionsLimits(TransactionPrepareEvent e) {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
-		if(!(data.getItemLeft() >= 1))
-			e.setState(e_states.DAY_LIMIT);
+		if (e.getType().equals(e_type.SELL))
+			if (!(data.getItemLeft() >= 1))
+				e.setState(e_states.DAY_LIMIT);
 	}
 
 }

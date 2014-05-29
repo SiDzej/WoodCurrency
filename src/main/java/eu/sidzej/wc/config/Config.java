@@ -33,7 +33,7 @@ public class Config {
 		if (SIGN_FIRST_LINE != null)
 			SIGN_FIRST_LINE = ChatColor.translateAlternateColorCodes('&', SIGN_FIRST_LINE);
 		SIGN_FIRST_LINE_INPUT = config.getString("SIGN_FIRST_LINE_INPUT");
-		STACK_SIZE_ON_SIGN = config.getInt("STACK_SIZE");
+		STACK_SIZE_ON_SIGN = config.getInt("STACK_SIZE_ON_SIGN");
 		// limits
 		MAX_SELL_PER_DAY = config.getInt("limits.MAX_SELL_PER_DAY");
 		//
