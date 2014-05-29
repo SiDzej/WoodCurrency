@@ -40,7 +40,7 @@ public class BlockBreakListener implements Listener {
 
 		if (!p.hasPermission("woodcurrency.destroyshop")) {
 			e.setCancelled(true);
-			p.sendMessage(Lang.NO_PERMISSION);	// TODO lang
+			p.sendMessage(Lang.NO_PERMISSION);
 			return;
 		}
 
@@ -51,7 +51,7 @@ public class BlockBreakListener implements Listener {
 			ProtectionManager.remove(l);
 		}
 
-		p.sendMessage(Lang.SHOP_DESTROYED); // TODO Lang
+		p.sendMessage(Lang.SHOP_DESTROYED);
 		Log.info("WoodCurreny shop at "+ l.getWorld() +","+ l.getX() +","+ l.getY() +","+ l.getZ()+ " destroyed.");
 		b.breakNaturally();
 	}

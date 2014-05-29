@@ -46,7 +46,7 @@ public class ConnectionManager implements Closeable {
 
 		Class.forName("com.mysql.jdbc.Driver");
 		Log.info("Connecting to database at: " + hostname);
-		poolsize = 10; // TODO config
+		poolsize = 10;
 		connections = new Vector<TimedConnection>(poolsize);
 		reaper = new ConnectionKiller();
 		reaper.start();
@@ -76,7 +76,6 @@ public class ConnectionManager implements Closeable {
 			conn = new TimedConnection(DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":"
 					+ this.port + "/" + this.database + "?zeroDateTimeBehavior=convertToNull", this.user, this.password));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(conn == null){

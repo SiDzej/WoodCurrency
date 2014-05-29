@@ -56,7 +56,7 @@ public class PlayerListener implements Listener {
 		if (event.getPlayer().getGameMode() == GameMode.CREATIVE) {
 			if (event.getAction() == Action.RIGHT_CLICK_AIR
 					|| event.getAction() == Action.RIGHT_CLICK_BLOCK)
-				p.sendMessage("Hey you! No cheating in creative!"); // TODO lang
+				p.sendMessage("Hey you! No cheating in creative!");
 			return;
 		}
 

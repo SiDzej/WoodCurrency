@@ -2,6 +2,7 @@ package eu.sidzej.wc.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import eu.sidzej.wc.CommandHandler;
 import eu.sidzej.wc.WoodCurrency;
@@ -26,6 +27,8 @@ public class Help implements CommandInterface {
 				+ ChatColor.AQUA + " - " + ChatColor.RESET + plugin.version + ChatColor.AQUA
 				+ " ]-----");
 		for (String s : CommandHandler.getSortedCmdList()) {
+			if (!sender.hasPermission("woodcurrency." + s) && sender instanceof Player)
+				continue;
 			CommandInterface cmd = CommandHandler.get(s);
 			if (cmd != null) {
 				sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
