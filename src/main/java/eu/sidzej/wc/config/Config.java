@@ -17,6 +17,7 @@ public class Config {
 	public static String[] labels;
 
 	private static Configuration config;
+	public static String lang;
 
 	// private WoodCurrency plugin;
 
@@ -37,6 +38,7 @@ public class Config {
 		// limits
 		MAX_SELL_PER_DAY = config.getInt("limits.MAX_SELL_PER_DAY");
 		//
+		lang = config.getString("language");
 		opPerm = config.getBoolean("op-permissions"); // ops have all permissions
 		debugEnabled = config.getBoolean("debug");
 		/** DB **/

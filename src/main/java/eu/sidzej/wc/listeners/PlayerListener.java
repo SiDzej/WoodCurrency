@@ -28,14 +28,6 @@ public class PlayerListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		PlayerManager.getPlayerData(p.getUniqueId());
-		/*
-		 * p.getInventory().addItem(TreeSpecies.OAK.toItemStack());
-		 * p.getInventory().addItem(TreeSpecies.BIRCH.toItemStack(5));
-		 * p.getInventory().addItem(TreeSpecies.ACACIA.toItemStack(5));
-		 * p.getInventory().addItem(TreeSpecies.DARK.toItemStack(5));
-		 * p.getInventory().addItem(TreeSpecies.JUNGLE.toItemStack(5));
-		 * p.getInventory().addItem(TreeSpecies.SPRUCE.toItemStack(5));
-		 */
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)

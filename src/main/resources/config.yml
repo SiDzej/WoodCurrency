@@ -10,6 +10,7 @@ STACK_SIZE_ON_SIGN: 64 # number of items that shop sells/buys on one click
 limits:
   MAX_SELL_PER_DAY: 1024 # Tier 1 limit. 
 
+language: en #part of lang filename - > en.yml
 debug: false
 op-permissions: false # ops have all permissions if true
 #

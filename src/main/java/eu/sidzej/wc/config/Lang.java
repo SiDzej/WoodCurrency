@@ -1,9 +1,12 @@
 package eu.sidzej.wc.config;
 
+import java.io.File;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.utils.Log;
 
 public class Lang {
 
@@ -16,7 +19,16 @@ public class Lang {
 	private static Configuration locale;
 
 	public Lang(WoodCurrency plugin) {
-		accessor = new ConfigAccessor(plugin, "locale.yml");
+		File folder = new File(plugin.getDataFolder() + "/lang");
+		if (!folder.exists()) {
+            try {
+            	folder.mkdir();
+            } catch (Exception e) {
+                Log.error(e.getMessage());
+            }
+        }
+		String lang = (Config.lang.isEmpty() || Config.lang == null) ?"en.yml":Config.lang;
+		accessor = new ConfigAccessor(plugin, "lang/"+lang+".yml");
 		locale = accessor.getConfig().getRoot();
 		locale.options().copyDefaults(true);
 		accessor.saveConfig();
