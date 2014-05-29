@@ -5,5 +5,27 @@
 ##########################
 
 
-NO_PERMISSION: 'You have no permission to do that.'
+NO_PERMISSION: '&4You have no permission to do that!'
+
+NO_SPACE_IN_INVENTORY: 'You have no empty space in inventory.'
+NOT_ENOUGH_MONEY: 'You have not enough money for purchase.'
+NO_REQUIRED_ITEM: 'Your inventory does not contain required item.'
+DAY_LIMIT_REACHED: 'You have reached day limit for admin shop.'
+
+BOUGHT: "You just bought {amount} pieces of {item} for {price}."
+SOLD: "You just sold {amount} pieces of {item} for {price}."
+
+SHOP_CREATED: 'WoodCurrency shop created successfully.'
+SHOP_DESTROYED: 'WoodCurrency shop destroyed successfully.'
+
+WRONG_NUMBER_OF_TYPES_TO_PRICES: "Sell/buy line not corespond to price line. Both must have same number of ':' (one or none)."
+
+CANT_CREATE_SHOP: "Shop have to be wall sign and have to be placed on block, not affected by gravity."
+
+
+BAD_FIRST_LINE: 'First line of WoodCurrency sign error.'
+BAD_SECOND_LINE: 'Second line of WoodCurrency sign error. (buy:sell)'
+BAD_THIRD_LINE: 'Third line of WoodCurrency sign error.(price 5:5)'
+BAD_FOURTH_LINE: 'Fourth line of WoodCurrency sign error. (Wood item - oak wood)'
+
 GENERAL_PROBLEM: 'Something goes wrong. Report it to _CJ_. Thanks.'

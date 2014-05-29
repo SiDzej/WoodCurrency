@@ -18,6 +18,7 @@ import org.bukkit.material.Sign;
 
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.ProtectionManager.e_protectionType;
+import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.utils.Log;
 
 public class BlockBreakListener implements Listener {
@@ -39,7 +40,7 @@ public class BlockBreakListener implements Listener {
 
 		if (!p.hasPermission("woodcurrency.destroyshop")) {
 			e.setCancelled(true);
-			p.sendMessage("no permission");	// TODO lang
+			p.sendMessage(Lang.NO_PERMISSION);	// TODO lang
 			return;
 		}
 
@@ -50,7 +51,7 @@ public class BlockBreakListener implements Listener {
 			ProtectionManager.remove(l);
 		}
 
-		p.sendMessage("WC shop(s) has been destroyed."); // TODO Lang
+		p.sendMessage(Lang.SHOP_DESTROYED); // TODO Lang
 		Log.info("WoodCurreny shop at "+ l.getWorld() +","+ l.getX() +","+ l.getY() +","+ l.getZ()+ " destroyed.");
 		b.breakNaturally();
 	}

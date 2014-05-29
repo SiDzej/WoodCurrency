@@ -12,6 +12,7 @@ import org.bukkit.material.Sign;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.events.ShopCreatedEvent;
 import eu.sidzej.wc.events.SignCreationEvent;
 import eu.sidzej.wc.sign.SignValidator;
@@ -31,7 +32,7 @@ public class SignChangeListener implements Listener{
 		
 		if(!b.getType().equals(Material.WALL_SIGN) 
 				|| !relative.getType().isBlock() || relative.getType().hasGravity()){
-			p.sendMessage("zruseno chyba - block/gravity/wallsign");
+			p.sendMessage(Lang.CANT_CREATE_SHOP);
 			b.breakNaturally();
 			event.setCancelled(true);
 			return;

@@ -14,7 +14,7 @@ import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 
 public class TransactionPrepareLimits implements Listener {
 	
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public static void UpdatePlayerData(TransactionPrepareEvent e) {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
 

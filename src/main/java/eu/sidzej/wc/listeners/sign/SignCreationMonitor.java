@@ -18,25 +18,25 @@ public class SignCreationMonitor implements Listener {
 
 		switch (e.getState()) {
 			case BAD_NAME_LINE:
-				message = "bad name";
+				message = Lang.BAD_FIRST_LINE;
 				break;
 			case BAD_TYPE_LINE:
-				message = "bad type";
+				message = Lang.BAD_SECOND_LINE;
 				break;
 			case BAD_PRICE_LINE:
-				message = "bad price";
+				message = Lang.BAD_THIRD_LINE;
 				break;
 			case BAD_ITEM_LINE:
-				message = "bad item";
+				message = Lang.BAD_FOURTH_LINE;
 				break;
 			case BAD_TYPE_TO_PRICE_LINES:
-				message = "bad number type or prices";
+				message = Lang.WRONG_NUMBER_OF_TYPES_TO_PRICES;
 				break;
 			case NO_PERMISSIONS:
 				message = Lang.NO_PERMISSION;
 				break;
 			default:
-				message = "general wtf";
+				message = Lang.GENERAL_PROBLEM;
 				break;
 		}
 		

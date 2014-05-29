@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 
 public class TransactionPrepareMonitor implements Listener {
@@ -21,22 +22,22 @@ public class TransactionPrepareMonitor implements Listener {
 			case TOO_FAST_CLICK:
 				break;
 			case DAY_LIMIT:
-				message = "day limit";
+				message = Lang.DAY_LIMIT_REACHED;
 				break;
 			case NO_PERMISSIONS:
-				message = "no permission";
+				message = Lang.NO_PERMISSION;
 				break;
 			case NO_ITEM_TO_SELL:
-				message = "no item";
+				message = Lang.NO_REQUIRED_ITEM;
 				break;
 			case NO_SPACE_IN_INVENTORY:
-				message = "no space";
+				message = Lang.NO_SPACE_IN_INVENTORY;
 				break;
 			case NOT_ENOUGH_MONEY:
-				message = "no money";
+				message = Lang.NOT_ENOUGH_MONEY;
 				break;
 			default:
-				message = "General problem. Contact _CJ_. :)";
+				message = Lang.GENERAL_PROBLEM;
 				break;
 		}
 

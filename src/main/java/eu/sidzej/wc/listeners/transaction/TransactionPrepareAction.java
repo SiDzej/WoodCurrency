@@ -11,7 +11,7 @@ import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 
 public class TransactionPrepareAction implements Listener{
 	
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void ActionChecker(TransactionPrepareEvent e){
 		Action a = e.getAction();
 		e_type type = e_type.NONE;
