@@ -34,7 +34,7 @@ public class ProtectionManager {
 		instance.protectionList.put(l.getBlock().getRelative(f).getLocation(),
 				e_protectionType.BLOCK);
 	}
-
+	
 	public static void addSign(Location l, WCSign s) {
 		instance.wcList.put(l, s);
 	}

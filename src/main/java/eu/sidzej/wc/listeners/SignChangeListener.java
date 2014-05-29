@@ -10,7 +10,6 @@ import org.bukkit.material.Attachable;
 import org.bukkit.material.Sign;
 
 import eu.sidzej.wc.ProtectionManager;
-import eu.sidzej.wc.WCSign;
 import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.events.ShopCreatedEvent;
@@ -53,8 +52,6 @@ public class SignChangeListener implements Listener{
         ShopCreatedEvent finished = new ShopCreatedEvent(create.getPlayer(),b, create.getSignLines());
         WoodCurrency.callEvent(finished);
         ProtectionManager.addNew(b.getLocation(), ((Sign) b.getState().getData()).getAttachedFace());
-        ProtectionManager.addSign(b.getLocation(), 
-        		new WCSign(create.getItem(),create.getSellPrice(), create.getBuyPrice(),create.getType()));
 	}
 
 }
