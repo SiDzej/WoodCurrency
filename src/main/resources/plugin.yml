@@ -18,14 +18,14 @@ permissions:
   woodcurrency.moderator:
     description: Usefull for server moderator - almost all commands access
     default: false
-    childern:
+    children:
       woodcurrency.createshop: true
       woodcurrency.destroyshop: true
       
   woodcurrency.player:
     description: Standart commnads and action for players
     default: true
-    childern:
+    children:
       woodcurrency.sell: true
       woodcurrency.buy: true
       
