@@ -14,7 +14,7 @@ public class WCSign {
 	private double buyprice = -1.0;
 	private ItemStack item;
 	private int itemId;
-	private String itemName;
+	private String itemName = "";
 	
 	public WCSign(ItemStack item, double sell, double buy, e_type type){
 		this.item = item;

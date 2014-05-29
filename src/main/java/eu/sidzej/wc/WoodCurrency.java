@@ -111,6 +111,7 @@ public class WoodCurrency extends JavaPlugin {
 		registerListener(new SignNameLineListener());
 		registerListener(new SignPriceLineListener());
 		registerListener(new SignTypeLineListener());
+		registerListener(new SignCreatePermListener());		
 		
 		// shop transaction related
 		registerListener(new TransactionDelayer());

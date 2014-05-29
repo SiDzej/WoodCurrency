@@ -19,9 +19,9 @@ public class TransactionMessage implements Listener {
 		if (e.getType().equals(e_type.SELL))
 			out = Lang.SOLD;
 
-		out.replace("{amount}", ""+e.getFinalAmount());
-		out.replace("{item}", e.getItemName());
-		out.replace("{price}", EconomyUtils.format(e.getFinalPrice()));
+		out = out.replace("{amount}", ""+e.getFinalAmount());
+		out = out.replace("{item}", e.getItemName());
+		out = out.replace("{price}", EconomyUtils.format(e.getFinalPrice()));
 		
 		e.getPlayer().sendMessage(out);
 	}

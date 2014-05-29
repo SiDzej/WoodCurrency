@@ -6,7 +6,7 @@ public class BlockUtils {
 
 	public static String getItemStackName(String s) {
 		TreeSpecies tree = getTree(s);
-		String w = " Wood";
+		String w = new String(" Wood");
 
 		switch (tree) {
 			case OAK:

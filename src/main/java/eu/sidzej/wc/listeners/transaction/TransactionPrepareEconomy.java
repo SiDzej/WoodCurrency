@@ -8,7 +8,7 @@ import eu.sidzej.wc.WCSign.e_type;
 import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
-import eu.sidzej.wc.utils.EconomyUtils;¨
+import eu.sidzej.wc.utils.EconomyUtils;
 
 public class TransactionPrepareEconomy implements Listener {
 	

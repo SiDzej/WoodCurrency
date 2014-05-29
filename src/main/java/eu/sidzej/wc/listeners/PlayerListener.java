@@ -81,7 +81,7 @@ public class PlayerListener implements Listener {
 		
 		// canceling only place event...
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK
-				|| event.getAction() == Action.LEFT_CLICK_AIR)
+				|| event.getAction() == Action.LEFT_CLICK_AIR )
 			return;
 		event.setCancelled(true);
 	}
