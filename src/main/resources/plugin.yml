@@ -13,6 +13,22 @@ permissions:
     description: Gives access to all WoodCurrency commands
     default: false
     children:
+      woodcurrency.moderator: true
+  
+  woodcurrency.moderator:
+    description: Usefull for server moderator - almost all commands access
+    default: false
+    childern:
+      woodcurrency.createshop: true
+      woodcurrency.destroyshop: true
+      
+  woodcurrency.player:
+    description: Standart commnads and action for players
+    default: true
+    childern:
+      woodcurrency.sell: true
+      woodcurrency.buy: true
+      
     
   woodcurrency.createshop:
     description: Allow player to place shop sign

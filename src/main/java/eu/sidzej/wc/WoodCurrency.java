@@ -2,6 +2,7 @@ package eu.sidzej.wc;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,11 +18,12 @@ import eu.sidzej.wc.utils.EconomyUtils;
 import eu.sidzej.wc.utils.Log;
 
 public class WoodCurrency extends JavaPlugin {
-	@SuppressWarnings("unused")
 	private static WoodCurrency plugin;
 
 	public static PlayerManager playerManager = PlayerManager.getInstance();
 	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
+	
+	public CommandHandler commandHandler;
 	
 	public Database db;
 	public EconomyUtils economy;
@@ -64,10 +66,10 @@ public class WoodCurrency extends JavaPlugin {
 			this.disable("Players loading error");
 		
 		registerListeners();
-		/*
+		
 		commandHandler = new CommandHandler(this);
 		getCommand("wc").setExecutor(commandHandler);
-		*/
+		
 		economy = new EconomyUtils(this);
 	}
 
@@ -77,6 +79,7 @@ public class WoodCurrency extends JavaPlugin {
 		if(db != null)
 			db.close();
 		this.saveConfig();
+		unregisterAllListeners();
 		Log.info("WoodCurrency disabled.");
 	}
 
@@ -86,7 +89,7 @@ public class WoodCurrency extends JavaPlugin {
 
 	public void disable(String msg) {
 		Log.error(msg);
-		Bukkit.getPluginManager().disablePlugin(this);
+		disable();
 	}
 	
 	private void checkDependencies(PluginManager pm) {
@@ -132,6 +135,10 @@ public class WoodCurrency extends JavaPlugin {
 
 	public void registerListener(Listener l) {
 		getServer().getPluginManager().registerEvents(l, this);
+	}
+	
+	public static void unregisterAllListeners() {
+		HandlerList.unregisterAll(plugin);
 	}
 
 	public static void callEvent(Event event) {
