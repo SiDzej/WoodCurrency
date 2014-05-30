@@ -125,8 +125,8 @@ public class DBUtils {
 					+ uuid.toString() + "\"");
 			if (set.next())
 				data = new PlayerData(uuid, set.getInt("id"), set.getInt("day"),
-						set.getInt("total"), set.getByte("tier"), set.getTimestamp("timestamp"),
-						set.getBoolean("blocked"));
+						set.getInt("totalbuy"), set.getInt("totalsell"), set.getByte("tier"),
+						set.getTimestamp("timestamp"), set.getBoolean("blocked"));
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
 			Log.error("Unable to get player data.");
@@ -160,7 +160,7 @@ public class DBUtils {
 				UUID uuid = UUID.fromString(set.getString("uuid"));
 				if (players.contains(uuid))
 					PlayerManager.addPlayer(uuid, set.getInt("id"), set.getInt("day"),
-							set.getInt("total"), set.getByte("tier"),
+							set.getInt("totalbuy"), set.getInt("totalsell"), set.getByte("tier"),
 							set.getTimestamp("timestamp"), set.getBoolean("blocked"));
 			}
 		} catch (SQLException e) {
@@ -252,8 +252,9 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
-					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', total = '"
-					+ data.getTotal() + "', blocked = '" + ((data.getBlocked())?1:0) + "' WHERE `id` = '"
+					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', totalbuy = '"
+					+ data.getTotalBuy() + "', totalsell = '" + data.getTotalSell()
+					+ "', blocked = '" + ((data.getBlocked()) ? 1 : 0) + "' WHERE `id` = '"
 					+ data.getID() + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
@@ -277,10 +278,12 @@ public class DBUtils {
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("UPDATE wc_players SET blocked = '" + ((b)?1:0) + "' WHERE `uuid` = '" + uuid + "'");
+			s.execute("UPDATE wc_players SET blocked = '" + ((b) ? 1 : 0) + "' WHERE `uuid` = '"
+					+ uuid + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to update player.");
+			return false;
 		} finally {
 			try {
 				if (s != null)

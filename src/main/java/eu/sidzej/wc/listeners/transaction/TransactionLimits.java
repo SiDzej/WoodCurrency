@@ -16,6 +16,8 @@ public class TransactionLimits implements Listener {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
 
 		if (e.getType().equals(e_type.SELL))
-			data.addCount(e.getFinalAmount());
+			data.addCountSell(e.getFinalAmount());
+		if (e.getType().equals(e_type.BUY))
+			data.addCountBuy(e.getFinalAmount());
 	}
 }
