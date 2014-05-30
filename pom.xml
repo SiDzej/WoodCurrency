@@ -9,7 +9,7 @@
 
 	<groupId>eu.sidzej</groupId>
 	<artifactId>wc</artifactId>
-	<version>1.0 - ${build.number}</version>
+	<version>1.0-${build.number}</version>
 	<name>WoodCurrency</name>
 	<description>Simple adminshop with limits</description>
 
@@ -57,8 +57,18 @@
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
 			<resource>
-				<targetPath>.</targetPath>
-				<directory>${basedir}/src/main/resources/</directory>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>plugin.yml</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
@@ -70,6 +80,11 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+
+
+			
+			
+			
 		</plugins>
 	</build>
 </project>
