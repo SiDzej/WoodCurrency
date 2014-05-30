@@ -152,6 +152,10 @@ public class PlayerManager {
 		public int getDayLimit() {
 			return (int) (Config.MAX_SELL_PER_DAY / Math.pow(2, tier - 1));
 		}
+
+		public void setDate(Calendar c) {
+			timestamp = c;			
+		}
 	}
 
 	public static void remove(Player p) {
