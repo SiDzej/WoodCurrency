@@ -35,6 +35,8 @@ public class Unban implements CommandInterface {
 				if (p != null) {
 					if (DBUtils.UpdatePlayerBan(p.getUniqueId(), false))
 						sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
+					else 
+						sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
 					return;
 				}
 

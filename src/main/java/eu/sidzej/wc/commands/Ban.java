@@ -35,9 +35,10 @@ public class Ban implements CommandInterface {
 				if (p != null) {
 					if (DBUtils.UpdatePlayerBan(p.getUniqueId(), true))
 						sender.sendMessage(args[1] + " " + Lang.A_BANNED);
+					else 
+						sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
 					return;
 				}
-
 			}
 			sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
 		} else
