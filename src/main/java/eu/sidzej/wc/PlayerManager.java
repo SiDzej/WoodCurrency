@@ -161,4 +161,9 @@ public class PlayerManager {
 	public static void playerJoin(UUID uuid) {
 		instance.players.put(uuid, getPlayerData(uuid));		
 	}
+
+	public static void saveAll() {
+		for(PlayerData data : instance.players.values())
+			DBUtils.UpdatePlayer(data);		
+	}
 }

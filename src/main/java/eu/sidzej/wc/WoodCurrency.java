@@ -73,8 +73,7 @@ public class WoodCurrency extends JavaPlugin {
 	}
 
 	public void onDisable() {
-		//save players
-		//save points
+		PlayerManager.saveAll();
 		if(db != null)
 			db.close();
 		this.saveConfig();

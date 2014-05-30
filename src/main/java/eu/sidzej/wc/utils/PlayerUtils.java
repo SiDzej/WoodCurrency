@@ -5,10 +5,8 @@ import java.util.Calendar;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
-import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.db.DBUtils;
-import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
 
 public class PlayerUtils {
 

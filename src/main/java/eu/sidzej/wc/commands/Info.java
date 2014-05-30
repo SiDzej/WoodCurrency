@@ -67,6 +67,7 @@ public class Info implements CommandInterface {
 		}else
 			l=b=s=null;	
 		
+		PlayerUtils.checkDailyLimits(data);
 		sender.sendMessage(ChatColor.AQUA + playerName + " status:");
 		sender.sendMessage(String.format("%s - " + ChatColor.RESET + "%s/%s", l,
 				data.getDay(), data.getDayLimit()));

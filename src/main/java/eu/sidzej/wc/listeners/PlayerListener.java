@@ -21,6 +21,7 @@ import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.events.TransactionEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
+import eu.sidzej.wc.utils.PlayerUtils;
 
 public class PlayerListener implements Listener {
 
@@ -28,6 +29,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		PlayerManager.playerJoin(p.getUniqueId());
+		PlayerUtils.checkDailyLimits(PlayerManager.getPlayerData(p));
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
