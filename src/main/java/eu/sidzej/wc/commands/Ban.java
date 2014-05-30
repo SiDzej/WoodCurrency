@@ -23,28 +23,25 @@ public class Ban implements CommandInterface {
 
 	@Override
 	public void dispatch(CommandSender sender, String[] args) {
-		if (sender.hasPermission("woodcurrency.ban")) {
-			if (args.length > 1) {
-				PlayerData data = PlayerManager.getPlayerData(args[1]);
-				if (data != null) {
-					data.setBlocked(true);
-					DBUtils.UpdatePlayer(data);
-					sender.sendMessage(args[1] + " " + Lang.A_BANNED);
+		if (args.length > 1) {
+			PlayerData data = PlayerManager.getPlayerData(args[1]);
+			if (data != null) {
+				data.setBlocked(true);
+				DBUtils.UpdatePlayer(data);
+				sender.sendMessage(args[1] + " " + Lang.A_BANNED);
+				return;
+			} else {
+				OfflinePlayer p = PlayerUtils.getOfflinePlayer(args[1]);
+				if (p != null) {
+					if (DBUtils.UpdatePlayerBan(p.getUniqueId(), true))
+						sender.sendMessage(args[1] + " " + Lang.A_BANNED);
 					return;
-				} else {
-					OfflinePlayer p = PlayerUtils.getOfflinePlayer(args[1]);
-					if (p != null) {
-						if (DBUtils.UpdatePlayerBan(p.getUniqueId(), true))
-							sender.sendMessage(args[1] + " " + Lang.A_BANNED);
-						return;
-					}
-
 				}
-				sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
-			} else
-				Help.getHelp(sender, args[0]);
 
-		}
+			}
+			sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
+		} else
+			Help.getHelp(sender, args[0]);
 	}
 
 	@Override

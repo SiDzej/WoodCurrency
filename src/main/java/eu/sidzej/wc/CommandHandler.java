@@ -9,10 +9,12 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import com.google.common.base.Joiner;
 
 import eu.sidzej.wc.commands.*;
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.utils.Log;
 
@@ -59,10 +61,14 @@ public class CommandHandler implements CommandExecutor {
 		if (args.length >= 1) {
 			String subCmd = args[0].toLowerCase();
 			if (commands.containsKey(subCmd)) {
-				if (!sender.hasPermission("woodcurrency." + subCmd)) {
-					sender.sendMessage(Lang.NO_PERMISSION);
-					return true;
+				if (sender instanceof Player) {
+					if (!sender.hasPermission("woodcurrency." + subCmd))
+						if (sender.isOp() && !Config.opPerm) {
+							sender.sendMessage(Lang.NO_PERMISSION);
+							return true;
+						}
 				}
+
 				commands.get(subCmd).dispatch(sender, args);
 				return true;
 			}

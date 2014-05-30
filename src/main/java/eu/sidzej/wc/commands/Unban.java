@@ -23,27 +23,25 @@ public class Unban implements CommandInterface {
 
 	@Override
 	public void dispatch(CommandSender sender, String[] args) {
-		if (sender.hasPermission("woodcurrency.unban")) {
-			if (args.length > 1) {
-				PlayerData data = PlayerManager.getPlayerData(args[1]);
-				if (data != null) {
-					data.setBlocked(false);
-					DBUtils.UpdatePlayer(data);
-					sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
+		if (args.length > 1) {
+			PlayerData data = PlayerManager.getPlayerData(args[1]);
+			if (data != null) {
+				data.setBlocked(false);
+				DBUtils.UpdatePlayer(data);
+				sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
+				return;
+			} else {
+				OfflinePlayer p = PlayerUtils.getOfflinePlayer(args[1]);
+				if (p != null) {
+					if (DBUtils.UpdatePlayerBan(p.getUniqueId(), false))
+						sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
 					return;
-				} else {
-					OfflinePlayer p = PlayerUtils.getOfflinePlayer(args[1]);
-					if (p != null) {
-						if (DBUtils.UpdatePlayerBan(p.getUniqueId(), false))
-							sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
-						return;
-					}
-
 				}
-				sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
-			} else
-				Help.getHelp(sender, args[0]);
-		}
+
+			}
+			sender.sendMessage(Lang.A_PLAYER_NOT_FOUND + " " + args[1]);
+		} else
+			Help.getHelp(sender, args[0]);
 	}
 
 	@Override

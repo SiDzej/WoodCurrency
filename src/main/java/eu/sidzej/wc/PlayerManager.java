@@ -131,6 +131,10 @@ public class PlayerManager {
 		public boolean getBlocked() {
 			return blocked;
 		}
+
+		public int getDayLimit() {
+			return (int) (Config.MAX_SELL_PER_DAY / Math.pow(2, tier - 1));
+		}
 	}
 
 	public static void remove(Player p) {
