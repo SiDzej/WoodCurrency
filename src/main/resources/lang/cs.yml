@@ -1,0 +1,59 @@
+##########################
+##
+## WoodCurency Lang File cs
+##
+##########################
+
+
+NO_PERMISSION: '&c Na toto nemas prava!'
+
+NO_SPACE_IN_INVENTORY: 'Nemas volne misto v inventari.'
+NOT_ENOUGH_MONEY: 'Nemas dostatek penez na nakupovani.'
+NO_REQUIRED_ITEM: 'V Tvem inventari neni predmet k prodeji.'
+DAY_LIMIT_REACHED: 'Dosahl si denniho limitu adminshopu. Zkus to za 24 hodin.'
+PLAYER_BANNED: '&c Pouzivani adminshopu Ti bylo zakazano.'
+
+BOUGHT: "Koupil si {amount} kusu {item} za {price}."
+SOLD: "Prodal si {amount} kusu {item} za {price}."
+
+SHOP_CREATED: 'WoodCurrency obchodni bod byl vytvoren.'
+SHOP_DESTROYED: 'WoodCurrency obchodni bod byl zrusen.'
+
+WRONG_NUMBER_OF_TYPES_TO_PRICES: "Radek s typem akce a radek s cenou musi obsahovat stejny pocet dvoujtecek (jednu nebo zadnou)."
+
+CANT_CREATE_SHOP: "Cedulky obchodniho bodu musi byt umistena na blok, ktery neni ovlivnen gravitaci."
+
+
+BAD_FIRST_LINE: 'Prvni radek WoodCurrency cedulky je spatne.'
+BAD_SECOND_LINE: 'Druhy radek WoodCurrency cedulky je spatne. (buy:sell)'
+BAD_THIRD_LINE: 'Treti radek WoodCurrency cedulky je spatne.(price 5:5)'
+BAD_FOURTH_LINE: 'Ctvrty radek WoodCurrency cedulky je spatne. (Wood item - oak wood)'
+
+GENERAL_PROBLEM: 'Neco je hodne spatne. Nahlas to _CJ_ovi. Dekuji.'
+
+#### help part - all white
+
+CMD_BAN: 'Zabrani hraci vyuzivat adminshop.'
+CMD_UNBAN: 'Opet povoli hraci pouzivat adminshop (viz ban)'
+CMD_INFO: 'Zobrazi informace o dennim limitu a celkovych obchodech.'
+CMD_TOP: 'Zobrazi 10 nejvetsich prodejcu dreva.'
+CMD_RESET_TIER: 'Resetuje Tier hrace. To znamena, ze bude moc prodat maximalni povoleny pocet kusu tento den.'
+CMD_RESET_DAY: 'Resetuje denni limit urcenemu hraci.'
+CMD_HELP: 'Vypise napovedu nebo napovedu k jednotlivym prikazum.'
+CMD_DISABLE: 'Okamzite vypne plugin. Pouze bezpecnostni prvek. Pro zapnuti pluginu je treba restart!'
+CMD_EXAMPLE: 'Ukaze ukazku co psat na radky cedulky'
+
+CMD_UNKNOWN: 'Zkusil jsi pouzit neznamy prikaz: '
+CMD_BAD_USAGE: '&4Spatne! &rZkus: '
+
+
+#### actions
+A_BANNED: 'je nyni zbaven moznosti nakupovat a prodavat v adminshopu.'
+A_UNBANNED: 'nyni muze opet pouzivat adminshop.'
+A_INFO: '&eDnesni limit : &eCelkem nakoupeno kusu dreva : &eCelkem prodano kusu dreva ' # : is separator
+A_PLAYER_TIER_RESET: '&cTier byl nastaven na defaultni hodnotu (1). Hrac'
+A_PLAYER_DAY_LIMIT_RESET: '&cDenni limit prodeje byl vynulovan. Hrace'
+A_TOP_LIST: '&6Seznam nejvetsich prodejcu'
+
+A_PLAYER_NOT_FOUND: '&c Hrac nenalezen:'
+NOT_AVAILABLE_FOR_CONSOLE: '&c Tato akce neni dostupna pro konzoli.'
