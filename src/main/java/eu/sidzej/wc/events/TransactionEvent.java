@@ -17,20 +17,18 @@ public class TransactionEvent extends Event {
 	private WCSign s;
 	private e_type type;
 	private Location loc;
-	
+
 	private double finalprice = 0.0;
 	private int finalamount = 0;
-	
 
-	public TransactionEvent(Player p, e_type type, WCSign s, Location l){
+	public TransactionEvent(Player p, e_type type, WCSign s, Location l) {
 		this.p = p;
 		this.s = s;
 		this.type = type;
-		this.price = (type.equals(e_type.BUY))?s.getBuyPrice():s.getSellPrice();
+		this.price = (type.equals(e_type.BUY)) ? s.getBuyPrice() : s.getSellPrice();
 		this.loc = l;
-		
 	}
-	
+
 	@Override
 	public HandlerList getHandlers() {
 		return handlers;
@@ -49,9 +47,9 @@ public class TransactionEvent extends Event {
 	}
 
 	public void setFinalAmount(int amount) {
-		finalamount = amount;	
+		finalamount = amount;
 	}
-	
+
 	public int getFinalAmount() {
 		return finalamount;
 	}
@@ -62,11 +60,11 @@ public class TransactionEvent extends Event {
 
 	public void setFinalPrice(double price) {
 		finalprice = price;
-		
+
 	}
 
 	public double getFinalPrice() {
-		return finalprice;		
+		return finalprice;
 	}
 
 	public double getPrice() {
@@ -84,8 +82,5 @@ public class TransactionEvent extends Event {
 	public Location getLocation() {
 		return loc;
 	}
-	
-	
-	
 
 }

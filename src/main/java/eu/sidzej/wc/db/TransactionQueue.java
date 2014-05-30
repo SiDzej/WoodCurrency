@@ -3,6 +3,7 @@ package eu.sidzej.wc.db;
 import java.io.Closeable;
 import java.util.HashMap;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -43,17 +44,26 @@ public class TransactionQueue implements Closeable {
 					l));
 		}
 
-		if (instance.transactions.containsKey(data.getID())) {
-			Transaction t = instance.transactions.get(data.getID());
+		Integer hash = new HashCodeBuilder(577, 797)
+				.append(data.getID())
+				.append(block)
+				.append(new String(l.getWorld().getName() + l.getBlockX() + l.getBlockY()
+						+ l.getBlockZ())).toHashCode();
+		if (instance.transactions.containsKey(hash)) {
+			Transaction t = instance.transactions.get(hash);
 			if (t.type.equals(type) && block == t.block) {
+				Log.info("add  " + instance.transactions.size());
 				t.count += count;
 				t.price += price;
-			} else
-				instance.transactions.put(data.getID(), new Transaction(data.getID(), block, count,
-						type, price));
-		} else
-			instance.transactions.put(data.getID(), new Transaction(data.getID(), block, count,
-					type, price));
+			} else {
+				instance.transactions.put(hash, new Transaction(data.getID(), block, count, type,
+						price));
+			}
+		} else {
+			instance.transactions.put(hash,
+					new Transaction(data.getID(), block, count, type, price));
+		}
+
 	}
 
 	private synchronized void execution() {
@@ -62,9 +72,8 @@ public class TransactionQueue implements Closeable {
 		}
 		instance.signs.clear();
 
-		for (Transaction t : instance.transactions.values()){
+		for (Transaction t : instance.transactions.values()) {
 			DBUtils.registerTransaction(t.id, t.block, t.count, t.type, t.price);
-			Log.info("transacke");
 		}
 		instance.transactions.clear();
 		PlayerManager.saveAll();
