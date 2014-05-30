@@ -27,8 +27,8 @@ public class DBUtils {
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static boolean registerTransaction(Player player, int block, int count, e_type e_type,
-			double price, Location l) {
+	public static boolean registerTransaction(int id, int block, int count, e_type e_type,
+			double price) {
 		TimedConnection c = null;
 		Statement s = null;
 		String time = sdf.format(new Date());
@@ -36,13 +36,8 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			s.execute("INSERT INTO wc_transactions (player,block,count,date,type,price) VALUES (\""
-					+ PlayerManager.getPlayerData(player).getID() + "\",\"" + block + "\",\""
-					+ count + "\",\"" + time + "\",\"" + ((e_type.equals(SELL)) ? 1 : 0) + "\",\""
-					+ price + "\")");
-			s.execute("UPDATE wc_signs SET "
-					+ ((e_type.equals(SELL)) ? "sells = sells + 1" : "buys = buys + 1")
-					+ " WHERE x=\"" + l.getBlockX() + "\" AND y=\"" + l.getBlockY() + "\" AND z=\""
-					+ l.getBlockZ() + "\"");
+					+ id + "\",\"" + block + "\",\"" + count + "\",\"" + time + "\",\""
+					+ ((e_type.equals(SELL)) ? 1 : 0) + "\",\"" + price + "\")");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to log transaction to DB.");
@@ -230,7 +225,8 @@ public class DBUtils {
 			s = c.createStatement();
 
 			s.execute("DELETE FROM wc_signs WHERE x=\"" + l.getBlockX() + "\" AND y=\""
-					+ l.getBlockY() + "\" AND z=\"" + l.getBlockZ() + "\"");
+					+ l.getBlockY() + "\" AND z=\"" + l.getBlockZ() + "\" AND world=\""
+					+ l.getWorld().getName() + "\"");
 		} catch (SQLException ex) {
 			Log.error("Unable to remove shop sign from DB.");
 			return false;
@@ -326,5 +322,29 @@ public class DBUtils {
 			}
 		}
 		return data;
+	}
+
+	public static void updateShop(Location l, int x, int y) {
+		TimedConnection c = null;
+		Statement s = null;
+		try {
+			c = Database.getConnection();
+			s = c.createStatement();
+			s.execute("UPDATE wc_signs SET sells = sells + " + y + ", buys = buys + " + x
+					+ " WHERE x=\"" + l.getBlockX() + "\" AND y=\"" + l.getBlockY() + "\" AND z=\""
+					+ l.getBlockZ() + "\" AND world=\"" + l.getWorld().getName() + "\"");
+		} catch (SQLException ex) {
+			Log.error(ex.getMessage());
+			Log.error("Unable to update shops in DB.");
+		} finally {
+			try {
+				if (s != null)
+					s.close();
+				c.release();
+			} catch (SQLException e) {
+				Log.error("Unable to close connection.");
+			}
+		}
+
 	}
 }

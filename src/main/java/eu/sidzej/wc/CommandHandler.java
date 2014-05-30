@@ -42,6 +42,7 @@ public class CommandHandler implements CommandExecutor {
 		commands.put("resettier", new ResetTier(plugin));
 		commands.put("top", new Top(plugin));
 		commands.put("disable", new Disable(plugin));
+		commands.put("example", new Example(plugin));
 
 		for (String s : commands.keySet()) {
 			sortedCommands.add(s);

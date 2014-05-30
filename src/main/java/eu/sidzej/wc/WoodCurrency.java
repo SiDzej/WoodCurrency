@@ -11,6 +11,7 @@ import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.db.Database;
+import eu.sidzej.wc.db.TransactionQueue;
 import eu.sidzej.wc.listeners.*;
 import eu.sidzej.wc.listeners.sign.*;
 import eu.sidzej.wc.listeners.transaction.*;
@@ -22,9 +23,10 @@ public class WoodCurrency extends JavaPlugin {
 
 	public static PlayerManager playerManager = PlayerManager.getInstance();
 	public static ProtectionManager protectionManager = ProtectionManager.getInstance();
-	
+	public static TransactionQueue transactions = TransactionQueue.getInstance();
+
 	public static CommandHandler commandHandler;
-	
+
 	public Database db;
 	public EconomyUtils economy;
 
@@ -38,15 +40,14 @@ public class WoodCurrency extends JavaPlugin {
 
 		name = this.getDescription().getName();
 		version = this.getDescription().getVersion();
-		
+
 		config = new Config(this);
 		lang = new Lang(this);
 		Log.debug("Debug enabled!"); // log only when enabled in config :)
 
-
 		// Required - Vault,
 		checkDependencies(getServer().getPluginManager());
-		//DB connections
+		// DB connections
 		try {
 			db = new Database(this);
 			if (!db.valid) {
@@ -58,23 +59,23 @@ public class WoodCurrency extends JavaPlugin {
 			this.disable();
 		}
 
-		
-		if(!DBUtils.loadShops())
+		if (!DBUtils.loadShops())
 			this.disable("Shop loading error");
-		if(!DBUtils.loadOnlinePlayers())
+		if (!DBUtils.loadOnlinePlayers())
 			this.disable("Players loading error");
-		
+
 		registerListeners();
-		
+
 		commandHandler = CommandHandler.getInstance(this);
 		getCommand("wc").setExecutor(commandHandler);
-		
+
 		economy = new EconomyUtils(this);
 	}
 
 	public void onDisable() {
 		PlayerManager.saveAll();
-		if(db != null)
+		transactions.close();
+		if (db != null)
 			db.close();
 		this.saveConfig();
 		unregisterAllListeners();
@@ -89,7 +90,7 @@ public class WoodCurrency extends JavaPlugin {
 		Log.error(msg);
 		disable();
 	}
-	
+
 	private void checkDependencies(PluginManager pm) {
 		if (!pm.isPluginEnabled("Vault")) {
 			Log.error("Vault is required for this plugin.");
@@ -112,8 +113,8 @@ public class WoodCurrency extends JavaPlugin {
 		registerListener(new SignNameLineListener());
 		registerListener(new SignPriceLineListener());
 		registerListener(new SignTypeLineListener());
-		registerListener(new SignCreatePermListener());		
-		
+		registerListener(new SignCreatePermListener());
+
 		// shop transaction related
 		registerListener(new TransactionDelayer());
 		registerListener(new TransactionPrepareAction());
@@ -122,20 +123,20 @@ public class WoodCurrency extends JavaPlugin {
 		registerListener(new TransactionPrepareMonitor());
 		registerListener(new TransactionPreparePerms());
 		registerListener(new TransactionPrepareLimits());
-		registerListener(new TransactionPreparePlayerBlock());	
-		
+		registerListener(new TransactionPreparePlayerBlock());
+
 		registerListener(new TransactionLimits());
 		registerListener(new TransactionEconomy());
 		registerListener(new TransactionInventory());
 		registerListener(new TransactionMessage());
 		registerListener(new TransactionMonitor());
-		
+
 	}
 
 	public void registerListener(Listener l) {
 		getServer().getPluginManager().registerEvents(l, this);
 	}
-	
+
 	public static void unregisterAllListeners() {
 		HandlerList.unregisterAll(plugin);
 	}

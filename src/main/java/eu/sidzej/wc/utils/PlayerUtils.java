@@ -39,8 +39,10 @@ public class PlayerUtils {
 				else
 					break;
 			}
-			if(data.getTier() == 1)
+			if (data.getTier() == 1) {
+				c.add(Calendar.DATE, 1);
 				data.setDate(c);
+			}
 		}
 		data.resetDay();
 
