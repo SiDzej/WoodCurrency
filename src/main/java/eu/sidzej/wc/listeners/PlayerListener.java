@@ -29,7 +29,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		PlayerManager.playerJoin(p.getUniqueId());
-		PlayerUtils.checkDailyLimits(PlayerManager.getPlayerData(p));
+		PlayerUtils.checkDailyLimits(PlayerManager.getPlayerData(p),false);
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)

@@ -17,7 +17,7 @@ public class TransactionPrepareLimits implements Listener {
 	public static void UpdatePlayerData(TransactionPrepareEvent e) {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
 
-		if (PlayerUtils.checkDailyLimits(data))
+		if (PlayerUtils.checkDailyLimits(data,true))
 			if (e.getState().equals(e_states.DAY_LIMIT))
 				e.setState(e_states.OK);
 	}

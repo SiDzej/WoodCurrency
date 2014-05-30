@@ -9,6 +9,7 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.google.common.base.Joiner;
@@ -18,7 +19,7 @@ import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.utils.Log;
 
-public class CommandHandler implements CommandExecutor {
+public class CommandHandler implements CommandExecutor,TabCompleter {
 
 	private static CommandHandler instance;
 	private HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
@@ -88,5 +89,11 @@ public class CommandHandler implements CommandExecutor {
 
 	public static List<String> getSortedCmdList() {
 		return instance.sortedCommands;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender p, Command cmd, String alias, String[] partial) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
