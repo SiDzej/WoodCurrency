@@ -19,7 +19,7 @@ import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.utils.Log;
 
-public class CommandHandler implements CommandExecutor,TabCompleter {
+public class CommandHandler implements CommandExecutor, TabCompleter {
 
 	private static CommandHandler instance;
 	private HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
@@ -93,7 +93,15 @@ public class CommandHandler implements CommandExecutor,TabCompleter {
 
 	@Override
 	public List<String> onTabComplete(CommandSender p, Command cmd, String alias, String[] partial) {
-		// TODO Auto-generated method stub
-		return null;
+		String par = partial[partial.length - 1];
+		List<String> out = new ArrayList<String>();
+		for (String s : commands.keySet())
+			if (s.startsWith(par))
+				if ((p instanceof Player && p.hasPermission("woodcurrency." + s))
+						|| (p.isOp() && Config.opPerm) || !(p instanceof Player)) {
+					out.add(s);
+				}
+
+		return out;
 	}
 }
