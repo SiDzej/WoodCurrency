@@ -5,7 +5,7 @@
 ##########################
 
 
-NO_PERMISSION: '&4You have no permission to do that!'
+NO_PERMISSION: '&c You have no permission to do that!'
 
 NO_SPACE_IN_INVENTORY: 'You have no empty space in inventory.'
 NOT_ENOUGH_MONEY: 'You have not enough money for purchase.'
@@ -48,5 +48,6 @@ CMD_BAD_USAGE: '&4Bad usage! &rTry: '
 #### actions
 A_BANNED: 'is now blocked for using adminshop.'
 A_UNBANNED: 'now can use adminshop again.'
+A_INFO: 'To day limit - Total'
 
 A_PLAYER_NOT_FOUND: 'Player not found:'

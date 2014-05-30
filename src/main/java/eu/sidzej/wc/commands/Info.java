@@ -25,10 +25,13 @@ public class Info implements CommandInterface {
     public void dispatch(CommandSender sender, String[] args) {
 		if (sender.hasPermission("woodcurrency.info")) {
 			if (args.length > 1) {
+				if(!sender.getName().equals(args[1]) && !sender.hasPermission("woodcurrency.info.others")){
+					sender.sendMessage(Lang.NO_PERMISSION);
+					return;
+				}
 				PlayerData data = PlayerManager.getPlayerData(args[1]);
 				if (data != null) {
-					data.setBlocked(false);
-					DBUtils.UpdatePlayer(data);
+					sender.sendMessage(String.format("%s\t - %s", (Object[]) Lang.A_INFO.split("-")));
 					sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
 					return;
 				} else {

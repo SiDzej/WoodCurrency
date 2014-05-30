@@ -22,6 +22,7 @@ public class Help implements CommandInterface {
 	public void dispatch(CommandSender sender, String[] args) {
 		if (args.length >= 2) {
 			getHelp(sender, args[1]);
+			return;
 		}
 		sender.sendMessage(ChatColor.AQUA + "-----[  " + ChatColor.RESET + plugin.getName()
 				+ ChatColor.AQUA + " - " + ChatColor.RESET + plugin.version + ChatColor.AQUA
@@ -38,7 +39,7 @@ public class Help implements CommandInterface {
 
 	public static void getHelp(CommandSender sender, String arg) {
 		CommandInterface cmd = CommandHandler.get(arg);
-		if (cmd != null) {
+		if (cmd != null && (sender.hasPermission("woodcurrency." + arg) || !(sender instanceof Player))) {
 			sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
 			return;
 		} else {

@@ -14,13 +14,25 @@ permissions:
     default: false
     children:
       woodcurrency.moderator: true
+      woodcurrency.player: true
+      woodcurrency.disable: true
+      
+  woodcurrency.disable:
+    description: Allow to switch off this plugin immediately.
+    default: false
   
   woodcurrency.moderator:
     description: Usefull for server moderator - almost all commands access
     default: false
     children:
+      woodcurrency.player: true
       woodcurrency.createshop: true
       woodcurrency.destroyshop: true
+      woodcurrency.ban: true
+      woodcurrency.unban: true
+      woodcurrency.resettier: true
+      woodcurrency.resetday: true
+      woodcurrency.info.others: true
       
   woodcurrency.player:
     description: Standart commnads and action for players
@@ -28,6 +40,10 @@ permissions:
     children:
       woodcurrency.sell: true
       woodcurrency.buy: true
+      woodcurrency.info: true
+      woodcurrency.help: true
+      woodcurrency.top: true
+      woodcurrency.example: true
       
     
   woodcurrency.createshop:
@@ -36,11 +52,31 @@ permissions:
   woodcurrency.destroyshop:
     description: Allow player to destroy shop sign
     default: false
+  woodcurrency.ban: 
+    default: false
+  woodcurrency.unban: 
+    default: false
+  woodcurrency.resettier: 
+    default: false
+  woodcurrency.resetday: 
+    default: false
+    
+    
   woodcurrency.buy:
     description: Allow buying things at shop
     default: true
   woodcurrency.sell:
     description: Allow selling things at shop
     default: true
-  
+    
+  woodcurrency.info: 
+    default: true
+  woodcurrency.info.others: 
+    default: false
+  woodcurrency.help: 
+    default: true
+  woodcurrency.top: 
+    default: true
+  woodcurrency.example:
+    default: true
   
