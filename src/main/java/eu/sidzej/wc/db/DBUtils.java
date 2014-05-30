@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -294,5 +295,36 @@ public class DBUtils {
 			}
 		}
 		return true;
+	}
+
+	public static String[] getTopTen() {
+		TimedConnection c = null;
+		Statement s = null;
+		List<String> data = new ArrayList<String>();
+		try {
+			c = Database.getConnection();
+			s = c.createStatement();
+			ResultSet set = s
+					.executeQuery("SELECT uuid,totalsells FROM `wc_players` ORDER BY totalsells DESC LIMIT 10");
+			int i = 1;
+			while (set.next()) {
+				data.add("" + ChatColor.GRAY + (i++) + ": " + ChatColor.GREEN
+						+ Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()
+						+ ChatColor.GRAY + " - " + ChatColor.GREEN + set.getString("totalsell"));
+			}
+		} catch (SQLException e) {
+			Log.error(e.getMessage());
+			Log.error("Unable to get player data.");
+			return null;
+		} finally {
+			try {
+				if (s != null)
+					s.close();
+				c.release();
+			} catch (SQLException e) {
+				Log.error("Unable to close connection.");
+			}
+		}
+		return (String[])data.toArray();
 	}
 }

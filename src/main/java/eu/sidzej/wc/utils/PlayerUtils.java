@@ -5,9 +5,9 @@ import org.bukkit.OfflinePlayer;
 
 public class PlayerUtils {
 
-	
 	@SuppressWarnings("deprecation")
-	public static OfflinePlayer getOfflinePlayer(String name){
+	public static OfflinePlayer getOfflinePlayer(String name) {
 		return Bukkit.getOfflinePlayer(name);// TODO do'h wtf
 	}
+
 }

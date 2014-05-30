@@ -4,6 +4,7 @@ import org.bukkit.command.CommandSender;
 
 import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.config.Lang;
+import eu.sidzej.wc.db.DBUtils;
 
 public class Top implements CommandInterface {
 	@SuppressWarnings("unused")
@@ -18,7 +19,9 @@ public class Top implements CommandInterface {
 	
 	@Override
     public void dispatch(CommandSender sender, String[] args) {
-        
+        sender.sendMessage(Lang.A_TOP_LIST);
+        for(String s: DBUtils.getTopTen())
+        	sender.sendMessage(s);
     }
 	
 	@Override
