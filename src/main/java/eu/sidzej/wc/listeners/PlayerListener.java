@@ -27,7 +27,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
-		PlayerManager.getPlayerData(p.getUniqueId());
+		PlayerManager.playerJoin(p.getUniqueId());
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
