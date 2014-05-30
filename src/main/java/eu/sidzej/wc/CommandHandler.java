@@ -2,7 +2,6 @@ package eu.sidzej.wc;
 
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 	private ArrayList<String> sortedCommands = new ArrayList<String>();
 	@SuppressWarnings("unused")
 	private final WoodCurrency plugin;
-
+	
 	/**
 	 * 
 	 * @param plugin

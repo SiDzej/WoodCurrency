@@ -75,6 +75,8 @@ public class Info implements CommandInterface {
 				data.getTotalBuy()));
 		sender.sendMessage(String.format("%s - " + ChatColor.RESET + "%s", s,
 				data.getTotalSell()));
+		if(data.isBlocked())
+			sender.sendMessage( ChatColor.RED + playerName + " " + Lang.A_BANNED);
 	}
 
 	@Override

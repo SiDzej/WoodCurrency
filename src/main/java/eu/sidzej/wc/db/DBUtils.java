@@ -24,6 +24,8 @@ import eu.sidzej.wc.utils.Log;
 import eu.sidzej.wc.utils.TimeUtils;
 
 public class DBUtils {
+	
+	private static List<String> bannedList = null;
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -268,6 +270,7 @@ public class DBUtils {
 	}
 
 	public static boolean UpdatePlayerBan(UUID uuid, boolean b) {
+		bannedList = null;
 		TimedConnection c = null;
 		Statement s = null;
 		if (getPlayerData(uuid) == null)
@@ -349,20 +352,23 @@ public class DBUtils {
 	}
 	
 	public static List<String> getBannedPlayers(){
+		if(bannedList != null)
+			return bannedList;
+		
 		TimedConnection c = null;
 		Statement s = null;
-		List<String> data = new ArrayList<String>();
+		bannedList = new ArrayList<String>();
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
 			ResultSet set = s
 					.executeQuery("SELECT uuid FROM `wc_players` WHERE blocked = 1");
 			while (set.next()) {
-				data.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()));
+				bannedList.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()));
 			}
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
-			Log.error("Unable to get player data.");
+			Log.error("Unable to get banned players.");
 			return null;
 		} finally {
 			try {
@@ -373,7 +379,7 @@ public class DBUtils {
 				Log.error("Unable to close connection.");
 			}
 		}
-		return data;
+		return bannedList;
 	}
 	
 }
