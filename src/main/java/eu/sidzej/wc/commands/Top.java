@@ -1,5 +1,6 @@
 package eu.sidzej.wc.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import eu.sidzej.wc.WoodCurrency;
@@ -19,9 +20,15 @@ public class Top implements CommandInterface {
 	
 	@Override
     public void dispatch(CommandSender sender, String[] args) {
-        sender.sendMessage(Lang.A_TOP_LIST);
+		final String topline = "=====[ "+ Lang.A_TOP_LIST + ChatColor.GRAY + " ]=====";
+		final String line = ChatColor.GRAY + "==========================================";
+        sender.sendMessage(ChatColor.GRAY + topline);
+        sender.sendMessage(ChatColor.GRAY + line);
         for(String s: DBUtils.getTopTen())
         	sender.sendMessage(s);
+        sender.sendMessage(ChatColor.GRAY + line);
+        
+        
     }
 	
 	@Override

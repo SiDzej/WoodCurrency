@@ -15,7 +15,7 @@ public class ResetDayLimit implements CommandInterface {
 	private final WoodCurrency plugin;
     private final String usage 	= "<nick>";
     private final String desc 	= Lang.CMD_RESET_DAY;
-    private final String name	= "help";
+    private final String name	= "resetday";
 	
 	public ResetDayLimit(WoodCurrency plugin){
 		this.plugin = plugin;

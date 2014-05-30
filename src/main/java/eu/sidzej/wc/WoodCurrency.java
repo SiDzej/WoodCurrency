@@ -123,6 +123,7 @@ public class WoodCurrency extends JavaPlugin {
 		registerListener(new TransactionPrepareMonitor());
 		registerListener(new TransactionPreparePerms());
 		registerListener(new TransactionPrepareLimits());
+		registerListener(new TransactionPreparePlayerBlock());	
 		
 		registerListener(new TransactionLimits());
 		registerListener(new TransactionEconomy());

@@ -43,7 +43,7 @@ public class Help implements CommandInterface {
 			sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
 			return;
 		} else {
-			sender.sendMessage(Lang.CMD_UNKNOWN);
+			sender.sendMessage(Lang.CMD_UNKNOWN +" "+ arg);
 			return;
 		}
 	}

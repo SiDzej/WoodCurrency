@@ -255,7 +255,7 @@ public class DBUtils {
 			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
 					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', totalbuy = '"
 					+ data.getTotalBuy() + "', totalsell = '" + data.getTotalSell()
-					+ "', blocked = '" + ((data.getBlocked()) ? 1 : 0) + "' WHERE `id` = '"
+					+ "', blocked = '" + ((data.isBlocked()) ? 1 : 0) + "' WHERE `id` = '"
 					+ data.getID() + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
@@ -297,7 +297,7 @@ public class DBUtils {
 		return true;
 	}
 
-	public static String[] getTopTen() {
+	public static List<String> getTopTen() {
 		TimedConnection c = null;
 		Statement s = null;
 		List<String> data = new ArrayList<String>();
@@ -305,7 +305,7 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			ResultSet set = s
-					.executeQuery("SELECT uuid,totalsells FROM `wc_players` ORDER BY totalsells DESC LIMIT 10");
+					.executeQuery("SELECT uuid,totalsell FROM `wc_players` ORDER BY totalsell DESC LIMIT 10");
 			int i = 1;
 			while (set.next()) {
 				data.add("" + ChatColor.GRAY + (i++) + ": " + ChatColor.GREEN
@@ -325,6 +325,6 @@ public class DBUtils {
 				Log.error("Unable to close connection.");
 			}
 		}
-		return (String[])data.toArray();
+		return data;
 	}
 }

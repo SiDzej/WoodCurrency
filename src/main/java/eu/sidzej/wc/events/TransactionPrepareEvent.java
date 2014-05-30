@@ -42,6 +42,7 @@ public class TransactionPrepareEvent extends Event {
 		NOT_ENOUGH_MONEY,
 		TOO_FAST_CLICK, 
 		DAY_LIMIT,
+		BLOCKED,
 	}
 	
 	public void setState(e_states s){

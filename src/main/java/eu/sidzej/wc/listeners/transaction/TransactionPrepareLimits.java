@@ -1,7 +1,5 @@
 package eu.sidzej.wc.listeners.transaction;
 
-import java.util.Calendar;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -9,9 +7,9 @@ import org.bukkit.event.Listener;
 import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.WCSign.e_type;
-import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.events.TransactionPrepareEvent;
 import eu.sidzej.wc.events.TransactionPrepareEvent.e_states;
+import eu.sidzej.wc.utils.PlayerUtils;
 
 public class TransactionPrepareLimits implements Listener {
 
@@ -19,21 +17,9 @@ public class TransactionPrepareLimits implements Listener {
 	public static void UpdatePlayerData(TransactionPrepareEvent e) {
 		PlayerData data = PlayerManager.getPlayerData(e.getPlayer());
 
-		Calendar c = (Calendar) Calendar.getInstance().clone();
-		if (c.before(data.getDate()))
-			return;
-		data.getDate().add(Calendar.DATE, 1);
-		if (c.before(data.getDate())) {
-			data.incrementTier();
-		} else {
-			data.decrementTier();
-		}
-		data.resetDay();
-
-		if (e.getState().equals(e_states.DAY_LIMIT))
-			e.setState(e_states.OK);
-
-		DBUtils.UpdatePlayer(data);
+		if (PlayerUtils.checkDailyLimits(data))
+			if (e.getState().equals(e_states.DAY_LIMIT))
+				e.setState(e_states.OK);
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)

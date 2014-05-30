@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 
 import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.db.DBUtils;
-import eu.sidzej.wc.utils.Log;
 import eu.sidzej.wc.utils.TimeUtils;
 
 public class PlayerManager {
@@ -88,10 +87,8 @@ public class PlayerManager {
 		}
 
 		public void addCountSell(int amount) {
-			Log.info("kua vole pico 2 " + totalsell);
 			day += amount;
 			totalsell += amount;
-			Log.info("kua vole pico 3" + totalsell);
 		}
 
 		public void addCountBuy(int amount) {
@@ -148,7 +145,7 @@ public class PlayerManager {
 			blocked = b;
 		}
 
-		public boolean getBlocked() {
+		public boolean isBlocked() {
 			return blocked;
 		}
 

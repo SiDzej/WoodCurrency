@@ -21,6 +21,9 @@ public class TransactionPrepareMonitor implements Listener {
 			case OTHER_ACTION:
 			case TOO_FAST_CLICK:
 				break;
+			case BLOCKED:
+				message = Lang.PLAYER_BANNED;
+				break;
 			case DAY_LIMIT:
 				message = Lang.DAY_LIMIT_REACHED;
 				break;

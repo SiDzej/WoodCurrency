@@ -11,6 +11,7 @@ NO_SPACE_IN_INVENTORY: 'You have no empty space in inventory.'
 NOT_ENOUGH_MONEY: 'You have not enough money for purchase.'
 NO_REQUIRED_ITEM: 'Your inventory does not contain required item.'
 DAY_LIMIT_REACHED: 'You have reached day limit for admin shop.'
+PLAYER_BANNED: '&c Use of admin shop is forbidden for you.'
 
 BOUGHT: "You just bought {amount} pieces of {item} for {price}."
 SOLD: "You just sold {amount} pieces of {item} for {price}."
@@ -49,9 +50,9 @@ CMD_BAD_USAGE: '&4Bad usage! &rTry: '
 #### actions
 A_BANNED: 'is now blocked for using adminshop.'
 A_UNBANNED: 'now can use adminshop again.'
-A_INFO: '&cToday sells limit : &cTotal bought : &cTotal sold ' # : is separator
+A_INFO: '&eToday sells limit : &eTotal bought : &eTotal sold ' # : is separator
 A_PLAYER_TIER_RESET: '&cTier has been reset to default for player'
-A_PLAYER_DAY_LIMIT_RESET: '&cDay sells limit has been reset for player'
+A_PLAYER_DAY_LIMIT_RESET: '&cDaily sales limit has been reset for player'
 A_TOP_LIST: '&6List of top sellers'
 
 A_PLAYER_NOT_FOUND: '&c Player not found:'
