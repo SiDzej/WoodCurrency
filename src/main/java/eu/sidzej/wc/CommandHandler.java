@@ -2,10 +2,12 @@ package eu.sidzej.wc;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +19,7 @@ import com.google.common.base.Joiner;
 import eu.sidzej.wc.commands.*;
 import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
+import eu.sidzej.wc.db.DBUtils;
 import eu.sidzej.wc.utils.Log;
 
 public class CommandHandler implements CommandExecutor, TabCompleter {
@@ -32,7 +35,6 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 	 * @param plugin
 	 */
 	public CommandHandler(WoodCurrency plugin) {
-
 		this.plugin = plugin;
 
 		commands.put("help", new Help(plugin));
@@ -93,15 +95,28 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
 	@Override
 	public List<String> onTabComplete(CommandSender p, Command cmd, String alias, String[] partial) {
-		String par = partial[partial.length - 1];
 		List<String> out = new ArrayList<String>();
-		for (String s : commands.keySet())
-			if (s.startsWith(par))
-				if ((p instanceof Player && p.hasPermission("woodcurrency." + s))
-						|| (p.isOp() && Config.opPerm) || !(p instanceof Player)) {
-					out.add(s);
-				}
-
+		String par = partial[partial.length - 1];
+		if (partial.length == 1) {
+			for (String s : commands.keySet())
+				if (s.startsWith(par))
+					if ((p instanceof Player && p.hasPermission("woodcurrency." + s))
+							|| (p.isOp() && Config.opPerm) || !(p instanceof Player)) {
+						out.add(s);
+					}
+		} else {
+			List<String> names = new ArrayList<String>();
+			if(partial.length>1 && partial[0].equals("unban")){
+				for (String player : DBUtils.getBannedPlayers())
+					names.add(player);
+			}
+			else			
+			for (Player player : Bukkit.getOnlinePlayers())
+				names.add(player.getName());
+			for(String name: names)
+				if(name.startsWith(par))
+					out.add(name);
+		}
 		return out;
 	}
 }

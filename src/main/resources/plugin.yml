@@ -34,7 +34,6 @@ permissions:
       woodcurrency.resetday: true
       woodcurrency.info.others: true
       woodcurrency.example: true
-      woodcurrency.info.advanced: true
       
   woodcurrency.player:
     description: Standart commnads and action for players
@@ -75,8 +74,6 @@ permissions:
     
   woodcurrency.info: 
     default: true
-  woodcurrency.info.advanced:
-    default: false
   woodcurrency.info.others: 
     default: false
   woodcurrency.help: 

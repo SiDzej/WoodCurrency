@@ -20,8 +20,8 @@ public class Help implements CommandInterface {
 
 	@Override
 	public void dispatch(CommandSender sender, String[] args) {
-		if (args.length >= 2 || (args.length!= 0 && !args[0].equals("help"))) {
-			if(args.length > 1 && args[0].equals("help"))
+		if (args.length >= 2 || (args.length != 0 && !args[0].equals("help"))) {
+			if (args.length > 1 && args[0].equals("help"))
 				getHelp(sender, args[1]);
 			else
 				getHelp(sender, args[0]);
@@ -35,7 +35,8 @@ public class Help implements CommandInterface {
 				continue;
 			CommandInterface cmd = CommandHandler.get(s);
 			if (cmd != null) {
-				if(s.equals("info") && !sender.hasPermission("woodcurrency.info.advanced") && sender instanceof Player)
+				if (s.equals("info") && !sender.hasPermission("woodcurrency.info.others")
+						&& sender instanceof Player)
 					sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), ""));
 				else
 					sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
@@ -45,11 +46,16 @@ public class Help implements CommandInterface {
 
 	public static void getHelp(CommandSender sender, String arg) {
 		CommandInterface cmd = CommandHandler.get(arg);
-		if (cmd != null && (sender.hasPermission("woodcurrency." + arg) || !(sender instanceof Player))) {
-			sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
+		if (cmd != null
+				&& (sender.hasPermission("woodcurrency." + arg) || !(sender instanceof Player))) {
+			if (arg.equals("info") && !sender.hasPermission("woodcurrency.info.others")
+					&& sender instanceof Player)
+				sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), ""));
+			else
+				sender.sendMessage(helpStringBuilder(cmd.name(), cmd.desc(), cmd.usage()));
 			return;
 		} else {
-			sender.sendMessage(Lang.CMD_UNKNOWN +" "+ arg);
+			sender.sendMessage(Lang.CMD_UNKNOWN + " " + arg);
 			return;
 		}
 	}

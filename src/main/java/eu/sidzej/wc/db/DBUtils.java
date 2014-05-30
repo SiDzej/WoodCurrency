@@ -347,4 +347,33 @@ public class DBUtils {
 		}
 
 	}
+	
+	public static List<String> getBannedPlayers(){
+		TimedConnection c = null;
+		Statement s = null;
+		List<String> data = new ArrayList<String>();
+		try {
+			c = Database.getConnection();
+			s = c.createStatement();
+			ResultSet set = s
+					.executeQuery("SELECT uuid FROM `wc_players` WHERE blocked = 1");
+			while (set.next()) {
+				data.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()));
+			}
+		} catch (SQLException e) {
+			Log.error(e.getMessage());
+			Log.error("Unable to get player data.");
+			return null;
+		} finally {
+			try {
+				if (s != null)
+					s.close();
+				c.release();
+			} catch (SQLException e) {
+				Log.error("Unable to close connection.");
+			}
+		}
+		return data;
+	}
+	
 }
