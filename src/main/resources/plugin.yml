@@ -1,7 +1,7 @@
-name: WoodCurrency
+name: ${project.name}
 main: eu.sidzej.wc.WoodCurrency
 author: _CJ_ aka SiDzej
-version: 1.0 - beta
+version: ${project.version}
 depend: [Vault]
 commands:
   wc:
