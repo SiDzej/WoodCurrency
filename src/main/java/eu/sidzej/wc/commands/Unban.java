@@ -1,6 +1,5 @@
 package eu.sidzej.wc.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
@@ -9,6 +8,7 @@ import eu.sidzej.wc.WoodCurrency;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.config.Lang;
 import eu.sidzej.wc.db.DBUtils;
+import eu.sidzej.wc.utils.PlayerUtils;
 
 public class Unban implements CommandInterface {
 	@SuppressWarnings("unused")
@@ -32,8 +32,7 @@ public class Unban implements CommandInterface {
 					sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
 					return;
 				} else {
-					@SuppressWarnings("deprecation")
-					OfflinePlayer p = Bukkit.getOfflinePlayer(args[1]);// TODO do'h wtf
+					OfflinePlayer p = PlayerUtils.getOfflinePlayer(args[1]);
 					if (p != null) {
 						if (DBUtils.UpdatePlayerBan(p.getUniqueId(), false))
 							sender.sendMessage(args[1] + " " + Lang.A_UNBANNED);
