@@ -135,6 +135,10 @@ public class PlayerManager {
 			if (tier > 1)
 				tier--;
 		}
+		
+		public void resetTier() {
+			tier = 1;
+		}
 
 		public Timestamp getTimestamp() {
 			return TimeUtils.getTimestamp(timestamp);

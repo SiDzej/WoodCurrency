@@ -11,9 +11,10 @@ import eu.sidzej.wc.utils.Log;
 public class Lang {
 
 	public static String CMD_BAN, CMD_BAD_USAGE, CMD_UNBAN, CMD_INFO, CMD_TOP, CMD_RESET_TIER,
-			CMD_RESET_DAY, CMD_HELP, CMD_UNKNOWN,CMD_DISABLE;
-	
-	public static String A_BANNED,A_UNBANNED,A_PLAYER_NOT_FOUND,A_INFO,NOT_AVAILABLE_FOR_CONSOLE;
+			CMD_RESET_DAY, CMD_HELP, CMD_UNKNOWN, CMD_DISABLE,CMD_EXAMPLE;
+
+	public static String A_BANNED, A_UNBANNED, A_PLAYER_NOT_FOUND, A_INFO,
+			NOT_AVAILABLE_FOR_CONSOLE, A_PLAYER_TIER_RESET,A_PLAYER_DAY_LIMIT_RESET,A_TOP_LIST;
 
 	public static String NO_PERMISSION, GENERAL_PROBLEM, NO_SPACE_IN_INVENTORY, NOT_ENOUGH_MONEY,
 			NO_REQUIRED_ITEM, DAY_LIMIT_REACHED, BOUGHT, SOLD, SHOP_CREATED,
@@ -59,8 +60,8 @@ public class Lang {
 		SHOP_DESTROYED = getString("SHOP_DESTROYED");
 
 		GENERAL_PROBLEM = getString("GENERAL_PROBLEM");
-		
-		//help		
+
+		// help
 		CMD_BAN = getString("CMD_BAN");
 		CMD_UNBAN = getString("CMD_UNBAN");
 		CMD_INFO = getString("CMD_INFO");
@@ -69,17 +70,20 @@ public class Lang {
 		CMD_RESET_DAY = getString("CMD_RESET_DAY");
 		CMD_HELP = getString("CMD_HELP");
 		CMD_DISABLE = getString("CMD_DISABLE");
-		
+		CMD_EXAMPLE = getString("CMD_EXAMPLE");
+
 		CMD_BAD_USAGE = getString("CMD_BAD_USAGE");
 		CMD_UNKNOWN = getString("CMD_UNKNOWN");
-		
-		// actions 
+
+		// actions
 		A_BANNED = getString("A_BANNED");
 		A_UNBANNED = getString("A_UNBANNED");
 		A_PLAYER_NOT_FOUND = getString("A_PLAYER_NOT_FOUND");
 		A_INFO = getString("A_INFO");
 		NOT_AVAILABLE_FOR_CONSOLE = getString("NOT_AVAILABLE_FOR_CONSOLE");
-		A_UNBANNED = getString("A_UNBANNED");
+		A_PLAYER_TIER_RESET = getString("A_PLAYER_TIER_RESET");
+		A_PLAYER_DAY_LIMIT_RESET = getString("A_PLAYER_DAY_LIMIT_RESET");
+		A_TOP_LIST = getString("A_TOP_LIST");
 	}
 
 	private String getString(String s) {

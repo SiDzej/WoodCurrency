@@ -30,7 +30,7 @@ BAD_FOURTH_LINE: 'Fourth line of WoodCurrency sign error. (Wood item - oak wood)
 
 GENERAL_PROBLEM: 'Something goes wrong. Report it to _CJ_. Thanks.'
 
-#### help part
+#### help part - all white
 
 CMD_BAN: 'Prevent player from using admin shop.'
 CMD_UNBAN: 'Allow player to use adminshop again.'
@@ -40,6 +40,7 @@ CMD_RESET_TIER: 'Reset player tier to tier 1. Tier 1 means player can sell maxim
 CMD_RESET_DAY: 'Reset day limit of given player.'
 CMD_HELP: 'Writes down this help or help about given commands.'
 CMD_DISABLE: 'Disables immediately plugin. For safety reasons only.'
+CMD_EXAMPLE: 'Shows sign example of this plugin'
 
 CMD_UNKNOWN: 'You have tried unknown subcommand: '
 CMD_BAD_USAGE: '&4Bad usage! &rTry: '
@@ -48,7 +49,10 @@ CMD_BAD_USAGE: '&4Bad usage! &rTry: '
 #### actions
 A_BANNED: 'is now blocked for using adminshop.'
 A_UNBANNED: 'now can use adminshop again.'
-A_INFO: '&cToday : &cTotal sold : &cTotal bought ' # : is separator
+A_INFO: '&cToday sells limit : &cTotal bought : &cTotal sold ' # : is separator
+A_PLAYER_TIER_RESET: '&cTier has been reset to default for player'
+A_PLAYER_DAY_LIMIT_RESET: '&cDay sells limit has been reset for player'
+A_TOP_LIST: '&6List of top sellers'
 
 A_PLAYER_NOT_FOUND: '&c Player not found:'
 NOT_AVAILABLE_FOR_CONSOLE: '&c This action is not available for console.'

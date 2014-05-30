@@ -3,22 +3,26 @@ package eu.sidzej.wc.commands;
 import org.bukkit.command.CommandSender;
 
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.config.Config;
 import eu.sidzej.wc.config.Lang;
 
-public class Top implements CommandInterface {
+public class Example implements CommandInterface{
 	@SuppressWarnings("unused")
 	private final WoodCurrency plugin;
     private final String usage 	= "";
-    private final String desc 	= Lang.CMD_TOP;
-    private final String name	= "top";
+    private final String desc 	= Lang.CMD_EXAMPLE;
+    private final String name	= "example";
 	
-	public Top(WoodCurrency plugin){
+	public Example(WoodCurrency plugin){
 		this.plugin = plugin;
 	}
 	
 	@Override
     public void dispatch(CommandSender sender, String[] args) {
-        
+        sender.sendMessage(Config.SIGN_FIRST_LINE_INPUT);
+        sender.sendMessage("b:s");
+        sender.sendMessage("buy price : sell price");
+        sender.sendMessage("(Oak|Acacia|Jungle|Birch|DarkOak|Spruce) wood");
     }
 	
 	@Override
@@ -35,5 +39,4 @@ public class Top implements CommandInterface {
     public String usage() {
         return usage;
     }
-
 }
