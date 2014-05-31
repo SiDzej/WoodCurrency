@@ -15,46 +15,43 @@ public class WCSign {
 	private ItemStack item;
 	private int itemId;
 	private String itemName = "";
-	
-	public WCSign(ItemStack item, double sell, double buy, e_type type){
+
+	public WCSign(ItemStack item, double sell, double buy, e_type type) {
 		this.item = item;
 		sellprice = sell;
 		buyprice = buy;
-		this.type = type;		
+		this.type = type;
 	}
-	
+
 	public WCSign(Location l) {
 		Block b = Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(l);
-		Sign s = (Sign)b.getState();
+		Sign s = (Sign) b.getState();
 		item = SignValidator.getItemStack(s);
 		itemId = SignValidator.getItemStackId(s);
 		itemName = SignValidator.getItemStackName(s);
 		type = SignValidator.getShopType(s);
 		sellprice = SignValidator.getPrice(s, e_type.SELL);
-		buyprice = SignValidator.getPrice(s, e_type.BUY);		
+		buyprice = SignValidator.getPrice(s, e_type.BUY);
 	}
 
-	public double getSellPrice(){
+	public double getSellPrice() {
 		return sellprice;
 	}
-	
-	public double getBuyPrice(){
+
+	public double getBuyPrice() {
 		return buyprice;
 	}
-	
-	public ItemStack getItem(){
+
+	public ItemStack getItem() {
 		return item.clone();
 	}
-	
-	public e_type getType(){
+
+	public e_type getType() {
 		return type;
 	}
-	
-	public static enum e_type{
-		NONE,
-		BUY,
-		SELL,
-		BUYSELL,
+
+	public static enum e_type {
+		NONE, BUY, SELL, BUYSELL,
 	}
 
 	public int getItemId() {

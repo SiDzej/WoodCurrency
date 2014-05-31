@@ -1,6 +1,5 @@
 package eu.sidzej.wc.listeners.sign;
 
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,7 +15,7 @@ public class ShopCreatedRegister implements Listener {
 		for (String s : e.getLines())
 			loginfo += s + " ";
 
-		Log.info(ChatColor.translateAlternateColorCodes('§', "WoodCurrency shop created: "
-				+ loginfo + " on " + e.getPositionString() + " by " + e.getPlayer().getName() + "."));
+		Log.info("WoodCurrency shop created: "
+				+ loginfo + " on " + e.getPositionString() + " by " + e.getPlayer().getName() + ".");
 	}
 }

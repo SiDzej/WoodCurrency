@@ -5,10 +5,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
 
 import eu.sidzej.wc.db.DBUtils;
+import eu.sidzej.wc.sign.SignValidator;
 
 public class ProtectionManager {
 	private static final List<BlockFace> faces = Arrays.asList(BlockFace.EAST, BlockFace.SOUTH,
@@ -27,14 +30,14 @@ public class ProtectionManager {
 	}
 
 	public static void addNew(Location l, BlockFace f) {
-		if(isProtected(l))
+		if (isProtected(l))
 			return;
 		DBUtils.registerShop(l, faces.indexOf(f));
 		instance.protectionList.put(l, e_protectionType.SIGN);
 		instance.protectionList.put(l.getBlock().getRelative(f).getLocation(),
 				e_protectionType.BLOCK);
 	}
-	
+
 	public static void addSign(Location l, WCSign s) {
 		instance.wcList.put(l, s);
 	}
@@ -59,8 +62,12 @@ public class ProtectionManager {
 
 	public static WCSign getSign(Location l) {
 		WCSign sign = instance.wcList.get(l);
-		if(sign == null){
-			sign = new WCSign(l);
+		if (sign == null) {
+			if (!SignValidator.isValidPreparedSign(((Sign) Bukkit.getServer()
+					.getWorld(l.getWorld().getName()).getBlockAt(l).getState()).getLines())) {
+				return null;
+			}
+			sign = new WCSign(l); 
 			addSign(l, sign);
 		}
 		return sign;
