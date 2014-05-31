@@ -18,6 +18,7 @@ SOLD: "Prodal si {amount} kusu {item} za {price}."
 
 SHOP_CREATED: 'WoodCurrency obchodni bod byl vytvoren.'
 SHOP_DESTROYED: 'WoodCurrency obchodni bod byl zrusen.'
+FAKE_SIGN: '&c Tato cedulka je falesny adminshop. Odstranuji...'
 
 WRONG_NUMBER_OF_TYPES_TO_PRICES: "Radek s typem akce a radek s cenou musi obsahovat stejny pocet dvoujtecek (jednu nebo zadnou)."
 
