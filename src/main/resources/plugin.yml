@@ -6,7 +6,7 @@ depend: [Vault]
 commands:
   wc:
     description: Main command for this plugin... it provide you help if you type it.
-    aliases: [woodcurrency,wood]
+    aliases: [woodcurrency,wood,drevni]
     usage: /<command> help
 permissions:
   woodcurrency.*:
