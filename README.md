@@ -1,4 +1,5 @@
 ==== Builds ====
+
 http://ci.technicraft.cz/job/WoodCurrency/
 http://ci.technicraft.cz/job/WoodCurrency/lastSuccessfulBuild/artifact/target/WoodCurrency.jar
 
