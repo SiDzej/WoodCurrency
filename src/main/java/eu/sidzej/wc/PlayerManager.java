@@ -40,7 +40,7 @@ public class PlayerManager {
 
 	public static PlayerData getPlayerData(String name) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (p.getName().equals(name))
+			if (p.getName().equalsIgnoreCase(name))
 				return getPlayerData(p);
 		}
 		return null;

@@ -110,9 +110,9 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 					names.add(player);
 			} else
 				for (Player player : Bukkit.getOnlinePlayers())
-					names.add(player.getName().toLowerCase());
+					names.add(player.getName());
 			for (String name : names)
-				if (name.startsWith(par))
+				if (name.toLowerCase().startsWith(par))
 					out.add(name);
 		}
 		return out;
