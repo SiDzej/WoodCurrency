@@ -8,6 +8,8 @@ public class BlockUtils {
 		TreeSpecies tree = getTree(s);
 		String w = new String(" Wood");
 
+		if (tree == null)
+			return null;
 		switch (tree) {
 			case OAK:
 				return "Oak" + w;
@@ -27,19 +29,27 @@ public class BlockUtils {
 	}
 
 	public static ItemStack getItemStack(String s) {
-		return getTree(s).toItemStack();
+		TreeSpecies t = getTree(s);
+		if (t == null)
+			return null;
+		else
+			return t.toItemStack();
 	}
 
-	public static int getItemStackId(String s){
-		return getTree(s).get();
+	public static int getItemStackId(String s) {
+		TreeSpecies t = getTree(s);
+		if (t == null)
+			return -1;
+		else
+			return t.get();
 	}
-	
-	private static TreeSpecies getTree(String s){
+
+	private static TreeSpecies getTree(String s) {
 		String[] parts = s.toLowerCase().split(" ");
 
 		if (parts.length > 3)
 			return null;
-		
+
 		TreeSpecies out = null;
 		String wood = parts[parts.length - 1].trim();
 		String type = parts[0].trim();
@@ -51,10 +61,10 @@ public class BlockUtils {
 				type += parts[1].trim();
 			}
 		}
-		if (!wood.equals("wood")){
+		if (!wood.equals("wood")) {
 			return null;
 		}
-		
+
 		if (type.equals("oak"))
 			out = TreeSpecies.OAK;
 		else if (type.equals("birch"))
@@ -69,7 +79,7 @@ public class BlockUtils {
 			out = TreeSpecies.JUNGLE;
 		else
 			return null;
-		
+
 		return out;
 	}
 }
