@@ -38,8 +38,8 @@ public class TransactionInventory implements Listener {
 		WCInventory inv = new WCInventory(e.getPlayer());
 		int amount = Config.STACK_SIZE_ON_SIGN - inv.addItems(e.getItemStack(), Config.STACK_SIZE_ON_SIGN);
 		if(amount*e.getPrice() > money){
-			inv.removeItems(e.getItemStack(), (int)(money/e.getPrice() * amount));
-			amount = (int)(money/e.getPrice() * amount);
+			inv.removeItems(e.getItemStack(), amount - (int)(1/e.getPrice() * money));
+			amount = (int)(1/e.getPrice() * money);
 		}
 		
 		e.setFinalAmount(amount);
