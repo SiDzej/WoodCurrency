@@ -26,14 +26,17 @@ public class PlayerUtils {
 		Calendar c = (Calendar) Calendar.getInstance().clone();
 		if (c.before(data.getDate()))
 			return false;
-		if (tier || (data.getDay() <= (data.getDayLimit()*0.3))) {
+
+		if (tier || (data.getDay() <= (data.getDayLimit() * 0.3))) {
+			if (data.getTier() == 0) // first day action - double items
+				data.incrementTier();
 			data.getDate().add(Calendar.DATE, 1);
-			if (c.before(data.getDate()) && (data.getDay() > data.getDayLimit()*0.3)) {
+			if (c.before(data.getDate()) && (data.getDay() > data.getDayLimit() * 0.3)) {
 				data.incrementTier();
 			} else {
 				data.decrementTier();
 				while (data.getTier() > 1) {
-					if(!c.before(data.getDate()))
+					if (!c.before(data.getDate()))
 						data.getDate().add(Calendar.DATE, 1);
 					if (c.after(data.getDate()))
 						data.decrementTier();
@@ -41,10 +44,19 @@ public class PlayerUtils {
 						break;
 				}
 				if (data.getTier() == 1) {
-					c.add(Calendar.DATE, 1);
-					data.setDate(c);
+					data.setDate(((Calendar)c.clone()));
+					data.getDate().add(Calendar.DATE, 1);
 				}
 			}
+		}
+		if (c.after(data.getDate())) {
+			if(data.getDay() > data.getDayLimit() * 0.3)
+				data.incrementTier();
+			data.getDate().add(Calendar.DATE, 1);
+			if (data.getTier() == 0) // first day action - double items
+				data.incrementTier();
+			data.resetDay();
+			checkDailyLimits(data,false);
 		}
 		data.resetDay();
 
