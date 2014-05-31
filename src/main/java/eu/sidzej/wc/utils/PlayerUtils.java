@@ -26,14 +26,15 @@ public class PlayerUtils {
 		Calendar c = (Calendar) Calendar.getInstance().clone();
 		if (c.before(data.getDate()))
 			return false;
-		if (tier) {
+		if (tier || (data.getDay() <= (data.getDayLimit()*0.3))) {
 			data.getDate().add(Calendar.DATE, 1);
-			if (c.before(data.getDate())) {
+			if (c.before(data.getDate()) && (data.getDay() > data.getDayLimit()*0.3)) {
 				data.incrementTier();
 			} else {
 				data.decrementTier();
 				while (data.getTier() > 1) {
-					data.getDate().add(Calendar.DATE, 1);
+					if(!c.before(data.getDate()))
+						data.getDate().add(Calendar.DATE, 1);
 					if (c.after(data.getDate()))
 						data.decrementTier();
 					else

@@ -50,13 +50,15 @@ public class PlayerListener implements Listener {
 		Block b = event.getClickedBlock();
 		Player p = event.getPlayer();
 		Location l = b.getLocation();
-		
+
 		// not a sign| item in hand while sneak
-		if (b == null || b.getType() != Material.WALL_SIGN || !ProtectionManager.isProtected(l)) {
-			if (b != null && SignValidator.isValidPreparedSign(((Sign) b.getState()).getLines())) {
+		if (b == null || b.getType() != Material.WALL_SIGN)
+			return;		
+		if (!ProtectionManager.isProtected(l)) {
+			if (SignValidator.isValidPreparedSign(((Sign) b.getState()).getLines())) {
 				p.sendMessage(Lang.FAKE_SIGN);
-				Log.info("&cFake shop sign found at " + l.getWorld().getName() + "," + l.getX() + ","
-						+ l.getY() + "," + l.getZ() + " by " + p.getName() + ".");
+				Log.info("&cFake shop sign found at " + l.getWorld().getName() + "," + l.getX()
+						+ "," + l.getY() + "," + l.getZ() + " by " + p.getName() + ".");
 				b.breakNaturally();
 			}
 			return;
@@ -73,12 +75,12 @@ public class PlayerListener implements Listener {
 		}
 
 		WCSign sign = ProtectionManager.getSign(l);
-		
-		if(sign == null){
+
+		if (sign == null) {
 			p.sendMessage(Lang.FAKE_SIGN);
 			b.breakNaturally();
-			Log.error("Someone change sign at " + l.getWorld().getName() + "," + l.getX() + "," + l.getY()
-				+ "," + l.getZ() + " clicked by " + p.getName() + ". Shop removed.");
+			Log.error("Someone change sign at " + l.getWorld().getName() + "," + l.getX() + ","
+					+ l.getY() + "," + l.getZ() + " clicked by " + p.getName() + ". Shop removed.");
 			event.setCancelled(true);
 			return;
 		}
