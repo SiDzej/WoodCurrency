@@ -52,7 +52,8 @@ public class BlockBreakListener implements Listener {
 		}
 
 		p.sendMessage(Lang.SHOP_DESTROYED);
-		Log.info("WoodCurreny shop at "+ l.getWorld() +","+ l.getX() +","+ l.getY() +","+ l.getZ()+ " destroyed by " +p.getName()+ ".");
+		Log.info("WoodCurreny shop at " + l.getWorld().getName() + "," + l.getX() + "," + l.getY()
+				+ "," + l.getZ() + " destroyed by " + p.getName() + ".");
 		b.breakNaturally();
 	}
 

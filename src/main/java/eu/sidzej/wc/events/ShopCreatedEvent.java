@@ -35,7 +35,7 @@ public class ShopCreatedEvent extends Event {
 	}
 
 	public String getPositionString() {
-		return "" + b.getWorld() +","+ b.getX() +","+ b.getY() +","+ b.getZ();
+		return "" + b.getWorld().getName() +","+ b.getX() +","+ b.getY() +","+ b.getZ();
 	}
 
 }
