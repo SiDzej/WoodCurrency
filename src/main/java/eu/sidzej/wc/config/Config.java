@@ -10,6 +10,7 @@ public class Config {
 	public static String SIGN_FIRST_LINE_INPUT;
 	public static String SIGN_FIRST_LINE;
 	public static int STACK_SIZE_ON_SIGN;
+	public static String CUSTOM_HELP;
 	public static int MAX_SELL_PER_DAY;
 	public static String host, port, database, pass, user; // db
 	public static boolean debugEnabled, opPerm;
@@ -37,6 +38,7 @@ public class Config {
 		STACK_SIZE_ON_SIGN = config.getInt("STACK_SIZE_ON_SIGN");
 		// limits
 		MAX_SELL_PER_DAY = config.getInt("limits.MAX_SELL_PER_DAY");
+		CUSTOM_HELP = config.getString("CUSTOM_HELP");
 		//
 		lang = config.getString("language");
 		opPerm = config.getBoolean("op-permissions"); // ops have all permissions
