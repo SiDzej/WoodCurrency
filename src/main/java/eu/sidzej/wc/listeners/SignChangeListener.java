@@ -22,7 +22,6 @@ public class SignChangeListener implements Listener {
 	public void onSignTextChange(SignChangeEvent event) {
 		Player p = event.getPlayer();
 		Block b = event.getBlock();
-		Block relative = b.getRelative(((Attachable) b.getState().getData()).getAttachedFace());
 
 		if (ProtectionManager.isProtected(b.getLocation())
 				&& !p.hasPermission("woodcurrency.createshop")) {
@@ -31,13 +30,23 @@ public class SignChangeListener implements Listener {
 			return;
 		}
 
+		if (!b.getType().equals(Material.WALL_SIGN)) {
+			if (SignValidator.isValidPreparedSign(event.getLines())) {
+				p.sendMessage(Lang.CANT_CREATE_SHOP);
+				b.breakNaturally();
+				event.setCancelled(true);
+			}
+			return;
+		}
+
+		Block relative = b.getRelative(((Attachable) b.getState().getData()).getAttachedFace());
+
 		if (!SignValidator.isValidPreparedSign(event.getLines())) {
 			ProtectionManager.remove(b.getLocation(), relative.getLocation());
 			return;
 		}
 
-		if (!b.getType().equals(Material.WALL_SIGN) || !relative.getType().isBlock()
-				|| relative.getType().hasGravity()) {
+		if (!relative.getType().isBlock() || relative.getType().hasGravity()) {
 			p.sendMessage(Lang.CANT_CREATE_SHOP);
 			b.breakNaturally();
 			event.setCancelled(true);
