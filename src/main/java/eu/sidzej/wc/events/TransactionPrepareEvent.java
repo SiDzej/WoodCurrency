@@ -43,6 +43,7 @@ public class TransactionPrepareEvent extends Event {
 		TOO_FAST_CLICK, 
 		DAY_LIMIT,
 		BLOCKED,
+		BROKEN_SIGN,
 	}
 	
 	public void setState(e_states s){

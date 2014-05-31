@@ -15,6 +15,11 @@ public class TransactionPrepareInventory implements Listener {
 	public void InventoryChecker(TransactionPrepareEvent e){
 		if(e.isCancelled())
 			return;
+		if(e.getSign().getItem() == null){
+			e.setState(e_states.BROKEN_SIGN);
+			return;
+		}
+
 		WCInventory inv = new WCInventory(e.getPlayer());
 		if(e.getType().equals(e_type.SELL)){
 			if(!inv.hasItemStack(e.getSign().getItem()))

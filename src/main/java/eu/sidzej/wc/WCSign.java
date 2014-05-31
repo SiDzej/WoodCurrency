@@ -15,6 +15,7 @@ public class WCSign {
 	private ItemStack item;
 	private int itemId;
 	private String itemName = "";
+	private Location l;
 
 	public WCSign(ItemStack item, double sell, double buy, e_type type) {
 		this.item = item;
@@ -32,6 +33,7 @@ public class WCSign {
 		type = SignValidator.getShopType(s);
 		sellprice = SignValidator.getPrice(s, e_type.SELL);
 		buyprice = SignValidator.getPrice(s, e_type.BUY);
+		this.l=l;
 	}
 
 	public double getSellPrice() {
@@ -60,6 +62,14 @@ public class WCSign {
 
 	public String getItemName() {
 		return itemName;
+	}
+	
+	public void breakNaturally(){
+		Bukkit.getWorld(l.getWorld().getName()).getBlockAt(l).breakNaturally();
+	}
+
+	public Location getLocation() {
+		return l;
 	}
 
 }
