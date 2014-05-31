@@ -5,56 +5,56 @@
 ##########################
 
 
-NO_PERMISSION: '&c You have no permission to do that!'
+NO_PERMISSION: "&c You don't have permission to do this!"
 
-NO_SPACE_IN_INVENTORY: 'You have no empty space in inventory.'
-NOT_ENOUGH_MONEY: 'You have not enough money for purchase.'
-NO_REQUIRED_ITEM: 'Your inventory does not contain required item.'
-DAY_LIMIT_REACHED: 'You have reached day limit for admin shop.'
-PLAYER_BANNED: '&c Use of admin shop is forbidden for you.'
+NO_SPACE_IN_INVENTORY: "You don't have any space in your inventory."
+NOT_ENOUGH_MONEY: "You don't have enough money to use the shop."
+NO_REQUIRED_ITEM: "Your inventory doesn't contain the required item."
+DAY_LIMIT_REACHED: 'You have reached the adminshop daily limit.'
+PLAYER_BANNED: '&c You are forbidden to use the adminshop.'
 
-BOUGHT: "You just bought {amount} pieces of {item} for {price}."
-SOLD: "You just sold {amount} pieces of {item} for {price}."
+BOUGHT: "You bought {amount} {item} for {price}."
+SOLD: "You sold {amount} {item} for {price}."
 
-SHOP_CREATED: 'WoodCurrency shop created successfully.'
-SHOP_DESTROYED: 'WoodCurrency shop destroyed successfully.'
-FAKE_SIGN: '&c This sign is fake adminshop! Destroying...'
+SHOP_CREATED: 'WoodCurrency shop has been successfully created.'
+SHOP_DESTROYED: 'WoodCurrency shop has been successfully destroyed.'
+FAKE_SIGN: '&c This sign is a fake adminshop! Destroying...'
 
-WRONG_NUMBER_OF_TYPES_TO_PRICES: "Sell/buy line not corespond to price line. Both must have same number of ':' (one or none)."
+WRONG_NUMBER_OF_TYPES_TO_PRICES: "The sell/buy line does not corespond to the price line. Both must have same number of ':' (one or none)."
 
-CANT_CREATE_SHOP: "Shop have to be wall sign and have to be placed on block, not affected by gravity."
+CANT_CREATE_SHOP: "The shop sign has to be placed on a gravity-resistant block."
 
 
-BAD_FIRST_LINE: 'First line of WoodCurrency sign error.'
-BAD_SECOND_LINE: 'Second line of WoodCurrency sign error. (buy:sell)'
-BAD_THIRD_LINE: 'Third line of WoodCurrency sign error.(price 5:5)'
-BAD_FOURTH_LINE: 'Fourth line of WoodCurrency sign error. (Wood item - oak wood)'
+BAD_FIRST_LINE: 'The first sign line is wrong, maybe you misspelled it?'
+BAD_SECOND_LINE: 'The seoond sign line is wrong, maybe you misspelled it? (buy:sell)'
+BAD_THIRD_LINE: 'The third sign line is wrong, maybe you misspelled it?(price 5:5)'
+BAD_FOURTH_LINE: 'The fourth sign line is wrong, maybe you misspelled it? (Wood item - oak wood)'
 
-GENERAL_PROBLEM: 'Something goes wrong. Report it to _CJ_. Thanks.'
+GENERAL_PROBLEM: 'Something just went terribly wrong. Please, report it to _CJ_.'
 
 #### help part - all white
 
-CMD_BAN: 'Prevent player from using admin shop.'
-CMD_UNBAN: 'Allow player to use adminshop again.'
-CMD_INFO: 'Provides info about player day limit and total count.'
-CMD_TOP: 'Provides info about TOP 10 sellers.'
-CMD_RESET_TIER: 'Reset player tier to tier 1. Tier 1 means player can sell maximal limit of items.'
-CMD_RESET_DAY: 'Reset day limit of given player.'
-CMD_HELP: 'Writes down this help or help about given commands.'
-CMD_DISABLE: 'Disables immediately plugin. For safety reasons only.'
-CMD_EXAMPLE: 'Shows sign example of this plugin'
+CMD_BAN: 'Prevents the player from using the adminshop.'
+CMD_UNBAN: 'Allows the player to use the adminshop again.'
+CMD_INFO: 'Provides info about player daily limit and total count.'
+CMD_TOP: 'Provides info about the TOP 10 sellers.'
+CMD_RESET_TIER: 'Resets the player tier to 1. Tier 1 means player can sell the maximal amount of items.'
+CMD_RESET_DAY: "Resets the specified player's daily limit."
+CMD_HELP: 'Lists all the available commands/information about a specific command.'
+CMD_DISABLE: 'Disables the plugin immediately. Safety reasons only.'
+CMD_EXAMPLE: 'Displays an adminshop sign example.'
 
-CMD_UNKNOWN: 'You have tried unknown subcommand: '
+CMD_UNKNOWN: 'Unknown command: '
 CMD_BAD_USAGE: '&4Bad usage! &rTry: '
 
 
 #### actions
-A_BANNED: 'is now blocked for using adminshop.'
-A_UNBANNED: 'now can use adminshop again.'
-A_INFO: '&eToday sells limit : &eTotal bought : &eTotal sold ' # : is separator
-A_PLAYER_TIER_RESET: '&cTier has been reset to default for player'
-A_PLAYER_DAY_LIMIT_RESET: '&cDaily sales limit has been reset for player'
-A_TOP_LIST: '&6List of top sellers'
+A_BANNED: "is now blocked and can't use the adminshop."
+A_UNBANNED: 'can now use the adminshop again.'
+A_INFO: "&eToday's sell limit : &eTotal bought : &eTotal sold" # : is separator
+A_PLAYER_TIER_RESET: '&cDefault tier has been set for player'
+A_PLAYER_DAY_LIMIT_RESET: '&cDaily limit has been reset for player'
+A_TOP_LIST: '&6Top sellers list'
 
 A_PLAYER_NOT_FOUND: '&c Player not found:'
-NOT_AVAILABLE_FOR_CONSOLE: '&c This action is not available for console.'
+NOT_AVAILABLE_FOR_CONSOLE: "&c You can't execute this command in the console."
