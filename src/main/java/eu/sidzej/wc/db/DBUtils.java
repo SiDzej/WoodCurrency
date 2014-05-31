@@ -24,7 +24,7 @@ import eu.sidzej.wc.utils.Log;
 import eu.sidzej.wc.utils.TimeUtils;
 
 public class DBUtils {
-	
+
 	private static List<String> bannedList = null;
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -350,21 +350,21 @@ public class DBUtils {
 		}
 
 	}
-	
-	public static List<String> getBannedPlayers(){
-		if(bannedList != null)
+
+	public static List<String> getBannedPlayers() {
+		if (bannedList != null)
 			return bannedList;
-		
+
 		TimedConnection c = null;
 		Statement s = null;
 		bannedList = new ArrayList<String>();
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			ResultSet set = s
-					.executeQuery("SELECT uuid FROM `wc_players` WHERE blocked = 1");
+			ResultSet set = s.executeQuery("SELECT uuid FROM `wc_players` WHERE blocked = 1");
 			while (set.next()) {
-				bannedList.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()));
+				bannedList.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid")))
+						.getName()).toLowerCase());
 			}
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
@@ -381,5 +381,5 @@ public class DBUtils {
 		}
 		return bannedList;
 	}
-	
+
 }

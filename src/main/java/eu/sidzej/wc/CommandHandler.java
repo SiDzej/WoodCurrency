@@ -28,7 +28,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 	private ArrayList<String> sortedCommands = new ArrayList<String>();
 	@SuppressWarnings("unused")
 	private final WoodCurrency plugin;
-	
+
 	/**
 	 * 
 	 * @param plugin
@@ -95,25 +95,24 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 	@Override
 	public List<String> onTabComplete(CommandSender p, Command cmd, String alias, String[] partial) {
 		List<String> out = new ArrayList<String>();
-		String par = partial[partial.length - 1];
+		String par = partial[partial.length - 1].toLowerCase();
 		if (partial.length == 1) {
 			for (String s : commands.keySet())
-				if (s.startsWith(par))
+				if (s.toLowerCase().startsWith(par))
 					if ((p instanceof Player && p.hasPermission("woodcurrency." + s))
 							|| (p.isOp() && Config.opPerm) || !(p instanceof Player)) {
 						out.add(s);
 					}
 		} else {
 			List<String> names = new ArrayList<String>();
-			if(partial.length>1 && partial[0].equals("unban")){
+			if (partial.length > 1 && partial[0].equals("unban")) {
 				for (String player : DBUtils.getBannedPlayers())
 					names.add(player);
-			}
-			else			
-			for (Player player : Bukkit.getOnlinePlayers())
-				names.add(player.getName());
-			for(String name: names)
-				if(name.startsWith(par))
+			} else
+				for (Player player : Bukkit.getOnlinePlayers())
+					names.add(player.getName().toLowerCase());
+			for (String name : names)
+				if (name.startsWith(par))
 					out.add(name);
 		}
 		return out;
