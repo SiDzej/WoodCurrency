@@ -124,7 +124,7 @@ public class PlayerManager {
 		}
 
 		public void incrementTier() {
-			if (tier < 6)
+			if (tier < 7)
 				tier++;
 		}
 
