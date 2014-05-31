@@ -38,7 +38,7 @@ public class Config {
 		STACK_SIZE_ON_SIGN = config.getInt("STACK_SIZE_ON_SIGN");
 		// limits
 		MAX_SELL_PER_DAY = config.getInt("limits.MAX_SELL_PER_DAY");
-		CUSTOM_HELP = config.getString("CUSTOM_HELP");
+		CUSTOM_HELP = config.getString("custom-help");
 		//
 		lang = config.getString("language");
 		opPerm = config.getBoolean("op-permissions"); // ops have all permissions

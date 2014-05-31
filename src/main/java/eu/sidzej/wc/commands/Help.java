@@ -62,7 +62,7 @@ public class Help implements CommandInterface {
 	}
 
 	private static String helpStringBuilder(String n, String d, String u) {
-		return ChatColor.translateAlternateColorCodes('&', ChatColor.AQUA + "/" + Config.CUSTOM_HELP + n + " "
+		return ChatColor.translateAlternateColorCodes('&', ChatColor.AQUA + "/" + Config.CUSTOM_HELP + " "+ n + " "
 				+ ChatColor.GREEN + u + " " + ChatColor.RESET + "- " + d);
 	}
 
