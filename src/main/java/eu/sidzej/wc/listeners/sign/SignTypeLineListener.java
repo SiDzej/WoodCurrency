@@ -37,14 +37,13 @@ public class SignTypeLineListener implements Listener {
 		} else if (parts.length == 2) {
 			if (parts[0].equals("s") || parts[0].equals("sell")) {
 				if (parts[1].equals("b") || parts[1].equals("buy")) {
-					out = "Buy : Sell";
-					flip_prices = true;
+					out = "Sell : Buy";
 					e.setType(e_type.BUYSELL);
-					;
 				}
 			} else if (parts[0].equals("b") || parts[0].equals("buy"))
 				if (parts[1].equals("s") || parts[1].equals("sell")) {
-					out = "Buy : Sell";
+					out = "Sell : Buy";
+					flip_prices = true;
 					e.setType(e_type.BUYSELL);
 				}
 		}
@@ -58,8 +57,8 @@ public class SignTypeLineListener implements Listener {
 			if (flip_prices)
 				e.setLine(SignValidator.PRICE_LINE,
 						flip_prices(e.getLine(SignValidator.PRICE_LINE)));
-			e.setBuyPrice(doublePrice(0));
-			e.setSellPrice(doublePrice(1));
+			e.setBuyPrice(doublePrice(1));
+			e.setSellPrice(doublePrice(0));
 		}
 		e.setLine(SignValidator.TYPE_LINE, out);
 	}

@@ -33,7 +33,15 @@ public class SignValidator {
 
 	public static double getPrice(Sign s, e_type type) {
 		if (s.getLine(PRICE_LINE).split(" : ").length == 2) {
-			if (type.equals(e_type.BUY))
+			// old format
+			// TODO odstranit pozdeji
+			if (s.getLine(TYPE_LINE).equalsIgnoreCase("buy : sell")){
+				s.setLine(TYPE_LINE, flip_prices(s.getLine(TYPE_LINE)));
+				s.setLine(PRICE_LINE, flip_prices(s.getLine(PRICE_LINE)));
+				s.update();
+			}
+				
+			if (type.equals(e_type.SELL))
 				return Double.parseDouble(s.getLine(PRICE_LINE).split(" : ")[0]);
 			else
 				return Double.parseDouble(s.getLine(PRICE_LINE).split(" : ")[1]);
@@ -62,5 +70,11 @@ public class SignValidator {
 		}
 		return (lines[TYPE_LINE].indexOf(":") == lines[TYPE_LINE].lastIndexOf(":") && lines[PRICE_LINE]
 				.indexOf(":") == lines[PRICE_LINE].lastIndexOf(":"));
+	}
+	
+	// old format fix
+	private static String flip_prices(String l) {
+		String[] parts = l.split(":");
+		return parts[1].trim() + " : " + parts[0].trim();
 	}
 }
