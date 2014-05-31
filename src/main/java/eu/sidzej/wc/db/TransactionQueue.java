@@ -52,7 +52,6 @@ public class TransactionQueue implements Closeable {
 		if (instance.transactions.containsKey(hash)) {
 			Transaction t = instance.transactions.get(hash);
 			if (t.type.equals(type) && block == t.block) {
-				Log.info("add  " + instance.transactions.size());
 				t.count += count;
 				t.price += price;
 			} else {
