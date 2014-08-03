@@ -4,6 +4,7 @@
 CREATE TABLE IF NOT EXISTS `wc_players` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `uuid` char(36) NOT NULL UNIQUE,
+  `nick` char(36) NOT NULL UNIQUE,
   `day` INT NOT NULL DEFAULT 0,
   `totalbuy` INT NOT NULL DEFAULT 0,
   `totalsell` INT NOT NULL DEFAULT 0,
@@ -45,4 +46,16 @@ CREATE TABLE IF NOT EXISTS `wc_signs` (
   `buys` INT DEFAULT 0,
   PRIMARY KEY (`id`)
   ) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+-- -----------------------------------------------------
+-- WC Version Info
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `wc_info` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `version` INT NOT NULL,
+  PRIMARY KEY (`id`)
+  ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1
+
+
