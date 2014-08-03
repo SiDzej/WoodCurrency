@@ -304,12 +304,11 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			ResultSet set = s
-					.executeQuery("SELECT uuid,totalsell FROM `wc_players` ORDER BY totalsell DESC LIMIT 10");
+					.executeQuery("SELECT uuid,totalsell,nick FROM `wc_players` ORDER BY totalsell DESC LIMIT 10");
 			int i = 1;
 			while (set.next()) {
 				data.add("" + ChatColor.GRAY + (i++) + ": " + ChatColor.GREEN
-						+ Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid"))).getName()
-						+ ChatColor.GRAY + " - " + ChatColor.GREEN + set.getString("totalsell"));
+						+ set.getString("nick") + ChatColor.GRAY + " - " + ChatColor.GREEN + set.getString("totalsell"));
 			}
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
@@ -361,10 +360,9 @@ public class DBUtils {
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			ResultSet set = s.executeQuery("SELECT uuid FROM `wc_players` WHERE blocked = 1");
+			ResultSet set = s.executeQuery("SELECT nick FROM `wc_players` WHERE blocked = 1");
 			while (set.next()) {
-				bannedList.add((Bukkit.getOfflinePlayer(UUID.fromString(set.getString("uuid")))
-						.getName()).toLowerCase());
+				bannedList.add(set.getString("nick"));
 			}
 		} catch (SQLException e) {
 			Log.error(e.getMessage());

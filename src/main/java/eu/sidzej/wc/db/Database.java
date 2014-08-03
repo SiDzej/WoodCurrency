@@ -174,8 +174,8 @@ public class Database {
 		ResultSet res = s.executeQuery("SELECT id,uuid FROM wc_players");
 		while (res.next()){
 			Statement update = c.createStatement();
-			String nick = (Bukkit.getOfflinePlayer(UUID.fromString(res.getString("uuid")))
-					.getName()).toLowerCase();
+			String nick = Bukkit.getOfflinePlayer(UUID.fromString(res.getString("uuid")))
+					.getName();
 			update.execute("UPDATE wc_players SET nick = \""+nick+"\" WHERE id=\""+res.getInt("id")+"\"");
 		}
 		
