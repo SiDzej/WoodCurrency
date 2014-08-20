@@ -1,11 +1,12 @@
 package eu.sidzej.wc.db;
 
+import static eu.sidzej.wc.WCSign.e_type.SELL;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +20,6 @@ import eu.sidzej.wc.PlayerManager;
 import eu.sidzej.wc.PlayerManager.PlayerData;
 import eu.sidzej.wc.ProtectionManager;
 import eu.sidzej.wc.WCSign.e_type;
-import static eu.sidzej.wc.WCSign.e_type.SELL;
 import eu.sidzej.wc.utils.Log;
 import eu.sidzej.wc.utils.TimeUtils;
 
@@ -148,10 +148,8 @@ public class DBUtils {
 			c = Database.getConnection();
 			s = c.createStatement();
 			ResultSet set = s.executeQuery("SELECT * FROM wc_players");
-			List<Player> playerlist = new ArrayList<Player>(
-					Arrays.asList(Bukkit.getOnlinePlayers()));
 			List<UUID> players = new ArrayList<UUID>();
-			for (Player p : playerlist) {
+			for (Player p : Bukkit.getOnlinePlayers()) {
 				players.add(p.getUniqueId());
 			}
 			while (set.next()) {
