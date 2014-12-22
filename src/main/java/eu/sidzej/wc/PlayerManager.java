@@ -24,16 +24,18 @@ public class PlayerManager {
 		return instance;
 	}
 
-	public static PlayerData getPlayerData(UUID uuid) {		
-		if (instance.players.containsKey(uuid))
-			return instance.players.get(uuid);
-		else {
-			PlayerData data = DBUtils.getPlayerData(uuid);
-			if (data == null) {
-				DBUtils.registerPlayer(uuid);
-				data = DBUtils.getPlayerData(uuid);
+	public static PlayerData getPlayerData(UUID uuid) {	
+		synchronized(instance.players){
+			if (instance.players.containsKey(uuid))
+				return instance.players.get(uuid);
+			else {
+				PlayerData data = DBUtils.getPlayerData(uuid);
+				if (data == null) {
+					DBUtils.registerPlayer(uuid);
+					data = DBUtils.getPlayerData(uuid);
+				}
+				return data;
 			}
-			return data;
 		}
 
 	}
@@ -53,7 +55,9 @@ public class PlayerManager {
 	public static PlayerData addPlayer(UUID uuid, int id, int day, int totalbuy, int totalsell,
 			byte tier, Timestamp timestamp, boolean ban) {
 		PlayerData data = new PlayerData(uuid, id, day, totalbuy, totalsell, tier, timestamp, ban);
-		instance.players.put(uuid, data);
+		synchronized(instance.players){
+			instance.players.put(uuid, data);
+		}
 		return data;
 	}
 
@@ -159,15 +163,21 @@ public class PlayerManager {
 	}
 
 	public static void remove(Player p) {
-		instance.players.remove(p.getUniqueId());
+		synchronized(instance.players){
+			instance.players.remove(p.getUniqueId());
+		}
 	}
 
 	public static void playerJoin(UUID uuid) {
-		instance.players.put(uuid, getPlayerData(uuid));		
+		synchronized(instance.players){
+			instance.players.put(uuid, getPlayerData(uuid));	
+		}
 	}
 
 	public static void saveAll() {
+		synchronized(instance.players){
 		for(PlayerData data : instance.players.values())
-			DBUtils.UpdatePlayer(data);		
+			DBUtils.UpdatePlayer(data);	
+		}
 	}
 }
