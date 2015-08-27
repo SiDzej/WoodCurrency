@@ -4,7 +4,6 @@
 CREATE TABLE IF NOT EXISTS `wc_players` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `uuid` char(36) NOT NULL UNIQUE,
-  `nick` char(36) NOT NULL UNIQUE,
   `day` INT NOT NULL DEFAULT 0,
   `totalbuy` INT NOT NULL DEFAULT 0,
   `totalsell` INT NOT NULL DEFAULT 0,
