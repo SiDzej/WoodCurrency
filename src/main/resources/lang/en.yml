@@ -13,6 +13,8 @@ NO_REQUIRED_ITEM: "Your inventory doesn't contain the required item."
 DAY_LIMIT_REACHED: 'You have reached the adminshop daily limit.'
 PLAYER_BANNED: '&c You are forbidden to use the adminshop.'
 
+BLOCKED_ACC: '&c You don't have money account or it is blocked.'
+
 BOUGHT: "You bought {amount} {item} for {price}."
 SOLD: "You sold {amount} {item} for {price}."
 
@@ -26,7 +28,7 @@ CANT_CREATE_SHOP: "The shop sign has to be placed on a gravity-resistant block."
 
 
 BAD_FIRST_LINE: 'The first sign line is wrong, maybe you misspelled it?'
-BAD_SECOND_LINE: 'The seoond sign line is wrong, maybe you misspelled it? (buy:sell)'
+BAD_SECOND_LINE: 'The second sign line is wrong, maybe you misspelled it? (buy:sell)'
 BAD_THIRD_LINE: 'The third sign line is wrong, maybe you misspelled it?(price 5:5)'
 BAD_FOURTH_LINE: 'The fourth sign line is wrong, maybe you misspelled it? (Wood item - oak wood)'
 

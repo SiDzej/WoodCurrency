@@ -20,6 +20,8 @@ public class Lang {
 			NO_REQUIRED_ITEM, DAY_LIMIT_REACHED, BOUGHT, SOLD, SHOP_CREATED,
 			WRONG_NUMBER_OF_TYPES_TO_PRICES, BAD_FIRST_LINE, BAD_SECOND_LINE, BAD_THIRD_LINE,
 			BAD_FOURTH_LINE, CANT_CREATE_SHOP, SHOP_DESTROYED,PLAYER_BANNED,FAKE_SIGN;
+	
+	public static String BLOCKED_ACC;
 
 	private static ConfigAccessor accessor;
 	private static Configuration locale;
@@ -46,6 +48,8 @@ public class Lang {
 		NO_REQUIRED_ITEM = getString("NO_REQUIRED_ITEM");
 		DAY_LIMIT_REACHED = getString("DAY_LIMIT_REACHED");
 		PLAYER_BANNED = getString("PLAYER_BANNED");
+		
+		BLOCKED_ACC = getString("BLOCKED_ACC");
 		
 		BOUGHT = getString("BOUGHT");
 		SOLD = getString("SOLD");

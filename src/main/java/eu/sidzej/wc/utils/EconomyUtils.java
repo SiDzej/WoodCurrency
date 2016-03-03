@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 import eu.sidzej.wc.WoodCurrency;
+import eu.sidzej.wc.config.Lang;
 
 public final class EconomyUtils {
 	private WoodCurrency plugin;
@@ -38,7 +39,7 @@ public final class EconomyUtils {
 
 	public static synchronized boolean withdraw(Player p, double amount) {
 	    if (!eco.hasAccount(p)){
-	        p.sendMessage("You don't have account or your account is blocked.");
+	        p.sendMessage(Lang.BLOCKED_ACC);
 	        return false;
 	    }
 		if (eco.getBalance(p) >= amount) {
@@ -46,25 +47,25 @@ public final class EconomyUtils {
 			if (tmp.transactionSuccess())
 				return true;
 			else {
-				p.sendMessage("Something goes wrong. Transaction failed!");
+				p.sendMessage(Lang.GENERAL_PROBLEM);
 				if (tmp.type == ResponseType.FAILURE)
 					Log.error(tmp.errorMessage);
 				return false;
 			}
 
 		}
-		p.sendMessage("You lack the money to buy this!");
+		p.sendMessage(Lang.NOT_ENOUGH_MONEY);
 		return false;
 	}
 
 	public static boolean deposit(Player p, double amount) {
 	    if (!eco.hasAccount(p)){
-            p.sendMessage("You don't have account or your account is blocked.");
+            p.sendMessage(Lang.BLOCKED_ACC);
             return false;
         }
 		tmp = eco.depositPlayer(p, amount);
 		if (!tmp.transactionSuccess()) {
-			p.sendMessage("Something goes wrong. Transaction failed!");
+			p.sendMessage(Lang.GENERAL_PROBLEM);
 			if (tmp.type == ResponseType.FAILURE)
 				Log.error(tmp.errorMessage);
 			return false;

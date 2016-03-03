@@ -13,6 +13,8 @@ NO_REQUIRED_ITEM: 'Nemas nic na prodej!'
 DAY_LIMIT_REACHED: 'Dosahl jsi denniho limitu adminshopu. Zkus to za 24 hodin.'
 PLAYER_BANNED: '&c Bylo ti zakazano pouzivani adminshopu.'
 
+BLOCKED_ACC: '&c Tvůj účet s penězi je blokován nebo neexistuje. Nemůžes nakupovat ani prodávat.'
+
 BOUGHT: "Koupil jsi {amount} kusu {item} za {price}."
 SOLD: "Prodal jsi {amount} kusu {item} za {price}."
 
