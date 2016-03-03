@@ -37,6 +37,10 @@ public final class EconomyUtils {
 	}
 
 	public static synchronized boolean withdraw(Player p, double amount) {
+	    if (!eco.hasAccount(p)){
+	        p.sendMessage("You don't have account or your account is blocked.");
+	        return false;
+	    }
 		if (eco.getBalance(p) >= amount) {
 			tmp = eco.withdrawPlayer(p, amount);
 			if (tmp.transactionSuccess())
@@ -54,6 +58,10 @@ public final class EconomyUtils {
 	}
 
 	public static boolean deposit(Player p, double amount) {
+	    if (!eco.hasAccount(p)){
+            p.sendMessage("You don't have account or your account is blocked.");
+            return false;
+        }
 		tmp = eco.depositPlayer(p, amount);
 		if (!tmp.transactionSuccess()) {
 			p.sendMessage("Something goes wrong. Transaction failed!");

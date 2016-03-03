@@ -39,7 +39,7 @@ public class DBUtils {
 			s = c.createStatement();
 			s.execute("INSERT INTO wc_transactions (player,block,count,date,type,price) VALUES (\""
 					+ id + "\",\"" + block + "\",\"" + count + "\",\"" + time + "\",\""
-					+ ((e_type.equals(SELL)) ? 1 : 0) + "\",\"" + price + "\")");
+					+ ((e_type.equals(SELL)) ? 1 : 2) + "\",\"" + price + "\")");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());
 			Log.error("Unable to log transaction to DB.");
@@ -95,8 +95,8 @@ public class DBUtils {
 		try {
 			c = Database.getConnection();
 			s = c.createStatement();
-			s.execute("INSERT INTO wc_players (uuid,timestamp) VALUES (\"" + uuid + "\",\""
-					+ TimeUtils.getTime() + "\")");
+			s.execute("INSERT INTO wc_players (uuid,timestamp,nick) VALUES (\"" + uuid + "\",\""
+					+ TimeUtils.getTime() + "\",\""+ Bukkit.getOfflinePlayer(uuid).getName() + "\")");
 		} catch (SQLException ex) {
 			Log.error("Unable to put new player into DB.");
 			return false;
@@ -251,7 +251,8 @@ public class DBUtils {
 			s.execute("UPDATE wc_players SET day = '" + data.getDay() + "',tier = '"
 					+ data.getTier() + "',timestamp = '" + data.getTimestamp() + "', totalbuy = '"
 					+ data.getTotalBuy() + "', totalsell = '" + data.getTotalSell()
-					+ "', blocked = '" + ((data.isBlocked()) ? 1 : 0) + "' WHERE `id` = '"
+					+ "', blocked = '" + ((data.isBlocked()) ? 1 : 0) 
+					+ "', nick = '" + Bukkit.getOfflinePlayer(data.getUUID()).getName() + "' WHERE `id` = '"
 					+ data.getID() + "'");
 		} catch (SQLException ex) {
 			Log.error(ex.getMessage());

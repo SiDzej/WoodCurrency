@@ -21,9 +21,9 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 CREATE TABLE IF NOT EXISTS `wc_transactions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `player` INT NOT NULL,
-  `block` INT DEFAULT NULL,
+  `block` ENUM('oak','birch','spruce','jungle','dark','acacia'),
   `count` INT DEFAULT 0,
-  `type` TINYINT DEFAULT 0,
+  `type` ENUM('sell','buy'),
   `price` FLOAT DEFAULT 0,
   `date` DATETIME NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
@@ -57,5 +57,7 @@ CREATE TABLE IF NOT EXISTS `wc_info` (
   PRIMARY KEY (`id`)
   ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1
+
+INSERT INTO wc_info (version) VALUES (3)
 
 

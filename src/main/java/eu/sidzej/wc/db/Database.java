@@ -24,7 +24,7 @@ public class Database {
 	private static ConnectionManager cm;
 	public boolean valid = false;
 
-	public byte current_version = 2;
+	public byte current_version = 3;
 
 	private List<String> table_names = Arrays.asList("wc_players",
 			"wc_transactions", "wc_signs", "wc_info");
@@ -135,7 +135,7 @@ public class Database {
 			if(res.next())
 				version = res.getByte("version");
 			else 
-				version = 0;
+				version = 3;
 			
 			version++;
 			
@@ -145,12 +145,12 @@ public class Database {
 				
 			case 2:
 				update2(c);
-
-				
-				s.execute("UPDATE wc_info SET version = \""+ current_version +"\"");
+			case 3:
+			    update3(c);
 			default:
 				break;
 			}
+			s.execute("UPDATE wc_info SET version = \""+ current_version +"\"");
 		} catch (SQLException e) {
 			Log.error(e.getMessage());
 			plugin.disable("Can't reach database.");
@@ -164,6 +164,27 @@ public class Database {
 			}
 		}
 
+	}
+	
+	private void update3(TimedConnection c) throws SQLException{
+	    Log.info("Updating database to version 3");
+	    Statement s = c.createStatement();
+	    // buy sell enum to readable DB form
+	    s.execute("ALTER TABLE wc_transactions ADD type1 enum('sell','buy')");
+	    s.execute("UPDATE wc_transactions SET type1=1 WHERE type=1");
+	    s.execute("UPDATE wc_transactions SET type1=2 WHERE type=0");
+	    s.execute("ALTER TABLE wc_transactions DROP type");
+	    s.execute("ALTER TABLE wc_transactions change type1 type enum('sell','buy')");
+	    // tree species to readable DB form
+	    s.execute("ALTER TABLE wc_transactions CHANGE block block enum('oak','birch','spruce','jungle','dark','acacia')");	
+	    // resolve uuids to current nick
+	    ResultSet res = s.executeQuery("SELECT id,uuid FROM wc_players");
+        while (res.next()){
+            Statement update = c.createStatement();
+            String nick = Bukkit.getOfflinePlayer(UUID.fromString(res.getString("uuid")))
+                    .getName();
+            update.execute("UPDATE wc_players SET nick = \""+nick+"\" WHERE id=\""+res.getInt("id")+"\"");
+        }
 	}
 	
 	private void update2(TimedConnection c) throws SQLException{

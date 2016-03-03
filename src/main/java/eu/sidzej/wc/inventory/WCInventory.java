@@ -15,9 +15,8 @@ public class WCInventory {
 		i = p.getInventory();
 	}
 
-	@SuppressWarnings("deprecation")
 	private void updateInv() {
-		p.updateInventory(); // TODO opravit az to opravi bukkit
+		p.updateInventory();
 	}
 
 	public boolean hasEmptySpaceFor(ItemStack item) {
